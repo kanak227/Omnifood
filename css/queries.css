@@ -118,6 +118,7 @@
     /* MOBILE NAVIGATION */
     .btn-mobile-nav {
         display: block;
+        z-index: 9999;
     }
     
     .nav-open .main-nav {
@@ -136,7 +137,7 @@
     }
 
     .main-nav {
-        background-color: rgba(255, 255, 255, 0.97);
+        background-color: rgba(255, 255, 255, 0.6);
         position: absolute;
         top: 0;
         left: 0;
@@ -147,6 +148,7 @@
         justify-content: center;
         transform: translateX(100%);
         transition: all 0.5s ease-in;
+        backdrop-filter: blur(10px);
 
         /* Hide Navigation */
         opacity: 0;
