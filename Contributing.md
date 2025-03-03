@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-We welcome contributions to improve these computer vision tools! Here's how to help:
+We welcome contributions to improve this frontend only website! Here's how to help:
 
 ## Getting Started
 
