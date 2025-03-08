@@ -644,3 +644,42 @@
 .grid--footer {
     grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
 }
+
+
+#scrollBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    text-align: center;
+    line-height: 50px;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden; /* Ensures image stays within circle */
+}
+
+/* Full-cover image inside button */
+#scrollBtn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fully covers the circle */
+    border-radius: 50%;
+}
+
+#scrollBtn:hover {
+    transform: scale(1.05);
+}
+
+
+
+/* Rotation effect */
+.rotate {
+    transform: rotate(360deg);
+}

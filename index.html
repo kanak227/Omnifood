@@ -615,7 +615,12 @@
                     </div>
                 </div>
             </section>
+
+            <button id="scrollBtn" onclick="scrollToTop()">
+                <img src="./img/omnifood-logo.png" alt="Up Arrow">
+            </button>
         </main>
+
         <footer class="footer">
             <div class="container grid grid--5-cols">
                 <div class="logo-col">
@@ -674,5 +679,29 @@
                 </nav>
             </div>
         </footer>
+
+        <script>
+            let scrollBtn = document.getElementById("scrollBtn");
+
+// Show button when scrolled down
+window.onscroll = function () {
+    if (document.documentElement.scrollTop >50) {
+        scrollBtn.style.display = "block";
+    } else {
+        scrollBtn.style.display = "none";
+    }
+};
+
+function scrollToTop() {
+    // Add rotation effect
+    scrollBtn.classList.add("rotate");
+
+    // Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Remove rotation class after animation
+    setTimeout(() => scrollBtn.classList.remove("rotate"), 400);
+}
+        </script>
     </body>
 </html>
