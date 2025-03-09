@@ -636,7 +636,7 @@
                         </li>
                     </ul>
                     <p class="copyright">
-                        Copyright &copy; 2025 by Omnifood, Inc. All rights reserved.
+                        Copyright &copy; <span id="year"></span> by Omnifood, Inc. All rights reserved.
                     </p>
                 </div>
                 <div class="address-col">
@@ -702,6 +702,8 @@ function scrollToTop() {
     // Remove rotation class after animation
     setTimeout(() => scrollBtn.classList.remove("rotate"), 400);
 }
+
+document.getElementById("year").textContent = new Date().getFullYear();
         </script>
     </body>
 </html>
