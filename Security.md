@@ -6,7 +6,7 @@ The following versions of OmniFood are currently supported with security updates
 1.x.x	✅ Supported
 0.x.x	❌ Not supported
 
-Reporting a Vulnerability
+# Reporting a Vulnerability
 If you discover a security vulnerability in OmniFood, we encourage you to report it as soon as possible. We will investigate all legitimate reports and do our best to quickly fix the issue.
 
 How to Report
