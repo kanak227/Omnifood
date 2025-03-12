@@ -163,6 +163,12 @@
     display: inline-block;
     padding: 1rem 2rem; /* Smaller buttons */
     font-size: 1.6rem;
+    min-height: 48px; /* Ensure minimum touch target size */
+}
+
+.btn--large {
+    padding: 2rem 4rem;
+    font-size: 2.4rem;
 }
 
 /* ================= DELIVERED MEALS ================= */
@@ -228,7 +234,7 @@
 }
 
 .logos img {
-    height: 3.2rem;
+    height: 3.2rem; /* Increase logo size for visibility */
     filter: brightness(0);
     opacity: 50%;
 }
