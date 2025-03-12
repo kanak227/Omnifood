@@ -40,24 +40,37 @@ const obs=new IntersectionObserver(function(entries){
 obs.observe(sectionHeroEl);
 
 ///////////////////////////////////////////////////
-const allLinks=document.querySelectorAll("a:link");
-allLinks.forEach(function(link){
-    link.addEventListener("click",function(e){
-        e.preventDefault();
-        const href=link.getAttribute("href");
-        if(href==="#") 
-            window.scrollTo({
-                top:0,
-                behavior:"smooth"
-            });
-        if(href!=="#" && href.startsWith("#")){
-            const sectionEl=document.querySelector(href);
-            sectionEl.scrollIntoView({behavior:"smooth"});
+const allLinks = document.querySelectorAll("a:link");
+
+allLinks.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+        const href = link.getAttribute("href");
+
+        // Prevent default only for internal links (# and section links)
+        if (href === "#" || href.startsWith("#")) {
+            e.preventDefault();
+
+            // Scroll to top
+            if (href === "#") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+
+            // Smooth scroll to section
+            if (href.startsWith("#")) {
+                const sectionEl = document.querySelector(href);
+                if (sectionEl) {
+                    sectionEl.scrollIntoView({ behavior: "smooth" });
+                }
+            }
         }
-        if(link.classList.contains("main-nav-link"))
+
+        // Close mobile navigation if it's a main nav link
+        if (link.classList.contains("main-nav-link")) {
             headerEl.classList.toggle("nav-open");
+        }
     });
 });
+
 
 ///////////////////////////////////////////////////
 function checkFlexGap() {
