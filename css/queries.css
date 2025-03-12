@@ -55,6 +55,15 @@
     }
 }
 
+@media (max-width: 768px) {
+    .main-nav-list {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
 /*******************************************/
 /* BELOW 944px (Tablets) */
 /*******************************************/
