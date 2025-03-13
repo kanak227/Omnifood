@@ -35,7 +35,7 @@ const obs=new IntersectionObserver(function(entries){
 }, {
     root:null,
     threshold:0,
-    rootMargin:"-80px"
+    rootMargin:`-${headerEl.offsetHeight}px`
 });
 obs.observe(sectionHeroEl);
 
@@ -43,16 +43,18 @@ obs.observe(sectionHeroEl);
 const allLinks=document.querySelectorAll("a:link");
 allLinks.forEach(function(link){
     link.addEventListener("click",function(e){
-        e.preventDefault();
         const href=link.getAttribute("href");
-        if(href==="#") 
-            window.scrollTo({
-                top:0,
-                behavior:"smooth"
-            });
-        if(href!=="#" && href.startsWith("#")){
-            const sectionEl=document.querySelector(href);
-            sectionEl.scrollIntoView({behavior:"smooth"});
+        if(href.startsWith("#")) {
+            e.preventDefault();
+            if(href==="#") 
+                window.scrollTo({
+                    top:0,
+                    behavior:"smooth"
+                });
+            else {
+                const sectionEl=document.querySelector(href);
+                sectionEl.scrollIntoView({behavior:"smooth"});
+            }
         }
         if(link.classList.contains("main-nav-link"))
             headerEl.classList.toggle("nav-open");
