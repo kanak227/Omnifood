@@ -39,7 +39,6 @@ const obs=new IntersectionObserver(function(entries){
 });
 obs.observe(sectionHeroEl);
 
-///////////////////////////////////////////////////
 const allLinks=document.querySelectorAll("a:link");
 allLinks.forEach(function(link){
     link.addEventListener("click",function(e){
@@ -54,14 +53,29 @@ allLinks.forEach(function(link){
             else {
                 const sectionEl=document.querySelector(href);
                 sectionEl.scrollIntoView({behavior:"smooth"});
-            }
-        }
-        if(link.classList.contains("main-nav-link"))
-            headerEl.classList.toggle("nav-open");
-    });
-});
+=======
+const allLinks = document.querySelectorAll("a:link");
 
-///////////////////////////////////////////////////
+allLinks.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+        const href = link.getAttribute("href");
+
+        // Prevent default only for internal links (# and section links)
+        if (href === "#" || href.startsWith("#")) {
+            e.preventDefault();
+
+            // Scroll to top
+            if (href === "#") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+
+            // Smooth scroll to section
+            if (href.startsWith("#")) {
+                const sectionEl = document.querySelector(href);
+                if (sectionEl) {
+                    sectionEl.scrollIntoView({ behavior: "smooth" });
+                }
+              
 function checkFlexGap() {
     var flex = document.createElement("div");
     flex.style.display = "flex";
@@ -119,3 +133,15 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(heroSection);
 });
 
+//track button clicks tracking
+
+document.addEventListener("DOMContentLoaded", function () {
+    function trackButtonClick(buttonId, action) {
+        document.getElementById(buttonId).addEventListener("click", function () {
+            console.log(`User clicked on: ${action}`);
+        });
+    }
+
+    trackButtonClick("try-for-free", "Try for free");
+    trackButtonClick("start-eating-well", "Start eating well");
+});
