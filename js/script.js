@@ -130,3 +130,18 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(heroSection);
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("try-for-free").addEventListener("click", function () {
+        gtag("event", "click", {
+            event_category: "Button",
+            event_label: "Try for free"
+        });
+    });
+
+    document.getElementById("start-eating-well").addEventListener("click", function () {
+        gtag("event", "click", {
+            event_category: "Button",
+            event_label: "Start eating well"
+        });
+    });
+});
