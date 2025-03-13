@@ -31,7 +31,7 @@ Omnifood is a modern, responsive food subscription website built with **HTML, CS
    💰 **Pricing Plans** – Compare subscription options.  
    📩 **Sign-up Form** – Integrated with Netlify.  
 
-🎥 **Live Demo**: [Try it out now!](#)
+🎥 **Live Demo**: [Try it out now!](https://omnifood-meal-available.netlify.app/)
 
 ---
 

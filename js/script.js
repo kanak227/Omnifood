@@ -130,3 +130,15 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(heroSection);
 });
 
+//track button clicks tracking
+
+document.addEventListener("DOMContentLoaded", function () {
+    function trackButtonClick(buttonId, action) {
+        document.getElementById(buttonId).addEventListener("click", function () {
+            console.log(`User clicked on: ${action}`);
+        });
+    }
+
+    trackButtonClick("try-for-free", "Try for free");
+    trackButtonClick("start-eating-well", "Start eating well");
+});
