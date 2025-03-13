@@ -142,3 +142,22 @@ document.addEventListener("DOMContentLoaded", function () {
     trackButtonClick("try-for-free", "Try for free");
     trackButtonClick("start-eating-well", "Start eating well");
 });
+
+
+const trackClick = async (buttonName) => {
+    try {
+      await fetch("http://localhost:5000/track-click", {  // Change port if needed
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ buttonName }),
+      });
+      console.log(`✅ Click recorded for: ${buttonName}`);
+    } catch (error) {
+      console.error("❌ Error tracking click:", error);
+    }
+  };
+  
+  // Attach Event Listeners to Buttons
+  document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
+  document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
+  
