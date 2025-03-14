@@ -79,10 +79,6 @@
         gap: 6.4rem;
     }
 
-    .hero {
-        padding: 0 5%;
-    }
-
     .hero-img {
         width: 60%;
     }
@@ -249,7 +245,6 @@
 
     .hero-img {
         width: 80%;
-        max-width: 300px;
     }
 
     .logos img {
@@ -292,10 +287,6 @@
 
     .grid--footer {
         grid-template-columns: 1fr; /* Adjust footer layout for mobile */
-    }
-
-    .main-nav-link:link, .main-nav-link:visited {
-        font-size: 8vw;
     }
 }
 
