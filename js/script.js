@@ -35,11 +35,25 @@ const obs=new IntersectionObserver(function(entries){
 }, {
     root:null,
     threshold:0,
-    rootMargin:"-80px"
+    rootMargin:`-${headerEl.offsetHeight}px`
 });
 obs.observe(sectionHeroEl);
 
-///////////////////////////////////////////////////
+const allLinks=document.querySelectorAll("a:link");
+allLinks.forEach(function(link){
+    link.addEventListener("click",function(e){
+        const href=link.getAttribute("href");
+        if(href.startsWith("#")) {
+            e.preventDefault();
+            if(href==="#") 
+                window.scrollTo({
+                    top:0,
+                    behavior:"smooth"
+                });
+            else {
+                const sectionEl=document.querySelector(href);
+                sectionEl.scrollIntoView({behavior:"smooth"});
+=======
 const allLinks = document.querySelectorAll("a:link");
 
 allLinks.forEach(function (link) {
@@ -61,18 +75,7 @@ allLinks.forEach(function (link) {
                 if (sectionEl) {
                     sectionEl.scrollIntoView({ behavior: "smooth" });
                 }
-            }
-        }
-
-        // Close mobile navigation if it's a main nav link
-        if (link.classList.contains("main-nav-link")) {
-            headerEl.classList.toggle("nav-open");
-        }
-    });
-});
-
-
-///////////////////////////////////////////////////
+              
 function checkFlexGap() {
     var flex = document.createElement("div");
     flex.style.display = "flex";
