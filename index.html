@@ -18,6 +18,26 @@
         <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
         <script defer src="js/script.js"></script>
         <title>OmniFood &mdash; Never cook again</title>
+        
+        <!-- Open Graph Meta Tags (for Facebook, LinkedIn, etc.) -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Omnifood - Never Cook Again!" />
+        <meta property="og:description" content="AI-powered meal plans that ensure healthy, hassle-free eating. Subscribe today and let Omnifood handle your nutrition!" />
+        <meta property="og:image" content="https://omnifood-meal-available.netlify.app/omnifood-preview.jpg" />
+        <meta property="og:url" content="https://omnifood-meal-available.netlify.app/" />
+        <meta property="og:site_name" content="Omnifood" />
+        
+        <!-- Instagram Meta Tags (Optional) -->
+        <meta property="ig:app_id" content="gaurav._.karakoti" />
+        
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Omnifood - Never Cook Again!" />
+        <meta name="twitter:description" content="AI-powered meal plans that ensure healthy, hassle-free eating. Subscribe today and let Omnifood handle your nutrition!" />
+        <meta name="twitter:image" content="https://omnifood-meal-available.netlify.app/omnifood-preview.jpg" />
+        <meta name="twitter:site" content="@GauravKara_Koti" />
+        <meta name="twitter:creator" content="@GauravKara_Koti" />
+
     </head>
     <body>
         <header class="header">
@@ -30,7 +50,8 @@
                     <li><a href="#meals" class="main-nav-link">Meals</a></li>
                     <li><a href="#testimonials" class="main-nav-link">Testimonials</a></li>
                     <li><a href="#pricing" class="main-nav-link">Pricing</a></li>
-                    <li><a href="#cta" class="main-nav-link nav-cta">Try for free</a></li>
+                    <li><a href="./login/login.html" class="main-nav-link">Login</a></li>
+                    <li><a href="#cta" id="try-for-free" class="main-nav-link nav-cta">Try for free</a></li>
                 </ul>
             </nav>
             <button class="btn-mobile-nav">
@@ -48,7 +69,7 @@
                         <p class="hero-description">
                             The smart 365-days-per-year food subscription that will make you eat healthy again. Tailored to your personal tastes and nutritional needs.
                         </p>
-                        <a href="#cta" class="btn btn--full margin-right-sm">Start eating well</a>
+                        <a href="#cta" class="btn btn--full margin-right-sm" id="start-eating-well">Start eating well</a>
                         <a href="#how" class="btn btn--outline">Learn more &darr;</a>
                         <div class="delivered-meals">
                             <div class="delivered-imgs">
@@ -178,8 +199,8 @@
                         <img 
                             src="img/app/app-screen-3.png" 
                             class="step-img" 
-                            alt="iPhone App Delivery Screen" 
-                        />
+                            alt="iPhone App Delivery Screen"
+                    />
                     </div>
                 </div>
             </section>
@@ -369,6 +390,7 @@
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-1.jpg"
+                            loading="lazy"
                             alt="A plate of farfalle pasta with green pesto sauce, cherry tomatoes, and fresh leafy greens."
                         />
                         <!-- <figcaption>Caption</figcaption> -->
@@ -376,66 +398,77 @@
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-2.jpg"
+                            loading="lazy"
                             alt="A Mediterranean-style bowl with crispy chickpeas, olives, diced cucumbers and tomatoes, fresh greens, figs, flatbread, and a creamy yogurt-based sauce, served on a rustic wooden table."
                         />
                     </figure>
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-3.jpg"
+                            loading="lazy"
                             alt="A colorful salad bar with an assortment of fresh vegetables, legumes, cheeses, and proteins, neatly arranged in bowls and sectioned trays."
                         />
                     </figure>
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-4.jpg"
+                            loading="lazy"
                             alt="A close-up of hands holding a handful of fresh, ripe strawberries with a blurred background, highlighting their vibrant red color and texture."
                         />
                     </figure>
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-5.jpg"
+                            loading="lazy"
                             alt="A vibrant smoothie topped with fresh fruits, edible flowers, and chia seeds, surrounded by colorful ingredients on a hexagonal-patterned surface."
                         />
                     </figure>
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-6.jpg"
+                            loading="lazy"
                             alt="A beautifully arranged assortment of sliced citrus fruits on a wooden board, showcasing a burst of vibrant colors and textures."
                         />
                     </figure>
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-7.jpg"
+                            loading="lazy"
                             alt="A neatly organized selection of fresh ingredients, including avocado, eggs, mushrooms, tomatoes, and greens, displayed on a wooden cutting board."
                         />
                     </figure>
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-8.jpg"
+                            loading="lazy"
                             alt="A delightful breakfast spread featuring waffles topped with fresh berries, avocado toast with eggs, and glasses of orange juice, and cups of coffee"
                         />
                     </figure>
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-9.jpg"
+                            loading="lazy"
                             alt="A vibrant charcuterie board with grapes, apple slices, sausages, crackers, and a creamy cheese dip."
                         />
                     </figure>
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-10.jpg"
+                            loading="lazy"
                             alt="A rustic open-faced sandwich with boiled eggs, avocado, and spinach on toasted bread, accompanied by cookies"
                         />
                     </figure>
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-11.jpg"
+                            loading="lazy"
                             alt="A colorful bowl of hummus topped with pesto, cherry tomatoes, nuts, pomegranate seeds, and edible flowers, and glasses of cold drink topped with ice"
                         />
                     </figure>
                     <figure class="gallery-item">
                         <img 
                             src="img/gallery/gallery-12.jpg"
+                            loading="lazy"
                             alt="A rustic pear-topped cake with whipped frosting, garnished with crushed nuts and almond slices, displayed on a wooden board surrounded by natural elements and baking ingredients."
                         />
                     </figure>
@@ -654,8 +687,8 @@
                 <nav class="nav-col">
                     <p class="footer-heading">Account</p>
                     <ul class="footer-nav">
-                        <li><a class="footer-link" href="#">Create Account</a></li>
-                        <li><a class="footer-link" href="#">Sign in</a></li>
+                        <li><a class="footer-link" href="https://omnifood-meal-available.netlify.app/login/login">Create Account</a></li>
+                        <li><a class="footer-link" href="https://omnifood-meal-available.netlify.app/login/login">Sign in</a></li>
                         <li><a class="footer-link" href="#">iOS app</a></li>
                         <li><a class="footer-link" href="#">Android app</a></li>
                     </ul>

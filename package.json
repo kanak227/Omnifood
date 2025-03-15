@@ -1,0 +1,27 @@
+{
+  "name": "omnifood",
+  "version": "1.0.0",
+  "description": "Omnifood is a modern, responsive food subscription website built with **HTML, CSS, and JavaScript**, featuring AI-powered meal recommendations and seamless subscription plans.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanak227/Omnifood.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kanak227/Omnifood/issues"
+  },
+  "homepage": "https://github.com/kanak227/Omnifood#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.12.1"
+  }
+}
