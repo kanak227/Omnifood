@@ -53,18 +53,22 @@
     transform: translateX(-50%);
 }
 
-.main-nav-link:hover::after {
+.main-nav-link:hover::after,
+.main-nav-link:focus::after {
     width: 100%;
 }
 
 /* Scaling and color transition */
-.main-nav-link:hover, .main-nav-link:active {
+.main-nav-link:hover,
+.main-nav-link:focus, 
+.main-nav-link:active {
     color: #cf711f;
     transform: scale(1.1);
 }
 
 /* Call-to-action (CTA) button */
-.main-nav-link.nav-cta:link, .main-nav-link.nav-cta:visited {
+.main-nav-link.nav-cta:link,
+.main-nav-link.nav-cta:visited {
     padding: 1.2rem 2.4rem;
     border-radius: 9px;
     color: #fff;
@@ -74,7 +78,8 @@
 }
 
 /* Hover effect for CTA */
-.main-nav-link.nav-cta:hover, .main-nav-link.nav-cta:active {
+.main-nav-link.nav-cta:hover,
+.main-nav-link.nav-cta:active {
     background-color: #cf711f;
     transform: translateY(-2px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
@@ -184,15 +189,16 @@
     width: 100%;
     background-color: rgba(255, 255, 255, 0.97);
     z-index: 999;
-    height: 7rem; /* Reduced height */
-    padding: 4rem 2rem; /* Adjust padding */
+    height: 8rem;
+    padding: 2rem;
+    box-sizing: border-box;
     box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.03);
     transition: height 0.3s ease-in-out, padding 0.3s ease-in-out; /* Specify exact properties */
 }
 
 /* No fixed margin, JS handles it dynamically */
 .sticky .section-hero {
-    margin-top: 0;
+    margin-top: 0 !important;
 }
 
 

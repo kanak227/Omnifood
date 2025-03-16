@@ -22,22 +22,47 @@ btnNavEl.addEventListener("click",function(){
 });
 
 ///////////////////////////////////////////////////
-const sectionHeroEl=document.querySelector(".section-hero");
-const obs=new IntersectionObserver(function(entries){
-    const ent=entries[0];
-    console.log(ent);
-    if(ent.isIntersecting===false) {
-        document.querySelector("body").classList.add("sticky");
-    }
-    if(ent.isIntersecting===true) {
-        document.querySelector("body").classList.remove("sticky");
-    }
-}, {
-    root:null,
-    threshold:0,
-    rootMargin:`-${headerEl.offsetHeight}px` // Adjust dynamically
+const sectionHeroEl = document.querySelector(".section-hero");
+const header = document.querySelector(".header");
+
+const updateHeaderHeight = () => {
+    const headerHeight = header.getBoundingClientRect().height;
+
+    
+    sectionHeroEl.style.marginTop = "0"; 
+
+    const obs = new IntersectionObserver(
+        (entries) => {
+            const ent = entries[0];
+            if (!ent.isIntersecting) {
+                document.body.classList.add("sticky");
+                sectionHeroEl.style.marginTop = `${headerHeight}px`;
+            } else {
+                document.body.classList.remove("sticky");
+                sectionHeroEl.style.marginTop = "0";
+            }
+        },
+        {
+            root: null,
+            threshold: 0,
+            rootMargin: `-${headerHeight}px`, 
+        }
+    );
+
+    obs.observe(sectionHeroEl);
+};
+
+updateHeaderHeight();
+
+let resizeTimer;
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateHeaderHeight, 100);
 });
-obs.observe(sectionHeroEl);
+
+
+
+
 
 ///////////////////////////////////////////////////
 const allLinks = document.querySelectorAll("a:link");
