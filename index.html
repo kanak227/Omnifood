@@ -23,7 +23,7 @@
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Omnifood - Never Cook Again!" />
         <meta property="og:description" content="AI-powered meal plans that ensure healthy, hassle-free eating. Subscribe today and let Omnifood handle your nutrition!" />
-        <meta property="og:image" content="https://omnifood-meal-available.netlify.app/omnifood-preview.jpg" />
+        <meta property="og:image" content="https://omnifood-meal-available.netlify.app/omnifood-logo.avif" />
         <meta property="og:url" content="https://omnifood-meal-available.netlify.app/" />
         <meta property="og:site_name" content="Omnifood" />
         
@@ -34,7 +34,7 @@
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Omnifood - Never Cook Again!" />
         <meta name="twitter:description" content="AI-powered meal plans that ensure healthy, hassle-free eating. Subscribe today and let Omnifood handle your nutrition!" />
-        <meta name="twitter:image" content="https://omnifood-meal-available.netlify.app/omnifood-preview.jpg" />
+        <meta name="twitter:image" content="https://omnifood-meal-available.netlify.app/omnifood-logo.avif" />
         <meta name="twitter:site" content="@GauravKara_Koti" />
         <meta name="twitter:creator" content="@GauravKara_Koti" />
 
@@ -42,7 +42,10 @@
     <body>
         <header class="header">
             <a href="#">
-                <img class="logo" alt="Omnifood Logo" src="img/omnifood-logo.png" />
+                <picture>
+                    <source class="logo" srcset="img/omnifood-logo.avif" type="image/avif" />
+                    <img class="logo" alt="Omnifood Logo" src="img/omnifood-logo.png" />
+                </picture>
             </a>
             <nav class="main-nav">
                 <ul class="main-nav-list">
@@ -73,30 +76,48 @@
                         <a href="#how" class="btn btn--outline">Learn more &darr;</a>
                         <div class="delivered-meals">
                             <div class="delivered-imgs">
-                                <img 
+                                <picture>
+                                    <source srcset="img/customers/customer-1.avif" type="image/avif">
+                                    <img 
                                     src="img/customers/customer-1.jpg"
                                     alt="Customer Photo"
-                                />
-                                <img 
+                                    />
+                                </picture>
+                                <picture>
+                                    <source srcset="img/customers/customer-2.avif" type="image/avif">
+                                    <img 
                                     src="img/customers/customer-2.jpg"
                                     alt="Customer Photo"
-                                />
-                                <img 
+                                    />
+                                </picture>
+                                <picture>
+                                    <source srcset="img/customers/customer-3.avif" type="image/avif">
+                                    <img 
                                     src="img/customers/customer-3.jpg"
                                     alt="Customer Photo"
-                                />
-                                <img 
+                                    />
+                                </picture>
+                                <picture>
+                                    <source srcset="img/customers/customer-4.avif" type="image/avif">
+                                    <img 
                                     src="img/customers/customer-4.jpg"
                                     alt="Customer Photo"
-                                />
-                                <img 
+                                    />
+                                </picture>
+                                <picture>
+                                    <source srcset="img/customers/customer-5.avif" type="image/avif">
+                                    <img 
                                     src="img/customers/customer-5.jpg"
                                     alt="Customer Photo"
-                                />
-                                <img 
+                                    />
+                                </picture>
+                                <picture>
+                                    <source srcset="img/customers/customer-6.avif" type="image/avif">
+                                    <img 
                                     src="img/customers/customer-6.jpg"
                                     alt="Customer Photo"
-                                />
+                                    />
+                                </picture>
                             </div>
                             <p class="delivered-text">
                                 <span>250,000+</span> meals delivered last year!
@@ -192,7 +213,7 @@
                             Receive meals at convenient time
                         </h3>
                         <p class="step-description">
-                            Best chefs in town will cook your selected meal every day, and we will deliver it to your door whenver works best for you. You can change delivery schedule and address daily!
+                            Best chefs in town will cook your selected meal every day, and we will deliver it to your door whenever works best for you. You can change delivery schedule and address daily!
                         </p>
                     </div>
                     <div class="step-img-box">
@@ -200,7 +221,7 @@
                             src="img/app/app-screen-3.png" 
                             class="step-img" 
                             alt="iPhone App Delivery Screen"
-                    />
+                        />
                     </div>
                 </div>
             </section>
@@ -211,12 +232,13 @@
                         Omnifood AI chooses from 5,000+ recipes
                     </h2>
                 </div>
-                <div class="container grid grid--3-cols margin-bottom-md">
+                <div class="meal-container container grid grid--3-cols margin-bottom-md">
                     <div class="meal">
                         <img 
                             src="img/meals/meal-1.jpg" 
                             class="meal-img" 
                             alt="Japanese Gyozas" 
+                            loading="lazy"
                         />
                         <div class="meal-content">
                             <div class="meal-tag">
@@ -243,7 +265,7 @@
                                         class="meal-icon" 
                                         name="star-outline"
                                     ></ion-icon>
-                                    <span><strong>4.9</strong> rating(537)</span>
+                                    <span><strong>4.9</strong> rating (537)</span>
                                 </li>
                             </ul>
                         </div>
@@ -253,6 +275,7 @@
                             src="img/meals/meal-2.jpg" 
                             class="meal-img" 
                             alt="Avocado Salad" 
+                            loading="lazy"
                         />
                         <div class="meal-content">
                             <div class="meal-tag">
@@ -265,6 +288,7 @@
                                     <ion-icon 
                                         class="meal-icon" 
                                         name="flame-outline"
+                                        aria-label="Calories"
                                     ></ion-icon>
                                     <span><strong>400</strong> calories</span>
                                 </li>
@@ -272,6 +296,7 @@
                                     <ion-icon 
                                         class="meal-icon" 
                                         name="restaurant-outline"
+                                        aria-label="Calories"
                                     ></ion-icon>
                                     <span>Nutriscore &reg; <strong>92</strong></span>
                                 </li>
@@ -279,8 +304,9 @@
                                     <ion-icon 
                                         class="meal-icon" 
                                         name="star-outline"
+                                        aria-label="Calories"
                                     ></ion-icon>
-                                    <span><strong>4.8</strong> rating(441)</span>
+                                    <span><strong>4.8</strong> rating (441)</span>
                                 </li>
                             </ul>
                         </div>
@@ -320,7 +346,7 @@
                             </li>
                             <li class="list-item">
                                 <ion-icon class="list-icon" name="checkmark-outline"></ion-icon>
-                                <span>Low FOODMAP</span>
+                                <span>Low FODMAP</span>
                             </li>
                             <li class="list-item">
                                 <ion-icon class="list-icon" name="checkmark-outline"></ion-icon>
@@ -330,7 +356,7 @@
                     </div>
                 </div>
                 <div class="container all-recipes">
-                    <a href="#" class="link">See all recipes &rarr;</a>
+                    <a href="#" class="link" aria-label="See all available recipes">See all recipes &rarr;</a>
                 </div>
             </section>
             <section class="section-testimonials" id="testimonials">
@@ -511,10 +537,13 @@
                             </li>
                             <li class="list-item">
                                 <ion-icon class="list-icon" name="close-outline"></ion-icon>
+                                <span>
+                                    Get access to the latest recipes
+                                </span>
                             </li>
                         </ul>
                         <div class="plan-sign-up">
-                            <a href="#" class="btn btn--full">Start eating well</a>
+                            <a href="#cta" class="btn btn--full">Start eating well</a>
                         </div>
                     </div>   
                     <div class="pricing-plan pricing-plan--complete">
@@ -552,7 +581,7 @@
                             </li>
                         </ul>
                         <div class="plan-sign-up">
-                            <a href="#" class="btn btn--full">Start eating well</a>
+                            <a href="#cta" class="btn btn--full">Start eating well</a>
                         </div>
                     </div>  
                 </div>
@@ -604,9 +633,13 @@
                                 Healthy, tasty, and hassle-free meals are waiting for you. Start eating well today.
                                 You can cancel or pause anytime. And the first meal is on us!
                             </p>
+
             
                             <form class="cta-form" name="sign-up" netlify novalidate>
                                 <!-- Full Name Field -->
+
+                            <form class="cta-form" name="sign-up" netlify  aria-label="Sign-up form for a free meal">
+
                                 <div>
                                     <label for="full-name">Full Name</label>
                                     <input 
@@ -666,8 +699,8 @@
             </section>
             
 
-            <button id="scrollBtn" onclick="scrollToTop()">
-                <img src="./img/omnifood-logo.png" alt="Up Arrow">
+            <button id="scrollBtn" onclick="scrollToTop()" aria-label="Scroll to top">
+                <ion-icon name="arrow-up-outline"></ion-icon>
             </button>
         </main>
 
@@ -675,14 +708,18 @@
             <div class="container grid grid--5-cols">
                 <div class="logo-col">
                     <a href="#" class="footer-logo">
-                        <img class="logo" alt="Omnifood Logo" src="img/omnifood-logo.png" />
+                        <picture>
+                            <source srcset="img/omnifood-logo.avif" type="image/avif">
+                            <img class="logo" alt="Omnifood Logo" src="img/omnifood-logo.png" />
+
+                        </picture>
                     </a>
                     <ul class="social-links">
                         <li>
-                            <a class="footer-link" href="https://instagram.com/gaurav._.karakoti"><ion-icon class="social-icon" name="logo-instagram"></ion-icon></a>
+                            <a class="footer-link" href="https://instagram.com/gaurav._.karakoti" target="_blank" rel="noopener noreferrer"><ion-icon class="social-icon" name="logo-instagram"></ion-icon></a>
                         </li>
                         <li>
-                            <a class="footer-link" href="https://x.com/GauravKara_Koti"><ion-icon class="social-icon" name="logo-twitter"></ion-icon></a>
+                            <a class="footer-link" href="https://x.com/GauravKara_Koti" target="_blank" rel="noopener noreferrer"><ion-icon class="social-icon" name="logo-twitter"></ion-icon></a>
                         </li>
                     </ul>
                     <p class="copyright">
@@ -730,30 +767,41 @@
             </div>
         </footer>
 
-        <script>
-            let scrollBtn = document.getElementById("scrollBtn");
+<script>
+    let scrollBtn = document.getElementById("scrollBtn");
 
-// Show button when scrolled down
-window.onscroll = function () {
-    if (document.documentElement.scrollTop >50) {
-        scrollBtn.style.display = "block";
-    } else {
-        scrollBtn.style.display = "none";
+    // Show button when scrolled down
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            scrollBtn.classList.add("visible");
+        } else {
+            scrollBtn.classList.remove("visible");
+        }
+    });
+
+    function scrollToTop() {
+        scrollBtn.classList.add("rotate");
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        setTimeout(() => scrollBtn.classList.remove("rotate"), 400);
     }
-};
 
-function scrollToTop() {
-    // Add rotation effect
-    scrollBtn.classList.add("rotate");
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Smooth scroll to top
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Prevent default behavior for same-page anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            if (this.getAttribute('href') !== '#') {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
 
-    // Remove rotation class after animation
-    setTimeout(() => scrollBtn.classList.remove("rotate"), 400);
-}
 
-document.getElementById("year").textContent = new Date().getFullYear();
-        </script>
-    </body>
+</body>
 </html>
