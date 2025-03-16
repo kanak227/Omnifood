@@ -35,7 +35,7 @@ const obs=new IntersectionObserver(function(entries){
 }, {
     root:null,
     threshold:0,
-    rootMargin:"-80px"
+    rootMargin:`-${headerEl.offsetHeight}px` // Adjust dynamically
 });
 obs.observe(sectionHeroEl);
 
@@ -167,4 +167,4 @@ if ("serviceWorker" in navigator) {
         .register("/service-worker.js")
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
-    }
+}

@@ -232,7 +232,7 @@
                         Omnifood AI chooses from 5,000+ recipes
                     </h2>
                 </div>
-                <div class="container grid grid--3-cols margin-bottom-md">
+                <div class="meal-container container grid grid--3-cols margin-bottom-md">
                     <div class="meal">
                         <img 
                             src="img/meals/meal-1.jpg" 
@@ -749,24 +749,36 @@
 <script>
     let scrollBtn = document.getElementById("scrollBtn");
 
-// Show button when scrolled down
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-        scrollBtn.classList.add("visible");
-    } else {
-        scrollBtn.classList.remove("visible");
+    // Show button when scrolled down
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            scrollBtn.classList.add("visible");
+        } else {
+            scrollBtn.classList.remove("visible");
+        }
+    });
+
+    function scrollToTop() {
+        scrollBtn.classList.add("rotate");
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        setTimeout(() => scrollBtn.classList.remove("rotate"), 400);
     }
-});
 
-function scrollToTop() {
-    scrollBtn.classList.add("rotate");
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
-    setTimeout(() => scrollBtn.classList.remove("rotate"), 400);
-}
-
-document.getElementById("year").textContent = new Date().getFullYear();
+    // Prevent default behavior for same-page anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            if (this.getAttribute('href') !== '#') {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 </script>
 
 

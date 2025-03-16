@@ -3,8 +3,8 @@
 /*******************************************/
 
 .logo {
-    height: 10rem;
-    padding-top: 8px;
+    height: 8rem; /* Reduced height */
+    padding-top: 4px; /* Adjust padding */
 }
 
 .header {
@@ -12,7 +12,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #fdf2e9;
-    height: 9.6rem;
+    height: 8rem; /* Reduced height */
     padding: 0 4.8rem;
     position: relative;
 }
@@ -184,10 +184,10 @@
     width: 100%;
     background-color: rgba(255, 255, 255, 0.97);
     z-index: 999;
-    height: 8rem;
-    padding: 6rem 2rem;
+    height: 7rem; /* Reduced height */
+    padding: 4rem 2rem; /* Adjust padding */
     box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.03);
-    transition: all 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out, padding 0.3s ease-in-out; /* Specify exact properties */
 }
 
 /* No fixed margin, JS handles it dynamically */
@@ -228,7 +228,7 @@
 /* ================= HERO IMAGE ================= */
 .hero img {
     width: 100%;
-    max-width: 500px; /* Reduced max size */
+    max-width: 500px; /* Add max-width constraint */
 }
 
 /* ================= TEXT AND BUTTONS ================= */

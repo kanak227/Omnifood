@@ -47,6 +47,13 @@
     .logos img {
         height: 2.4rem; 
     }
+
+    .meal-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
     
     .step-img-box {
         transform: translateY(2.4rem);
@@ -71,6 +78,8 @@
 
     .cta {
         grid-template-columns: 1fr;
+        /* display: flex;
+        flex-wrap: wrap; */
     }
 
     .cta-img-box {
@@ -142,6 +151,20 @@
         font-size: 1.4rem;
     }
 
+    .logos{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3%;
+    }
+
+    .logos img{
+        margin: 2% 0%;
+    }
+
+    .container{
+        padding: 0px 14px;
+    }
+
     .btn {
         width: 100%;
     }
@@ -190,12 +213,13 @@
 
     .hero {
         grid-template-columns: 1fr;
-        padding: 0 8rem;
+        padding: 0 5vw; /* Use relative units */
         gap: 6.4rem;
     }
 
     .hero-img {
         width: 60%;
+        max-width: 300px; /* Add max-width constraint */
     }
 
     .hero-text-box, .hero-img-box {
@@ -225,10 +249,6 @@
 
     .gallery {
         grid-template-columns: repeat(6, 1fr);
-    }
-
-    .cta {
-        grid-template-columns: 3fr 2fr;
     }
 
     .cta-form {
@@ -286,7 +306,7 @@
     }
 
     .main-nav-link:link, .main-nav-link:visited {
-        font-size: 3rem;
+        font-size: 3.5vw; /* Use viewport-relative units */
     }
 }
 
