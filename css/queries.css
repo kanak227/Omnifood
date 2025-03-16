@@ -72,8 +72,8 @@
 
     .hero img {
         max-width: 25rem;
-        /* margin: 0 auto; */
-        align-self: center;
+        margin: 0 auto;
+        place-self: center;
     }
 
     .hero-description {
@@ -216,11 +216,12 @@
     .logos{
         display: flex;
         flex-wrap: wrap;
-        gap: 3%;
+        gap: 1rem;
+        justify-content: center;
     }
 
     .logos img{
-        margin: 2% 0%;
+        max-width: 100%;
     }
 
     .container{
@@ -403,7 +404,7 @@
     }
 
     .grid--footer {
-        grid-template-columns: 1fr; 
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     }
 }
 
