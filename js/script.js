@@ -193,3 +193,48 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
 }
+////////////////////////////////////////////
+
+//CTA form validation
+
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".cta-form");
+    const nameInput = document.getElementById("full-name");
+    const emailInput = document.getElementById("email");
+    const selectWhere = document.getElementById("select-where");
+
+    form.addEventListener("submit", (e) => {
+        let isValid = true;
+        form.querySelectorAll(".error-msg").forEach(el => el.remove());
+
+        // Full Name Validation (only letters and spaces allowed)
+        if (!nameInput.value.trim()) {
+            showError(nameInput, "Full name is required.");
+            isValid = false;
+        } else if (!/^[a-zA-Z\s]+$/.test(nameInput.value.trim())) {
+            showError(nameInput, "Full name can only contain letters and spaces.");
+            isValid = false;
+        }
+
+        // Email Validation
+        if (!emailInput.value.trim()) {
+            showError(emailInput, "Please enter a valid email.");
+            isValid = false;
+        }
+
+        // Select Validation
+        if (!selectWhere.value) {
+            showError(selectWhere, "Please select an option.");
+            isValid = false;
+        }
+
+        if (!isValid) e.preventDefault();
+    });
+
+    function showError(input, message) {
+        const error = document.createElement("span");
+        error.classList.add("error-msg");
+        error.textContent = message;
+        input.insertAdjacentElement("afterend", error);
+    }
+});
