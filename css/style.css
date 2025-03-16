@@ -807,8 +807,9 @@
 .cta-form input:invalid + .error-message,
 .cta-form select:invalid + .error-message {
     display: block;
-    color: #e63946;
-    font-size: 1.4rem;
+    color: #c71224;
+    font-weight: 500;
+    font-size: 1.7rem;
     margin-top: 0.5rem;
 }
 
