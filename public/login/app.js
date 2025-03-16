@@ -109,3 +109,4 @@ signUpForm.addEventListener('submit', function (e) {
     alert('Sign up successful');
   }
 });
+
