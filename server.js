@@ -2,10 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
 app.use(express.json());
 app.use(cors()); // Allow frontend requests
+app.use(express.static(path.join(__dirname, "public")));
 
 // Connect to MongoDB
 mongoose
@@ -20,6 +22,10 @@ const clickSchema = new mongoose.Schema({
 });
 
 const Click = mongoose.model("Click", clickSchema);
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+})
 
 // API to Track Clicks
 app.post("/track-click", async (req, res) => {
