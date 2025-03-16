@@ -10,11 +10,16 @@ sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
 
+<<<<<<< HEAD
 const back_btn = document.querySelector(".back-btn");
+=======
+const back_btn = document.querySelector("#back-btn");
+>>>>>>> 8665ffa (move to the public folder)
 
 back_btn.addEventListener("click", () => {
   window.location.href = "./index.html"; // Change this to your actual homepage link
 });
+<<<<<<< HEAD
 
 // SIGN IN FORM VALIDATION
 const signInForm = document.getElementById('signInForm');
@@ -109,3 +114,5 @@ signUpForm.addEventListener('submit', function (e) {
     alert('Sign up successful');
   }
 });
+=======
+>>>>>>> 8665ffa (move to the public folder)
