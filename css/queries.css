@@ -69,6 +69,19 @@
 
     .testimonials {
         grid-template-columns: 1fr;
+        row-gap: 5rem;
+    }
+
+    .testimonial-img{
+        width: 7.5rem;
+    }
+
+    .testimonial-text{
+        font-size: 5vw;
+    }
+
+    .testimonial-name{
+        font-size: 4.5vw;
     }
 
     .gallery {
