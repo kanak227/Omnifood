@@ -705,7 +705,39 @@
 .pricing-plan {
     border-radius: 11px;
     width: 75%;
+    
 }
+/* Basic styles for the pricing plan */
+.pricing-plan {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the pricing plan */
+.pricing-plan:hover {
+    transform: translateY(-10px); /* Slight lift effect */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+}
+
+/* Hover effect for the plan header text */
+.pricing-plan:hover .plan-header p {
+    color: #00aaff; /* Change color when hovered */
+}
+
+/* Hover effect for the plan list items */
+.pricing-plan:hover .list-item {
+    color: #333; /* Change text color on hover */
+}
+
+.pricing-plan:hover .list-icon {
+    color: #00aaff; /* Change icon color on hover */
+}
+
+/* Change background color of the button on hover */
+.pricing-plan:hover .btn--full {
+    background-color: #00aaff; /* Change button background color */
+    color: #fff; /* Change button text color */
+}
+
 
 .pricing-plan--starter {
     justify-self: end;
