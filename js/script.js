@@ -21,6 +21,31 @@ btnNavEl.addEventListener("click",function(){
     headerEl.classList.toggle("nav-open");
 });
 
+
+// Add click handler to close mobile nav when clicking outside
+document.addEventListener('click', function(e) {
+    const mainNav = document.querySelector('.main-nav');
+    
+    // Close nav if clicking outside nav and nav is open
+    if (headerEl.classList.contains('nav-open') && 
+        !mainNav.contains(e.target) && 
+        !btnNavEl.contains(e.target)) {
+        headerEl.classList.remove('nav-open');
+    }
+});
+
+// Add after existing navigation code
+function handleResize() {
+    if (window.innerWidth > 944) { // Breakpoint for mobile navigation
+        headerEl.classList.remove('nav-open');
+        document.body.style.overflow = ''; // Reset body scroll
+    }
+}
+
+// Add resize event listener
+window.addEventListener('resize', handleResize);
+
+
 ///////////////////////////////////////////////////
 
 const sectionHeroEl = document.querySelector(".section-hero");
@@ -190,7 +215,6 @@ const trackClick = async (buttonName) => {
   document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
   
 
-
 //CTA form validation
 
 
@@ -253,14 +277,13 @@ document.addEventListener("DOMContentLoaded", () => {
         input.setAttribute("aria-invalid", "true");
     }
 
+
     function removeError(input) {
         const error = input.nextElementSibling;
         if (error && error.classList.contains("error-msg")) {
             error.remove();
         }
     }
-
-    
 
  // Registering the service worker
 if ("serviceWorker" in navigator) {
@@ -269,3 +292,4 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
 }
+
