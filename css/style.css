@@ -468,9 +468,12 @@
     padding: 9.6rem 0;
 }
 
+/* Update meal image styles */
 .meal-img {
     width: 100%;
-    height: 60%;
+    aspect-ratio: 4/3; /* Changed from 16/9 for taller images */
+    object-fit: cover;
+    height: 250px; /* Fixed height for consistency */
 }
 
 .meal-title {
@@ -492,6 +495,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    margin-top: auto; /* Push attributes to bottom */
 }
 
 .meal-icon {
@@ -527,7 +531,11 @@
     gap: 0.4rem;
 }
 
+/* Ensure meal card layout remains flexible */
 .meal {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     box-shadow: 0 2.4rem 4.8rem rgba(0,0,0,0.075);
     border-radius: 11px;
     overflow: hidden;
@@ -541,11 +549,22 @@
 
 .meal-content {
     padding: 3.2rem 4.8rem 4.8rem 4.8rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .all-recipes {
     text-align: center;
     font-size: 1.8rem;
+}
+
+/* Update meals grid container if needed */
+.grid--3-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4.8rem;
+    align-items: stretch; /* Stretch items to same height */
 }
 
 /*******************************************/
