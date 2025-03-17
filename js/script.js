@@ -33,6 +33,17 @@ document.addEventListener('click', function(e) {
     }
 });
 
+// Add after existing navigation code
+function handleResize() {
+    if (window.innerWidth > 944) { // Breakpoint for mobile navigation
+        headerEl.classList.remove('nav-open');
+        document.body.style.overflow = ''; // Reset body scroll
+    }
+}
+
+// Add resize event listener
+window.addEventListener('resize', handleResize);
+
 ///////////////////////////////////////////////////
 const sectionHeroEl=document.querySelector(".section-hero");
 const obs=new IntersectionObserver(function(entries){
