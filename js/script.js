@@ -22,6 +22,7 @@ btnNavEl.addEventListener("click",function(){
 });
 
 ///////////////////////////////////////////////////
+
 const sectionHeroEl = document.querySelector(".section-hero");
 const header = document.querySelector(".header");
 
@@ -58,6 +59,7 @@ let resizeTimer;
 window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(updateHeaderHeight, 100);
+
 });
 
 
@@ -189,7 +191,10 @@ const trackClick = async (buttonName) => {
   
 
 
-  //CTA form validation
+
+
+//CTA form validation
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".cta-form");
@@ -249,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
         input.setAttribute("aria-invalid", "true");
     }
 
+
     function removeError(input) {
         const error = input.nextElementSibling;
         if (error && error.classList.contains("error-msg")) {
@@ -263,5 +269,6 @@ if ("serviceWorker" in navigator) {
         .register("/service-worker.js")
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
-}
+
+    }
 
