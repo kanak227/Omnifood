@@ -197,9 +197,10 @@
 }
 
 /* No fixed margin, JS handles it dynamically */
-.sticky.header .section-hero {
-    margin-top: 0;
-}
+
+.sticky .section-hero {
+    margin-top: 0 !important;
+
 
 
 

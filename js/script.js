@@ -23,20 +23,42 @@ btnNavEl.addEventListener("click",function(){
 
 ///////////////////////////////////////////////////
 
-const sectionHeroEl=document.querySelector(".section-hero");
-const obs=new IntersectionObserver(function(entries){
-    const ent=entries[0];
-    console.log(ent);
-    if(ent.isIntersecting===false) {
-        headerEl.classList.add("sticky");
-    }
-    if(ent.isIntersecting===true) {
-        headerEl.classList.remove("sticky");
-    }
-}, {
-    root:null,
-    threshold:0,
-    rootMargin:"-80px"
+const sectionHeroEl = document.querySelector(".section-hero");
+const header = document.querySelector(".header");
+
+const updateHeaderHeight = () => {
+    const headerHeight = header.getBoundingClientRect().height;
+
+    
+    sectionHeroEl.style.marginTop = "0"; 
+
+    const obs = new IntersectionObserver(
+        (entries) => {
+            const ent = entries[0];
+            if (!ent.isIntersecting) {
+                document.body.classList.add("sticky");
+                sectionHeroEl.style.marginTop = `${headerHeight}px`;
+            } else {
+                document.body.classList.remove("sticky");
+                sectionHeroEl.style.marginTop = "0";
+            }
+        },
+        {
+            root: null,
+            threshold: 0,
+            rootMargin: `-${headerHeight}px`, 
+        }
+    );
+
+    obs.observe(sectionHeroEl);
+};
+
+updateHeaderHeight();
+
+let resizeTimer;
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateHeaderHeight, 100);
 
 });
 
@@ -169,9 +191,8 @@ const trackClick = async (buttonName) => {
   
 
 
-  ////////////////////////////////////////////
-
 //CTA form validation
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".cta-form");
@@ -181,18 +202,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", (e) => {
         let isValid = true;
-
-        // Remove existing error messages
         form.querySelectorAll(".error-msg").forEach(el => el.remove());
 
-        // Name Validation (Require at least two words)
+
+        // Full Name Validation (only letters and spaces allowed)
         if (!nameInput.value.trim()) {
             showError(nameInput, "Full name is required.");
             isValid = false;
         } else if (!/^[A-Za-z]+ [A-Za-z]+$/.test(nameInput.value.trim())) {
             showError(nameInput, "Please enter your full name (first and last name).");
             isValid = false;
-        } else {
+        }  else {
             nameInput.setAttribute("aria-invalid", "false");
         }
 
@@ -202,6 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         } else {
             emailInput.setAttribute("aria-invalid", "false");
+
         }
 
         // Dropdown Validation
@@ -210,10 +231,11 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         }
 
-        if (!isValid) {
+       if (!isValid) {
             e.preventDefault(); // Prevent form submission if invalid
         }
     });
+  
 
     // Real-time email validation on blur
     emailInput.addEventListener("blur", () => {
@@ -237,6 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
             error.remove();
         }
     }
+
     
 
  // Registering the service worker
@@ -245,6 +268,6 @@ if ("serviceWorker" in navigator) {
         .register("/service-worker.js")
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
+}
 
-    }
 
