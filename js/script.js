@@ -22,22 +22,27 @@ btnNavEl.addEventListener("click",function(){
 });
 
 ///////////////////////////////////////////////////
+
 const sectionHeroEl=document.querySelector(".section-hero");
 const obs=new IntersectionObserver(function(entries){
     const ent=entries[0];
     console.log(ent);
     if(ent.isIntersecting===false) {
-        document.querySelector("body").classList.add("sticky");
+        headerEl.classList.add("sticky");
     }
     if(ent.isIntersecting===true) {
-        document.querySelector("body").classList.remove("sticky");
+        headerEl.classList.remove("sticky");
     }
 }, {
     root:null,
     threshold:0,
-    rootMargin:`-${headerEl.offsetHeight}px` // Adjust dynamically
+    rootMargin:"-80px"
+
 });
-obs.observe(sectionHeroEl);
+
+
+
+
 
 ///////////////////////////////////////////////////
 const allLinks = document.querySelectorAll("a:link");
@@ -164,57 +169,75 @@ const trackClick = async (buttonName) => {
   
 
 
-  document.addEventListener("DOMContentLoaded", function () {
+  ////////////////////////////////////////////
+
+//CTA form validation
+
+document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".cta-form");
     const nameInput = document.getElementById("full-name");
-    const nameError = document.getElementById("error-name");
     const emailInput = document.getElementById("email");
-    const emailError = document.getElementById("error-email");
+    const selectWhere = document.getElementById("select-where");
 
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", (e) => {
         let isValid = true;
 
-        // Name validation: Require at least two words (first and last name)
-        if (!/^[A-Za-z]+ [A-Za-z]+$/.test(nameInput.value.trim())) {
-            nameInput.classList.add("error");
-            nameInput.setAttribute("aria-invalid", "true");
-            nameError.style.display = "block";
+        // Remove existing error messages
+        form.querySelectorAll(".error-msg").forEach(el => el.remove());
+
+        // Name Validation (Require at least two words)
+        if (!nameInput.value.trim()) {
+            showError(nameInput, "Full name is required.");
+            isValid = false;
+        } else if (!/^[A-Za-z]+ [A-Za-z]+$/.test(nameInput.value.trim())) {
+            showError(nameInput, "Please enter your full name (first and last name).");
             isValid = false;
         } else {
-            nameInput.classList.remove("error");
             nameInput.setAttribute("aria-invalid", "false");
-            nameError.style.display = "none";
         }
 
-        // Email validation: Must be a valid email format
+        // Email Validation (Regex-based)
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
-            emailInput.classList.add("error");
-            emailInput.setAttribute("aria-invalid", "true");
-            emailError.style.display = "block";
+            showError(emailInput, "Please enter a valid email.");
             isValid = false;
         } else {
-            emailInput.classList.remove("error");
             emailInput.setAttribute("aria-invalid", "false");
-            emailError.style.display = "none";
+        }
+
+        // Dropdown Validation
+        if (!selectWhere.value) {
+            showError(selectWhere, "Please select an option.");
+            isValid = false;
         }
 
         if (!isValid) {
-            e.preventDefault(); // Prevent form submission if there's an error
+            e.preventDefault(); // Prevent form submission if invalid
         }
     });
 
-    // Validate email field on blur (when the user leaves the field)
-    emailInput.addEventListener("blur", function () {
+    // Real-time email validation on blur
+    emailInput.addEventListener("blur", () => {
         if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
-            emailInput.classList.remove("error");
             emailInput.setAttribute("aria-invalid", "false");
-            emailError.style.display = "none";
+            removeError(emailInput);
         }
     });
-});
 
-    document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
-    document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
+    function showError(input, message) {
+        const error = document.createElement("span");
+        error.classList.add("error-msg");
+        error.textContent = message;
+        input.insertAdjacentElement("afterend", error);
+        input.setAttribute("aria-invalid", "true");
+    }
+
+    function removeError(input) {
+        const error = input.nextElementSibling;
+        if (error && error.classList.contains("error-msg")) {
+            error.remove();
+        }
+    }
+    
 
  // Registering the service worker
 if ("serviceWorker" in navigator) {
@@ -222,5 +245,6 @@ if ("serviceWorker" in navigator) {
         .register("/service-worker.js")
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
-}
+
+    }
 
