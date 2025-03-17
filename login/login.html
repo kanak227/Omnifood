@@ -19,20 +19,22 @@
     <div class="container">
         
       <div class="forms-container">
-        <a href="../index.html" id="back-btn">
+        <a href="../index.html" class="back-btn">
             <img src="back-icon.png" alt="Back to Home" />
           </a>
 
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form action="#" class="sign-in-form" id="signInForm">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Username" id="signInUsername"/>
+              <small class="error-message"></small>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password" id="signInPassword" />
+              <small class="error-message"></small>
             </div>
             <input type="submit" value="Login" class="btn solid" />
             <p class="social-text">Or Sign in with social platforms</p>
@@ -53,19 +55,22 @@
             
           </form>
           
-          <form action="#" class="sign-up-form">
+          <form action="#" class="sign-up-form" id="signUpForm">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <input type="text" placeholder="Username" id="signUpUsername"/>
+              <small class="error-message"></small>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              <input type="email" placeholder="Email" id="signUpEmail"/>
+              <small class="error-message"></small>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <input type="password" placeholder="Password"  id="signUpPassword"/>
+              <small class="error-message"></small>
             </div>
             <input type="submit" class="btn" value="Sign up" />
             <p class="social-text">Or Sign up with social platforms</p>
@@ -89,7 +94,7 @@
 
       <div class="panels-container">
         <div class="panel left-panel">
-            <a href="../index.html" id="back-btn">
+            <a href="../index.html" class="back-btn">
                 <img src="back-icon.png" alt="Back to Home" />
               </a>
           <div class="content">
@@ -104,7 +109,7 @@
           <img src="logo.png" class="image" alt="" />
         </div>
         <div class="panel right-panel">
-            <a href="../index.html" id="back-btn">
+            <a href="../index.html" class="back-btn">
                 <img src="back-icon.png" alt="Back to Home" />
               </a>
           <div class="content">

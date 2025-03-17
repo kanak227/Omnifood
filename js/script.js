@@ -22,6 +22,7 @@ btnNavEl.addEventListener("click",function(){
 });
 
 ///////////////////////////////////////////////////
+
 const sectionHeroEl=document.querySelector(".section-hero");
 const obs=new IntersectionObserver(function(entries){
     const ent=entries[0];
@@ -36,8 +37,12 @@ const obs=new IntersectionObserver(function(entries){
     root:null,
     threshold:0,
     rootMargin:"-80px"
+
 });
-obs.observe(sectionHeroEl);
+
+
+
+
 
 ///////////////////////////////////////////////////
 const allLinks = document.querySelectorAll("a:link");
@@ -158,8 +163,81 @@ const trackClick = async (buttonName) => {
 };
 
   // Attach Event Listeners to Buttons
-    document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
-    document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
+
+  document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
+  document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
+  
+
+
+  ////////////////////////////////////////////
+
+//CTA form validation
+
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".cta-form");
+    const nameInput = document.getElementById("full-name");
+    const emailInput = document.getElementById("email");
+    const selectWhere = document.getElementById("select-where");
+
+    form.addEventListener("submit", (e) => {
+        let isValid = true;
+
+        // Remove existing error messages
+        form.querySelectorAll(".error-msg").forEach(el => el.remove());
+
+        // Name Validation (Require at least two words)
+        if (!nameInput.value.trim()) {
+            showError(nameInput, "Full name is required.");
+            isValid = false;
+        } else if (!/^[A-Za-z]+ [A-Za-z]+$/.test(nameInput.value.trim())) {
+            showError(nameInput, "Please enter your full name (first and last name).");
+            isValid = false;
+        } else {
+            nameInput.setAttribute("aria-invalid", "false");
+        }
+
+        // Email Validation (Regex-based)
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+            showError(emailInput, "Please enter a valid email.");
+            isValid = false;
+        } else {
+            emailInput.setAttribute("aria-invalid", "false");
+        }
+
+        // Dropdown Validation
+        if (!selectWhere.value) {
+            showError(selectWhere, "Please select an option.");
+            isValid = false;
+        }
+
+        if (!isValid) {
+            e.preventDefault(); // Prevent form submission if invalid
+        }
+    });
+
+    // Real-time email validation on blur
+    emailInput.addEventListener("blur", () => {
+        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+            emailInput.setAttribute("aria-invalid", "false");
+            removeError(emailInput);
+        }
+    });
+
+    function showError(input, message) {
+        const error = document.createElement("span");
+        error.classList.add("error-msg");
+        error.textContent = message;
+        input.insertAdjacentElement("afterend", error);
+        input.setAttribute("aria-invalid", "true");
+    }
+
+    function removeError(input) {
+        const error = input.nextElementSibling;
+        if (error && error.classList.contains("error-msg")) {
+            error.remove();
+        }
+    }
+    
 
  // Registering the service worker
 if ("serviceWorker" in navigator) {
@@ -167,4 +245,6 @@ if ("serviceWorker" in navigator) {
         .register("/service-worker.js")
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
+
     }
+

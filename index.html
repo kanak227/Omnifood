@@ -79,43 +79,63 @@
                                 <picture>
                                     <source srcset="img/customers/customer-1.avif" type="image/avif">
                                     <img 
-                                    src="img/customers/customer-1.jpg"
-                                    alt="Customer Photo"
+
+                                    srcset="img/customers/customer-1.jpg"
+                                    alt="Customer with a positive expression"
+                                    loading="lazy" 
+
                                     />
                                 </picture>
                                 <picture>
                                     <source srcset="img/customers/customer-2.avif" type="image/avif">
                                     <img 
-                                    src="img/customers/customer-2.jpg"
-                                    alt="Customer Photo"
+
+                                    srcset="img/customers/customer-2.jpg"
+                                    alt="Happy customer"
+                                    loading="lazy"
+
                                     />
                                 </picture>
                                 <picture>
                                     <source srcset="img/customers/customer-3.avif" type="image/avif">
                                     <img 
-                                    src="img/customers/customer-3.jpg"
-                                    alt="Customer Photo"
+
+
+                                    srcset="img/customers/customer-3.jpg"
+                                    alt="Joyful customer"
+                                    loading="lazy"
+                                    
+
                                     />
                                 </picture>
                                 <picture>
                                     <source srcset="img/customers/customer-4.avif" type="image/avif">
                                     <img 
-                                    src="img/customers/customer-4.jpg"
-                                    alt="Customer Photo"
+
+                                    srcset="img/customers/customer-4.jpg"
+                                    alt="Cheerful customer
+                                    loading="lazy"
+                                  
                                     />
                                 </picture>
                                 <picture>
                                     <source srcset="img/customers/customer-5.avif" type="image/avif">
                                     <img 
-                                    src="img/customers/customer-5.jpg"
-                                    alt="Customer Photo"
+
+                                    srcset="img/customers/customer-5.jpg"
+                                    alt="Happy customer looking content"
+                                    loading="lazy"
+
                                     />
                                 </picture>
                                 <picture>
                                     <source srcset="img/customers/customer-6.avif" type="image/avif">
                                     <img 
-                                    src="img/customers/customer-6.jpg"
-                                    alt="Customer Photo"
+                                
+                                    srcset="img/customers/customer-6.jpg"
+                                    alt="Customer with a neutral expression and relaxed posture"
+                                    loading="lazy"
+
                                     />
                                 </picture>
                             </div>
@@ -126,10 +146,9 @@
                     </div>
                     <div class="hero-image-box">
                         <picture>
-                            <source srcset="img/hero.webp" type="image/webp" />
-                            <source srcset="img/hero-min.png" type="image/png" />
                             <img 
-                                src="img/hero-min.png" 
+                                rel="preload"
+                                src="img/hero-min.webp" 
                                 class="hero img"
                                 alt="Man enjoying food, Meals in storage container and Food bowls on a table"
                             />
@@ -142,7 +161,7 @@
                     <h2 class="heading-featured-in">As featured in</h2>
                     <div class="logos">
                         <img 
-                            src="img/logos/techcrunch.png" 
+                            srcset="img/logos/techcrunch.png" 
                             alt="TechCrunch Logo" 
                         />
                         <img 
@@ -150,11 +169,11 @@
                             alt="Business Insider Logo" 
                         />
                         <img 
-                            src="img/logos/the-new-york-times.png" 
+                            srcset="img/logos/the-new-york-times.png" 
                             alt="The New York Times Logo" 
                         />
                         <img 
-                            src="img/logos/forbes.png" 
+                            srcset="img/logos/forbes.png" 
                             alt="Forbes Logo" 
                         />
                         <img 
@@ -184,17 +203,21 @@
                     </div>
                     <div class="step-img-box">
                         <img 
-                            src="img/app/app-screen-1.png" 
+                            srcset="img/app/app-screen-1.png" 
                             class="step-img" 
+
                             alt="iPhone App Preferences Selection Screen" 
+
+                            loading="lazy"
                         />
                     </div>
                     <!-- STEP 02 -->
                     <div class="step-img-box">
                         <img 
-                            src="img/app/app-screen-2.png" 
+                            srcset="img/app/app-screen-2.png" 
                             class="step-img" 
                             alt="iPhone App Meal Approving Plan Screen" 
+                            loading="lazy"
                         />
                     </div>
                     <div class="step-text-box">
@@ -218,9 +241,10 @@
                     </div>
                     <div class="step-img-box">
                         <img 
-                            src="img/app/app-screen-3.png" 
+                            srcset="img/app/app-screen-3.png" 
                             class="step-img" 
                             alt="iPhone App Delivery Screen"
+                            loading="lazy"
                         />
                     </div>
                 </div>
@@ -234,12 +258,19 @@
                 </div>
                 <div class="meal-container container grid grid--3-cols margin-bottom-md">
                     <div class="meal">
+
+                        <picture>
+                            <source srcset="img/meals/meal-1.avif" type="image/avif">
+                             
+
                         <img 
-                            src="img/meals/meal-1.jpg" 
+                            srcset="img/meals/meal-1.jpg" 
+
                             class="meal-img" 
                             alt="Japanese Gyozas" 
                             loading="lazy"
-                        />
+                            />
+                        </picture>
                         <div class="meal-content">
                             <div class="meal-tag">
                                 <span class="tag tag--vegetarian">Vegetarian</span>
@@ -271,12 +302,17 @@
                         </div>
                     </div>
                     <div class="meal">
+
+                        <picture>
+                            <source srcset="img/meals/meal-2.avif" type="image/avif">
+
                         <img 
-                            src="img/meals/meal-2.jpg" 
+                            srcset="img/meals/meal-2.jpg" 
                             class="meal-img" 
                             alt="Avocado Salad" 
                             loading="lazy"
-                        />
+                            />
+                        </picture>
                         <div class="meal-content">
                             <div class="meal-tag">
                                 <span class="tag tag--vegan">Vegan</span>
@@ -369,8 +405,9 @@
                         <figure class="testimonial">
                             <img 
                                 class="testimonial-img" 
-                                src="img/customers/dave.jpg" 
+                                srcset="img/customers/dave.jpg" 
                                 alt="Photo of customer Dave Bryson"
+                                loading="lazy"
                             />
                             <blockquote class="testimonial-text">
                                 Inexpensive, healthy and great-tasting meals, without even having to order manually! It feels truly magical.
@@ -380,8 +417,9 @@
                         <figure class="testimonial">
                             <img 
                                 class="testimonial-img" 
-                                src="img/customers/ben.jpg" 
+                                srcset="img/customers/ben.jpg" 
                                 alt="Photo of customer Ben Hadley"
+                                loading="lazy"
                             />
                             <blockquote class="testimonial-text">
                                 The AI algorithm is crazy good, it chooses the right meals for me every time. It's amazing not to worry about food anymore!
@@ -391,7 +429,8 @@
                         <figure class="testimonial">
                             <img 
                                 class="testimonial-img" 
-                                src="img/customers/steve.jpg" 
+                                srcset="img/customers/steve.jpg" 
+                                loading="lazy"
                                 alt="Photo of customer Steve Miller"
                             />
                             <blockquote class="testimonial-text">
@@ -402,7 +441,8 @@
                         <figure class="testimonial">
                             <img 
                                 class="testimonial-img" 
-                                src="img/customers/hannah.jpg" 
+                                srcset="img/customers/hannah.jpg" 
+                                loading="lazy"
                                 alt="Photo of customer Hannah Smith"
                             />
                             <blockquote class="testimonial-text">
@@ -414,89 +454,184 @@
                 </div>
                 <div class="gallery">
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-1.avif" type="image/avif">
+                            
+
                         <img 
-                            src="img/gallery/gallery-1.jpg"
+                            srcset="img/gallery/gallery-1.jpg"
+
                             loading="lazy"
                             alt="A plate of farfalle pasta with green pesto sauce, cherry tomatoes, and fresh leafy greens."
-                        />
-                        <!-- <figcaption>Caption</figcaption> -->
+                            />
+                        </picture>
+                        
+                        <figcaption>Farfalle pasta with pesto, cherry tomatoes, and greens</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-2.avif" type="image/avif">
+                          
+
                         <img 
-                            src="img/gallery/gallery-2.jpg"
+                            srcset="img/gallery/gallery-2.jpg"
+
                             loading="lazy"
                             alt="A Mediterranean-style bowl with crispy chickpeas, olives, diced cucumbers and tomatoes, fresh greens, figs, flatbread, and a creamy yogurt-based sauce, served on a rustic wooden table."
-                        />
+                            />
+                        </picture>
+                        <figcaption>Mediterranean bowl with chickpeas, olives, and flatbread</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-3.avif" type="image/avif">
+                            
+
                         <img 
-                            src="img/gallery/gallery-3.jpg"
+
                             loading="lazy"
                             alt="A colorful salad bar with an assortment of fresh vegetables, legumes, cheeses, and proteins, neatly arranged in bowls and sectioned trays."
-                        />
+                            />
+                        </picture>
+                        <figcaption>Salad bar with fresh vegetables, legumes, and proteins</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-4.avif" type="image/avif">
+                           
+
                         <img 
-                            src="img/gallery/gallery-4.jpg"
+                            srcset="img/gallery/gallery-4.jpg"
+
                             loading="lazy"
                             alt="A close-up of hands holding a handful of fresh, ripe strawberries with a blurred background, highlighting their vibrant red color and texture."
-                        />
+                            />
+                        </picture>
+                        <figcaption>Fresh, ripe strawberries in hand</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-5.avif" type="image/avif">
+                           
+
                         <img 
-                            src="img/gallery/gallery-5.jpg"
+                            srcset="img/gallery/gallery-5.jpg"
+
                             loading="lazy"
                             alt="A vibrant smoothie topped with fresh fruits, edible flowers, and chia seeds, surrounded by colorful ingredients on a hexagonal-patterned surface."
-                        />
+                            />
+                        </picture>
+                        <figcaption>Smoothie topped with fruits and chia seeds</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-6.avif" type="image/avif">
+                            
+
                         <img 
-                            src="img/gallery/gallery-6.jpg"
+                            srcset="img/gallery/gallery-6.jpg"
+
                             loading="lazy"
                             alt="A beautifully arranged assortment of sliced citrus fruits on a wooden board, showcasing a burst of vibrant colors and textures."
-                        />
+                            />
+                        </picture>
+                        <figcaption>Assorted sliced citrus fruits on a wooden board</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-7.avif" type="image/avif">
+                            
+
                         <img 
-                            src="img/gallery/gallery-7.jpg"
+                            srcset="img/gallery/gallery-7.jpg"
+
                             loading="lazy"
                             alt="A neatly organized selection of fresh ingredients, including avocado, eggs, mushrooms, tomatoes, and greens, displayed on a wooden cutting board."
-                        />
+                            />
+                        </picture>
+                        <figcaption>Fresh ingredients including avocado, eggs, and greens</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-8.avif" type="image/avif">
+                            
+
                         <img 
-                            src="img/gallery/gallery-8.jpg"
+                            srcset="img/gallery/gallery-8.jpg"
+
                             loading="lazy"
                             alt="A delightful breakfast spread featuring waffles topped with fresh berries, avocado toast with eggs, and glasses of orange juice, and cups of coffee"
-                        />
+                            />
+                        </picture>
+                        <figcaption>Breakfast with waffles, avocado toast, and coffee</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-9.avif" type="image/avif">
+                            
+
                         <img 
-                            src="img/gallery/gallery-9.jpg"
+                            srcset="img/gallery/gallery-9.jpg"
+
                             loading="lazy"
                             alt="A vibrant charcuterie board with grapes, apple slices, sausages, crackers, and a creamy cheese dip."
-                        />
+                            />
+                        </picture>
+                        <figcaption>Charcuterie board with fruits, crackers, and cheese dip</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-10.avif" type="image/avif">
+                            
+
                         <img 
-                            src="img/gallery/gallery-10.jpg"
+                            srcset="img/gallery/gallery-10.jpg"
+
                             loading="lazy"
                             alt="A rustic open-faced sandwich with boiled eggs, avocado, and spinach on toasted bread, accompanied by cookies"
-                        />
+                            />
+                        </picture>
+                        <figcaption>Open-faced sandwich with eggs, avocado, and spinach</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-11.avif" type="image/avif">
+                            
+
                         <img 
-                            src="img/gallery/gallery-11.jpg"
+                            srcset="img/gallery/gallery-11.jpg"
+
                             loading="lazy"
                             alt="A colorful bowl of hummus topped with pesto, cherry tomatoes, nuts, pomegranate seeds, and edible flowers, and glasses of cold drink topped with ice"
-                        />
+                            />
+                        </picture>
+                        <figcaption>Hummus bowl with pesto, nuts, and cherry tomatoes</figcaption>
                     </figure>
                     <figure class="gallery-item">
+
+                        <picture>
+                            <source srcset="img/gallery/gallery-12.avif" type="image/avif">
+                            
+
                         <img 
-                            src="img/gallery/gallery-12.jpg"
+                            srcset="img/gallery/gallery-12.jpg"
+
                             loading="lazy"
                             alt="A rustic pear-topped cake with whipped frosting, garnished with crushed nuts and almond slices, displayed on a wooden board surrounded by natural elements and baking ingredients."
-                        />
+                            />
+                        </picture>
+                        <figcaption>Pear-topped cake with nuts and whipped frosting</figcaption>
                     </figure>
                 </div>
             </section>
@@ -630,9 +765,16 @@
                                 Get your first meal for free
                             </h2>
                             <p class="cta-text">
-                                Healthy, tasty and hassle-free meals are waiting for you. Start eating well today. You can cancel or pause anytime. And the first meal is on us!
+                                Healthy, tasty, and hassle-free meals are waiting for you. Start eating well today.
+                                You can cancel or pause anytime. And the first meal is on us!
                             </p>
+
+            
+                            <form class="cta-form" name="sign-up" netlify novalidate>
+                                <!-- Full Name Field -->
+
                             <form class="cta-form" name="sign-up" netlify  aria-label="Sign-up form for a free meal">
+
                                 <div>
                                     <label for="full-name">Full Name</label>
                                     <input 
@@ -641,8 +783,16 @@
                                         id="full-name" 
                                         name="full-name"
                                         required 
+                                        aria-required="true"
+                                        aria-describedby="error-name"
                                     />
+                                    <p id="error-name" class="error-message" aria-live="polite">
+                                        Please enter your full name (first and last name).
+                                    </p>
                                 </div>
+                                
+            
+                                <!-- Email Field -->
                                 <div>
                                     <label for="email">Email Address</label>
                                     <input 
@@ -651,32 +801,38 @@
                                         id="email" 
                                         name="email"
                                         required 
+                                        aria-required="true"
+                                        aria-describedby="error-email"
                                     />
+                                    <p id="error-email" class="error-message" aria-live="polite">
+                                        Please enter a valid email address.
+                                    </p>
                                 </div>
-                                <!-- <input type="checkbox" />
-                                <input type="number" /> -->
+            
+                                <!-- Select Field -->
                                 <div>
-                                    <label for="select-where">Where did you hear from us</label>
-                                    <select id="select-where" name="select-where" required>
+                                    <label for="select-where">Where did you hear about us?</label>
+                                    <select id="select-where" name="select-where" required aria-describedby="error-select">
                                         <option value="">Please choose one option:</option>
                                         <option value="friends">Friends and Family</option>
-                                        <option value="youtube">Youtube Video</option>
+                                        <option value="youtube">YouTube Video</option>
                                         <option value="podcast">Podcast</option>
-                                        <option value="ad">Facebook ad</option>
+                                        <option value="ad">Facebook Ad</option>
                                         <option value="others">Others</option>
                                     </select>
+                                    <p id="error-select" class="error-message" aria-live="polite">
+                                        Please select an option.
+                                    </p>
                                 </div>
-                                <button class="btn btn--form">Sign up now</button>
+            
+                                <button type="submit" class="btn btn--form">Sign up now</button>
                             </form>
                         </div>
-                        <div 
-                            class="cta-img-box" 
-                            role="img" 
-                            aria-label="Woman enjoying food"
-                        ></div>
+                        <div class="cta-img-box" role="img" aria-label="Woman enjoying food"></div>
                     </div>
                 </div>
             </section>
+            
 
             <button id="scrollBtn" onclick="scrollToTop()" aria-label="Scroll to top">
                 <ion-icon name="arrow-up-outline"></ion-icon>
@@ -689,16 +845,32 @@
                     <a href="#" class="footer-logo">
                         <picture>
                             <source srcset="img/omnifood-logo.avif" type="image/avif">
-                            <img class="logo" alt="Omnifood Logo" src="img/omnifood-logo.png" />
-
+                            <source srcset="img/omnifood-logo.webp" type="image/webp">
+                            <img class="logo" alt="Omnifood Logo" src="img/omnifood-logo.png"loading="lazy">
                         </picture>
+                        
+                        <!-- Preload AVIF format for faster loading -->
+                        <link rel="preload" as="image" href="img/omnifood-logo.avif" type="image/avif">
+                        
                     </a>
                     <ul class="social-links">
                         <li>
-                            <a class="footer-link" href="https://instagram.com/gaurav._.karakoti" target="_blank" rel="noopener noreferrer"><ion-icon class="social-icon" name="logo-instagram"></ion-icon></a>
+                            <a class="footer-link" 
+                                href="https://instagram.com/gaurav._.karakoti" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                aria-label="Follow on Instagram">
+                                <ion-icon class="social-icon" name="logo-instagram"></ion-icon>
+                            </a>
                         </li>
                         <li>
-                            <a class="footer-link" href="https://x.com/GauravKara_Koti" target="_blank" rel="noopener noreferrer"><ion-icon class="social-icon" name="logo-twitter"></ion-icon></a>
+                            <a 
+                                class="footer-link" 
+                                href="https://x.com/GauravKara_Koti" 
+                                target="_blank" rel="noopener noreferrer"
+                                aria-label="Follow on X (formerly Twitter)">
+                                <ion-icon class="social-icon" name="logo-twitter"></ion-icon>
+                            </a>
                         </li>
                     </ul>
                     <p class="copyright">
