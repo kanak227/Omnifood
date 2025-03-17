@@ -22,42 +22,22 @@ btnNavEl.addEventListener("click",function(){
 });
 
 ///////////////////////////////////////////////////
-const sectionHeroEl = document.querySelector(".section-hero");
-const header = document.querySelector(".header");
 
-const updateHeaderHeight = () => {
-    const headerHeight = header.getBoundingClientRect().height;
+const sectionHeroEl=document.querySelector(".section-hero");
+const obs=new IntersectionObserver(function(entries){
+    const ent=entries[0];
+    console.log(ent);
+    if(ent.isIntersecting===false) {
+        headerEl.classList.add("sticky");
+    }
+    if(ent.isIntersecting===true) {
+        headerEl.classList.remove("sticky");
+    }
+}, {
+    root:null,
+    threshold:0,
+    rootMargin:"-80px"
 
-    
-    sectionHeroEl.style.marginTop = "0"; 
-
-    const obs = new IntersectionObserver(
-        (entries) => {
-            const ent = entries[0];
-            if (!ent.isIntersecting) {
-                document.body.classList.add("sticky");
-                sectionHeroEl.style.marginTop = `${headerHeight}px`;
-            } else {
-                document.body.classList.remove("sticky");
-                sectionHeroEl.style.marginTop = "0";
-            }
-        },
-        {
-            root: null,
-            threshold: 0,
-            rootMargin: `-${headerHeight}px`, 
-        }
-    );
-
-    obs.observe(sectionHeroEl);
-};
-
-updateHeaderHeight();
-
-let resizeTimer;
-window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(updateHeaderHeight, 100);
 });
 
 
@@ -265,5 +245,6 @@ if ("serviceWorker" in navigator) {
         .register("/service-worker.js")
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
-}
+
+    }
 
