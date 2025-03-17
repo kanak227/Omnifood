@@ -684,9 +684,16 @@
                                 Get your first meal for free
                             </h2>
                             <p class="cta-text">
-                                Healthy, tasty and hassle-free meals are waiting for you. Start eating well today. You can cancel or pause anytime. And the first meal is on us!
+                                Healthy, tasty, and hassle-free meals are waiting for you. Start eating well today.
+                                You can cancel or pause anytime. And the first meal is on us!
                             </p>
+
+            
+                            <form class="cta-form" name="sign-up" netlify novalidate>
+                                <!-- Full Name Field -->
+
                             <form class="cta-form" name="sign-up" netlify  aria-label="Sign-up form for a free meal">
+
                                 <div>
                                     <label for="full-name">Full Name</label>
                                     <input 
@@ -695,9 +702,16 @@
                                         id="full-name" 
                                         name="full-name"
                                         required 
+                                        aria-required="true"
+                                        aria-describedby="error-name"
                                     />
-                                    <span class="error-msg" id="name-error"></span>
+                                    <p id="error-name" class="error-message" aria-live="polite">
+                                        Please enter your full name (first and last name).
+                                    </p>
                                 </div>
+                                
+            
+                                <!-- Email Field -->
                                 <div>
                                     <label for="email">Email Address</label>
                                     <input 
@@ -706,34 +720,38 @@
                                         id="email" 
                                         name="email"
                                         required 
+                                        aria-required="true"
+                                        aria-describedby="error-email"
                                     />
-                                    <span class="error-msg" id="email-error"></span>
+                                    <p id="error-email" class="error-message" aria-live="polite">
+                                        Please enter a valid email address.
+                                    </p>
                                 </div>
-                                <!-- <input type="checkbox" />
-                                <input type="number" /> -->
+            
+                                <!-- Select Field -->
                                 <div>
-                                    <label for="select-where">Where did you hear from us</label>
-                                    <select id="select-where" name="select-where" required>
+                                    <label for="select-where">Where did you hear about us?</label>
+                                    <select id="select-where" name="select-where" required aria-describedby="error-select">
                                         <option value="">Please choose one option:</option>
                                         <option value="friends">Friends and Family</option>
-                                        <option value="youtube">Youtube Video</option>
+                                        <option value="youtube">YouTube Video</option>
                                         <option value="podcast">Podcast</option>
-                                        <option value="ad">Facebook ad</option>
+                                        <option value="ad">Facebook Ad</option>
                                         <option value="others">Others</option>
                                     </select>
-                                    <span class="error-msg" id="select-error"></span>
+                                    <p id="error-select" class="error-message" aria-live="polite">
+                                        Please select an option.
+                                    </p>
                                 </div>
-                                <button class="btn btn--form">Sign up now</button>
+            
+                                <button type="submit" class="btn btn--form">Sign up now</button>
                             </form>
                         </div>
-                        <div 
-                            class="cta-img-box" 
-                            role="img" 
-                            aria-label="Woman enjoying food"
-                        ></div>
+                        <div class="cta-img-box" role="img" aria-label="Woman enjoying food"></div>
                     </div>
                 </div>
             </section>
+            
 
             <button id="scrollBtn" onclick="scrollToTop()" aria-label="Scroll to top">
                 <ion-icon name="arrow-up-outline"></ion-icon>
