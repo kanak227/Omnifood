@@ -21,6 +21,29 @@ btnNavEl.addEventListener("click",function(){
     headerEl.classList.toggle("nav-open");
 });
 
+// Add click handler to close mobile nav when clicking outside
+document.addEventListener('click', function(e) {
+    const mainNav = document.querySelector('.main-nav');
+    
+    // Close nav if clicking outside nav and nav is open
+    if (headerEl.classList.contains('nav-open') && 
+        !mainNav.contains(e.target) && 
+        !btnNavEl.contains(e.target)) {
+        headerEl.classList.remove('nav-open');
+    }
+});
+
+// Add after existing navigation code
+function handleResize() {
+    if (window.innerWidth > 944) { // Breakpoint for mobile navigation
+        headerEl.classList.remove('nav-open');
+        document.body.style.overflow = ''; // Reset body scroll
+    }
+}
+
+// Add resize event listener
+window.addEventListener('resize', handleResize);
+
 ///////////////////////////////////////////////////
 
 const sectionHeroEl = document.querySelector(".section-hero");
@@ -189,10 +212,6 @@ const trackClick = async (buttonName) => {
   document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
   document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
   
-
-
-
-
 //CTA form validation
 
 
@@ -204,18 +223,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", (e) => {
         let isValid = true;
-
-        // Remove existing error messages
         form.querySelectorAll(".error-msg").forEach(el => el.remove());
 
-        // Name Validation (Require at least two words)
+
+        // Full Name Validation (only letters and spaces allowed)
         if (!nameInput.value.trim()) {
             showError(nameInput, "Full name is required.");
             isValid = false;
         } else if (!/^[A-Za-z]+ [A-Za-z]+$/.test(nameInput.value.trim())) {
             showError(nameInput, "Please enter your full name (first and last name).");
             isValid = false;
-        } else {
+        }  else {
             nameInput.setAttribute("aria-invalid", "false");
         }
 
@@ -225,6 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         } else {
             emailInput.setAttribute("aria-invalid", "false");
+
         }
 
         // Dropdown Validation
@@ -233,10 +252,11 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         }
 
-        if (!isValid) {
+       if (!isValid) {
             e.preventDefault(); // Prevent form submission if invalid
         }
     });
+  
 
     // Real-time email validation on blur
     emailInput.addEventListener("blur", () => {
@@ -261,14 +281,12 @@ document.addEventListener("DOMContentLoaded", () => {
             error.remove();
         }
     }
-  
-  
  // Registering the service worker
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
         .register("/service-worker.js")
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
+}
 
-    }
 
