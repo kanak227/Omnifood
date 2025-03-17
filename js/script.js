@@ -158,6 +158,61 @@ const trackClick = async (buttonName) => {
 };
 
   // Attach Event Listeners to Buttons
+
+  document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
+  document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
+  
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".cta-form");
+    const nameInput = document.getElementById("full-name");
+    const nameError = document.getElementById("error-name");
+    const emailInput = document.getElementById("email");
+    const emailError = document.getElementById("error-email");
+
+    form.addEventListener("submit", function (e) {
+        let isValid = true;
+
+        // Name validation: Require at least two words (first and last name)
+        if (!/^[A-Za-z]+ [A-Za-z]+$/.test(nameInput.value.trim())) {
+            nameInput.classList.add("error");
+            nameInput.setAttribute("aria-invalid", "true");
+            nameError.style.display = "block";
+            isValid = false;
+        } else {
+            nameInput.classList.remove("error");
+            nameInput.setAttribute("aria-invalid", "false");
+            nameError.style.display = "none";
+        }
+
+        // Email validation: Must be a valid email format
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+            emailInput.classList.add("error");
+            emailInput.setAttribute("aria-invalid", "true");
+            emailError.style.display = "block";
+            isValid = false;
+        } else {
+            emailInput.classList.remove("error");
+            emailInput.setAttribute("aria-invalid", "false");
+            emailError.style.display = "none";
+        }
+
+        if (!isValid) {
+            e.preventDefault(); // Prevent form submission if there's an error
+        }
+    });
+
+    // Validate email field on blur (when the user leaves the field)
+    emailInput.addEventListener("blur", function () {
+        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+            emailInput.classList.remove("error");
+            emailInput.setAttribute("aria-invalid", "false");
+            emailError.style.display = "none";
+        }
+    });
+});
+
     document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
     document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
 
@@ -168,3 +223,4 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
 }
+
