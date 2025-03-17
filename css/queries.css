@@ -439,3 +439,39 @@
         font-size: 3.6rem;
     }
 }
+
+@media (max-width: 944px) {
+    .main-nav {
+        position: fixed;
+        top: 8rem;
+        right: -100%;
+        width: 80%;
+        height: calc(100vh - 8rem);
+        background-color: rgba(255, 255, 255, 0.97);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 998;
+        border-radius: 9px 0 0 9px;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        transform: translateX(100%);
+    }
+
+    .header.nav-open .main-nav {
+        right: 0;
+        transform: translateX(0);
+    }
+}
+
+/* Reset navigation styles for desktop */
+@media (min-width: 945px) {
+    .main-nav {
+        position: static;
+        transform: none;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        box-shadow: none;
+    }
+}

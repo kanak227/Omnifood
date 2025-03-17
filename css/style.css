@@ -146,6 +146,8 @@
     background: none;
     cursor: pointer;
     display: none;
+    z-index: 999;
+    position: relative;
 }
 .btn-mobile-nav:active{
     color: black;
@@ -181,6 +183,83 @@
 .icon-mobile-nav[name="close-outline"] {
     display: none;
 }
+
+/* Ensure mobile nav overlay covers full screen */
+.header.nav-open .main-nav {
+    position: fixed;
+    top: 8rem; /* Height of header */
+    left: 20%; /* Leave space on left */
+    width: 80%; /* Take up 80% of screen width */
+    height: calc(100vh - 8rem); /* Full height minus header */
+    background-color: rgba(255, 255, 255, 0.97);
+    z-index: 998;
+    border-radius: 9px 0 0 9px; /* Rounded corners on left side */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Update mobile navigation styles */
+.header.nav-open .main-nav {
+    position: fixed;
+    top: 8rem;
+    left: 100%; /* Start from outside the viewport */
+    width: 80%;
+    height: calc(100vh - 8rem);
+    background-color: rgba(255, 255, 255, 0.95); /* More translucent */
+    z-index: 998;
+    border-radius: 9px 0 0 9px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease-in-out;
+    backdrop-filter: blur(10px); /* Add blur effect */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Animation for sliding in */
+.header.nav-open .main-nav {
+    left: 20%; /* Slide in from right */
+    transform: translateX(0);
+}
+
+/* Optional: Add a semi-transparent background */
+.header.nav-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Darkens background when nav is open */
+    z-index: 997; /* Below the nav but above other content */
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Background overlay with improved animation */
+.header.nav-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 997;
+    transition: background-color 0.4s ease-in-out;
+}
+
+/* Fade in overlay when nav is open */
+.header.nav-open::before {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* Update mobile navigation styles */
+.main-nav {
+    transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+
 
 /* STICKY NAVIGATION */
 .sticky.header {
