@@ -22,6 +22,7 @@ btnNavEl.addEventListener("click",function(){
 });
 
 ///////////////////////////////////////////////////
+
 const sectionHeroEl = document.querySelector(".section-hero");
 const header = document.querySelector(".header");
 
@@ -58,6 +59,7 @@ let resizeTimer;
 window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(updateHeaderHeight, 100);
+
 });
 
 
@@ -189,7 +191,8 @@ const trackClick = async (buttonName) => {
   
 
 
-  //CTA form validation
+//CTA form validation
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".cta-form");
@@ -199,18 +202,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", (e) => {
         let isValid = true;
-
-        // Remove existing error messages
         form.querySelectorAll(".error-msg").forEach(el => el.remove());
 
-        // Name Validation (Require at least two words)
+
+        // Full Name Validation (only letters and spaces allowed)
         if (!nameInput.value.trim()) {
             showError(nameInput, "Full name is required.");
             isValid = false;
         } else if (!/^[A-Za-z]+ [A-Za-z]+$/.test(nameInput.value.trim())) {
             showError(nameInput, "Please enter your full name (first and last name).");
             isValid = false;
-        } else {
+        }  else {
             nameInput.setAttribute("aria-invalid", "false");
         }
 
@@ -220,6 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         } else {
             emailInput.setAttribute("aria-invalid", "false");
+
         }
 
         // Dropdown Validation
@@ -228,10 +231,11 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false;
         }
 
-        if (!isValid) {
+       if (!isValid) {
             e.preventDefault(); // Prevent form submission if invalid
         }
     });
+  
 
     // Real-time email validation on blur
     emailInput.addEventListener("blur", () => {
@@ -256,6 +260,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    
+
  // Registering the service worker
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
@@ -263,4 +269,3 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
 }
-
