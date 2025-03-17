@@ -183,7 +183,7 @@
 }
 
 /* STICKY NAVIGATION */
-.sticky .header {
+.sticky.header {
     position: fixed;
     top: 0;
     width: 100%;
@@ -197,9 +197,10 @@
 }
 
 /* No fixed margin, JS handles it dynamically */
+
 .sticky .section-hero {
     margin-top: 0 !important;
-}
+
 
 
 

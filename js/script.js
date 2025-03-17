@@ -22,6 +22,7 @@ btnNavEl.addEventListener("click",function(){
 });
 
 ///////////////////////////////////////////////////
+
 const sectionHeroEl = document.querySelector(".section-hero");
 const header = document.querySelector(".header");
 
@@ -58,6 +59,7 @@ let resizeTimer;
 window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(updateHeaderHeight, 100);
+
 });
 
 
@@ -189,7 +191,8 @@ const trackClick = async (buttonName) => {
   
 
 
-  //CTA form validation
+//CTA form validation
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector(".cta-form");
@@ -200,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (e) => {
         let isValid = true;
         form.querySelectorAll(".error-msg").forEach(el => el.remove());
+
 
         // Full Name Validation (only letters and spaces allowed)
         if (!nameInput.value.trim()) {
@@ -212,12 +216,13 @@ document.addEventListener("DOMContentLoaded", () => {
             nameInput.setAttribute("aria-invalid", "false");
         }
 
-        // Email Validation
+        // Email Validation (Regex-based)
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
             showError(emailInput, "Please enter a valid email.");
             isValid = false;
         } else {
             emailInput.setAttribute("aria-invalid", "false");
+
         }
 
         // Dropdown Validation
@@ -231,6 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
   
+
     // Real-time email validation on blur
     emailInput.addEventListener("blur", () => {
         if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
@@ -246,14 +252,14 @@ document.addEventListener("DOMContentLoaded", () => {
         input.insertAdjacentElement("afterend", error);
         input.setAttribute("aria-invalid", "true");
     }
-  
+
     function removeError(input) {
         const error = input.nextElementSibling;
         if (error && error.classList.contains("error-msg")) {
             error.remove();
         }
     }
-});
+
     
 
  // Registering the service worker
@@ -263,4 +269,5 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
 }
+
 
