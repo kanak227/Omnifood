@@ -183,17 +183,13 @@ const trackClick = async (buttonName) => {
 };
 
   // Attach Event Listeners to Buttons
-    document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
-    document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
 
- // Registering the service worker
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-        .register("/service-worker.js")
-        .then(() => console.log("✅ Service Worker Registered"))
-        .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
-}
-////////////////////////////////////////////
+  document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
+  document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
+  
+
+
+  ////////////////////////////////////////////
 
 //CTA form validation
 
@@ -205,30 +201,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", (e) => {
         let isValid = true;
+
+        // Remove existing error messages
         form.querySelectorAll(".error-msg").forEach(el => el.remove());
 
-        // Full Name Validation (only letters and spaces allowed)
+        // Name Validation (Require at least two words)
         if (!nameInput.value.trim()) {
             showError(nameInput, "Full name is required.");
             isValid = false;
-        } else if (!/^[a-zA-Z\s]+$/.test(nameInput.value.trim())) {
-            showError(nameInput, "Full name can only contain letters and spaces.");
+        } else if (!/^[A-Za-z]+ [A-Za-z]+$/.test(nameInput.value.trim())) {
+            showError(nameInput, "Please enter your full name (first and last name).");
             isValid = false;
+        } else {
+            nameInput.setAttribute("aria-invalid", "false");
         }
 
-        // Email Validation
-        if (!emailInput.value.trim()) {
+        // Email Validation (Regex-based)
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
             showError(emailInput, "Please enter a valid email.");
             isValid = false;
+        } else {
+            emailInput.setAttribute("aria-invalid", "false");
         }
 
-        // Select Validation
+        // Dropdown Validation
         if (!selectWhere.value) {
             showError(selectWhere, "Please select an option.");
             isValid = false;
         }
 
-        if (!isValid) e.preventDefault();
+        if (!isValid) {
+            e.preventDefault(); // Prevent form submission if invalid
+        }
+    });
+
+    // Real-time email validation on blur
+    emailInput.addEventListener("blur", () => {
+        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+            emailInput.setAttribute("aria-invalid", "false");
+            removeError(emailInput);
+        }
     });
 
     function showError(input, message) {
@@ -236,5 +248,22 @@ document.addEventListener("DOMContentLoaded", () => {
         error.classList.add("error-msg");
         error.textContent = message;
         input.insertAdjacentElement("afterend", error);
+        input.setAttribute("aria-invalid", "true");
     }
-});
+
+    function removeError(input) {
+        const error = input.nextElementSibling;
+        if (error && error.classList.contains("error-msg")) {
+            error.remove();
+        }
+    }
+    
+
+ // Registering the service worker
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+        .register("/service-worker.js")
+        .then(() => console.log("✅ Service Worker Registered"))
+        .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
+}
+
