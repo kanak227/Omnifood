@@ -102,6 +102,30 @@ form.sign-in-form {
   font-weight: 500;
 }
 
+/* Invalid input border */
+.input-field input.invalid {
+  border: 2px solid #e74c3c;
+}
+
+/* Valid input border */
+.input-field input.valid {
+  border: 2px solid #2ecc71;
+}
+
+
+.error-message {
+  font-size: 0.875rem;
+  color: red;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow: visible; 
+  max-width: 100%; 
+}
+
+
 .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;
@@ -142,7 +166,7 @@ form.sign-in-form {
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
-  margin: 10px 0;
+  margin: 50px 0;
   cursor: pointer;
   transition: 0.5s;
 }
@@ -406,7 +430,7 @@ form.sign-in-form {
   position: relative; /* Ensure child elements are positioned relative to this */
 }
 
-#back-btn {
+.back-btn {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -421,19 +445,19 @@ form.sign-in-form {
   z-index: 10; /* Ensure it appears above other elements */
 }
 
-#back-btn img {
+.back-btn img {
   width: 49px;
   height: 40px;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
-#back-btn:hover {
+.back-btn:hover {
   transform: scale(1.1);
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
   background-color: rgba(0, 0, 0, 0.05);
 }
 
-#back-btn img:hover {
+.back-btn img:hover {
   transform: scale(1.05);
   opacity: 0.8;
 }
@@ -447,7 +471,7 @@ form.sign-in-form {
   }
 }
 
-#back-btn:active {
+.back-btn:active {
   animation: bounce 0.3s ease-in-out;
 }
 
