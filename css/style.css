@@ -933,7 +933,8 @@
 .social-links {
     list-style: none;
     display: flex;
-    gap: 2.4rem;
+    align-items: center;
+    gap: 1.2rem;
 }
 
 .footer-logo {
