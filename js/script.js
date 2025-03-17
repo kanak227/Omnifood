@@ -21,6 +21,18 @@ btnNavEl.addEventListener("click",function(){
     headerEl.classList.toggle("nav-open");
 });
 
+// Add click handler to close mobile nav when clicking outside
+document.addEventListener('click', function(e) {
+    const mainNav = document.querySelector('.main-nav');
+    
+    // Close nav if clicking outside nav and nav is open
+    if (headerEl.classList.contains('nav-open') && 
+        !mainNav.contains(e.target) && 
+        !btnNavEl.contains(e.target)) {
+        headerEl.classList.remove('nav-open');
+    }
+});
+
 ///////////////////////////////////////////////////
 const sectionHeroEl=document.querySelector(".section-hero");
 const obs=new IntersectionObserver(function(entries){
