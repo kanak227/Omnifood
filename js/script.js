@@ -21,6 +21,7 @@ btnNavEl.addEventListener("click",function(){
     headerEl.classList.toggle("nav-open");
 });
 
+
 // Add click handler to close mobile nav when clicking outside
 document.addEventListener('click', function(e) {
     const mainNav = document.querySelector('.main-nav');
@@ -43,6 +44,7 @@ function handleResize() {
 
 // Add resize event listener
 window.addEventListener('resize', handleResize);
+
 
 ///////////////////////////////////////////////////
 
@@ -212,6 +214,7 @@ const trackClick = async (buttonName) => {
   document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
   document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
   
+
 //CTA form validation
 
 
@@ -281,6 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
             error.remove();
         }
     }
+
  // Registering the service worker
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
@@ -288,5 +292,4 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
 }
-
 

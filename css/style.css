@@ -274,6 +274,7 @@
 
 /* No fixed margin, JS handles it dynamically */
 
+
 .sticky .section-hero {
     margin-top: 0 !important;
 }
