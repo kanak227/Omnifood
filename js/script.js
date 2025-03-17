@@ -212,8 +212,6 @@ const trackClick = async (buttonName) => {
   document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
   document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
   
-
-
 //CTA form validation
 
 
@@ -276,15 +274,13 @@ document.addEventListener("DOMContentLoaded", () => {
         input.setAttribute("aria-invalid", "true");
     }
 
+
     function removeError(input) {
         const error = input.nextElementSibling;
         if (error && error.classList.contains("error-msg")) {
             error.remove();
         }
     }
-
-    
-
  // Registering the service worker
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker

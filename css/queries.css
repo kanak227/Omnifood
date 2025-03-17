@@ -72,8 +72,8 @@
 
     .hero img {
         max-width: 25rem;
-        /* margin: 0 auto; */
-        align-self: center;
+        margin: 0 auto;
+        place-self: center;
     }
 
     .hero-description {
@@ -99,7 +99,6 @@
     }
 
     .hero {
-        grid-template-columns: 1fr;
         padding: 0 5vw; /* Use relative units */
         gap: 6.4rem;
     }
@@ -193,7 +192,7 @@
     }
 
     .main-nav-link:link, .main-nav-link:visited {
-        font-size: 3.5vw; /* Use viewport-relative units */
+        font-size: 1.25rem; 
     }
 }
 
@@ -217,19 +216,16 @@
     .logos{
         display: flex;
         flex-wrap: wrap;
-        gap: 3%;
+        gap: 1rem;
+        justify-content: center;
     }
 
     .logos img{
-        margin: 2% 0%;
+        max-width: 100%;
     }
 
     .container{
         padding: 0px 14px;
-    }
-
-    .btn {
-        width: 100%;
     }
 
     .delivered-imgs img {
@@ -259,21 +255,12 @@
         height: 32rem;
         grid-row: 1;
     }
-    .cta-form {
-        grid-template-columns: 1fr;
-    }
+
     .cta-text-box {
         padding: 3.2rem;
     }
 }
-/* Responsive Form */
-@media screen and (prefers-contrast: high) {
-    .cta,
-    .cta-form input,
-    .cta-form select {
-        border: 2px solid #000;
-    }
-}
+
 
 /*******************************************/
 /* BELOW 704px (Smaller Tablets) */
@@ -315,10 +302,6 @@
         font-size: 1.3rem;
         top: 6%;
         right: -20%;
-    }
-
-    .cta {
-        grid-template-columns: 1fr;
     }
 
     .cta-img-box {
@@ -385,7 +368,6 @@
     }
 
     .testimonials {
-        grid-template-columns: 1fr;
         row-gap: 5rem;
     }
 
@@ -412,10 +394,6 @@
         right: -14%;
     }
 
-    .cta {
-        grid-template-columns: 1fr;
-    }
-
     .cta-img-box {
         height: 32rem;
         grid-row: 1;
@@ -426,7 +404,7 @@
     }
 
     .grid--footer {
-        grid-template-columns: 1fr; 
+        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     }
 }
 
@@ -437,6 +415,18 @@
 @media (max-width: 31.25rem) {
     .heading-primary {
         font-size: 3.6rem;
+    }
+}
+
+/*******************************************/
+/* Responsive Form */
+/*******************************************/
+
+@media screen and (prefers-contrast: high) {
+    .cta,
+    .cta-form input,
+    .cta-form select {
+        border: 2px solid #000;
     }
 }
 
@@ -514,4 +504,3 @@
         box-shadow: none;
     }
 }
-
