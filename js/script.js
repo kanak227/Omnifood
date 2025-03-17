@@ -1,4 +1,4 @@
-console.log("Hello World!");
+// console.log("Hello World!");
 const myName="Gaurav Karakoti";
 const h1=document.querySelector(".heading-primary");
 console.log(myName);
@@ -292,4 +292,6 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
 }
+}
+)
 

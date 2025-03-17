@@ -1018,6 +1018,20 @@
         rootMargin: "-80px"
     });
     obs.observe(sectionHeroEl);
+
+    // Hamburger menu logic
+    const btnMobileNav = document.querySelector(".btn-mobile-nav");
+    const header = document.querySelector(".header");
+
+    btnMobileNav.addEventListener("click", function () {
+        header.classList.toggle("nav-open");
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!header.contains(event.target) && !btnMobileNav.contains(event.target)) {
+            header.classList.remove("nav-open");
+        }
+    });
 </script>
 
 
