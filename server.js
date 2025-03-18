@@ -44,6 +44,53 @@ app.post("/track-click", async (req, res) => {
   }
 });
 
+app.get("/email-verification", (req, res) => {
+  const { status, message } = req.query;
+
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Email Verification</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          padding: 20px;
+        }
+        .message {
+          margin-top: 20px;
+          padding: 15px;
+          border-radius: 5px;
+          background-color: ${status === 'error' ? '#f8d7da' : '#d4edda'};
+          color: ${status === 'error' ? '#721c24' : '#155724'};
+        }
+        .redirect {
+          margin-top: 20px;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Email Verification Status</h1>
+      <div class="message">${message}</div>
+      <div class="redirect">
+        <p>You will be redirected to the homepage shortly...</p>
+      </div>
+
+      <script>
+        // Redirect to the homepage after 5 seconds
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 5000);
+      </script>
+    </body>
+    </html>
+  `);
+});
+
+
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
