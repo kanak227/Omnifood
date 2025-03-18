@@ -369,6 +369,26 @@
 /*******************************************/
 /* FEATURED IN SECTION */
 /*******************************************/
+.feature {
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.feature:hover {
+    transform: scale(1.05);
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+.feature:hover .feature-title {
+    color: #ff5733; /* Attractive color change on hover #ff5733*/
+}
 
 .heading-featured-in {
     font-size: 1.4rem;
