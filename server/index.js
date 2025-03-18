@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv');
 
 const { errorMiddleware } = require('./middlewares/error.js');
-const authRouter = require('./routes/User.js');
+const authRouter = require('./routes/user.js');
 
 dotenv.config();
 
