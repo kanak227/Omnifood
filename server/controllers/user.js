@@ -33,17 +33,17 @@ const signup = asyncError(async (req, res, next) => {
 
     await sendVerificationEmail(user, verificationLink);
 
-    sendToken(user, res, `Welcome ${user.name},Please check your email for verification.`, 201);
+    sendToken(user, res, `Welcome ${user.username},Please check your email for verification.`, 201);
 })
 
 const login = asyncError(async (req, res, next) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    if (!email || !password) {
+    if (!username || !password) {
         return next(new ErrorHandler("Please fill in all fields", 400));
     }
 
-    const user = await User.findOne({ email }).select("+password");
+    const user = await User.findOne({ username }).select("+password");
 
     if (!user) {
         return next(new ErrorHandler("Invalid credentials", 401));
