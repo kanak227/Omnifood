@@ -75,7 +75,6 @@ form.sign-in-form {
   border-radius: 55px;
   display: grid;
   grid-template-columns: 15% 85%;
-  padding: 0 0.4rem;
   position: relative;
 }
 
@@ -95,6 +94,8 @@ form.sign-in-form {
   font-weight: 600;
   font-size: 1.1rem;
   color: #333;
+  overflow: hidden;
+  border-radius: 55px;
 }
 
 .input-field input::placeholder {
