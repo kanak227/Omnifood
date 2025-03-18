@@ -490,7 +490,7 @@
                             />
                         </picture>
                         
-                        <figcaption>Farfalle pasta with pesto, cherry tomatoes, and greens</figcaption>
+                        <!-- <figcaption>Farfalle pasta with pesto, cherry tomatoes, and greens</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
@@ -507,7 +507,7 @@
                             alt="A Mediterranean-style bowl with crispy chickpeas, olives, diced cucumbers and tomatoes, fresh greens, figs, flatbread, and a creamy yogurt-based sauce, served on a rustic wooden table."
                             />
                         </picture>
-                        <figcaption>Mediterranean bowl with chickpeas, olives, and flatbread</figcaption>
+                        <!-- <figcaption>Mediterranean bowl with chickpeas, olives, and flatbread</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
@@ -527,7 +527,7 @@
                             alt="A colorful salad bar with an assortment of fresh vegetables, legumes, cheeses, and proteins, neatly arranged in bowls and sectioned trays."
                             />
                         </picture>
-                        <figcaption>Salad bar with fresh vegetables, legumes, and proteins</figcaption>
+                        <!-- <figcaption>Salad bar with fresh vegetables, legumes, and proteins</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
@@ -544,7 +544,7 @@
                             alt="A close-up of hands holding a handful of fresh, ripe strawberries with a blurred background, highlighting their vibrant red color and texture."
                             />
                         </picture>
-                        <figcaption>Fresh, ripe strawberries in hand</figcaption>
+                        <!-- <figcaption>Fresh, ripe strawberries in hand</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
@@ -561,7 +561,7 @@
                             alt="A vibrant smoothie topped with fresh fruits, edible flowers, and chia seeds, surrounded by colorful ingredients on a hexagonal-patterned surface."
                             />
                         </picture>
-                        <figcaption>Smoothie topped with fruits and chia seeds</figcaption>
+                        <!-- <figcaption>Smoothie topped with fruits and chia seeds</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
@@ -578,7 +578,7 @@
                             alt="A beautifully arranged assortment of sliced citrus fruits on a wooden board, showcasing a burst of vibrant colors and textures."
                             />
                         </picture>
-                        <figcaption>Assorted sliced citrus fruits on a wooden board</figcaption>
+                        <!-- <figcaption>Assorted sliced citrus fruits on a wooden board</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
@@ -595,7 +595,7 @@
                             alt="A neatly organized selection of fresh ingredients, including avocado, eggs, mushrooms, tomatoes, and greens, displayed on a wooden cutting board."
                             />
                         </picture>
-                        <figcaption>Fresh ingredients including avocado, eggs, and greens</figcaption>
+                        <!-- <figcaption>Fresh ingredients including avocado, eggs, and greens</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
@@ -612,7 +612,7 @@
                             alt="A delightful breakfast spread featuring waffles topped with fresh berries, avocado toast with eggs, and glasses of orange juice, and cups of coffee"
                             />
                         </picture>
-                        <figcaption>Breakfast with waffles, avocado toast, and coffee</figcaption>
+                        <!-- <figcaption>Breakfast with waffles, avocado toast, and coffee</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
@@ -629,7 +629,7 @@
                             alt="A vibrant charcuterie board with grapes, apple slices, sausages, crackers, and a creamy cheese dip."
                             />
                         </picture>
-                        <figcaption>Charcuterie board with fruits, crackers, and cheese dip</figcaption>
+                        <!-- <figcaption>Charcuterie board with fruits, crackers, and cheese dip</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
@@ -646,7 +646,7 @@
                             alt="A rustic open-faced sandwich with boiled eggs, avocado, and spinach on toasted bread, accompanied by cookies"
                             />
                         </picture>
-                        <figcaption>Open-faced sandwich with eggs, avocado, and spinach</figcaption>
+                        <!-- <figcaption>Open-faced sandwich with eggs, avocado, and spinach</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
@@ -819,11 +819,8 @@
                             </p>
 
             
-                            <form class="cta-form" name="sign-up" netlify novalidate>
+                            <form class="cta-form" name="sign-up" netlify netlify-honeypot="bot-field" hidden>
                                 <!-- Full Name Field -->
-
-                            <form class="cta-form" name="sign-up" netlify  aria-label="Sign-up form for a free meal">
-
                                 <div>
                                     <label for="full-name">Full Name</label>
                                     <input 
@@ -839,7 +836,6 @@
                                         Please enter your full name (first and last name).
                                     </p>
                                 </div>
-                                
             
                                 <!-- Email Field -->
                                 <div>
@@ -882,6 +878,13 @@
                 </div>
             </section>
             
+            <!-- Confirmation Modal -->
+            <div id="confirmation-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-btn">&times;</span>
+                    <p id="confirmation-message"></p>
+                </div>
+            </div>
 
             <button id="scrollBtn" onclick="scrollToTop()" aria-label="Scroll to top">
                 <ion-icon name="arrow-up-outline"></ion-icon>
@@ -1001,37 +1004,7 @@
         });
     });
 
-    const sectionHeroEl = document.querySelector(".section-hero");
-    const headerEl = document.querySelector(".header");
-
-    const obs = new IntersectionObserver(function(entries) {
-        const ent = entries[0];
-        if (ent.isIntersecting === false) {
-            headerEl.classList.add("sticky");
-        }
-        if (ent.isIntersecting === true) {
-            headerEl.classList.remove("sticky");
-        }
-    }, {
-        root: null,
-        threshold: 0,
-        rootMargin: "-80px"
-    });
-    obs.observe(sectionHeroEl);
-
-    // Hamburger menu logic
-    const btnMobileNav = document.querySelector(".btn-mobile-nav");
-    const header = document.querySelector(".header");
-
-    btnMobileNav.addEventListener("click", function () {
-        header.classList.toggle("nav-open");
-    });
-
-    document.addEventListener("click", function (event) {
-        if (!header.contains(event.target) && !btnMobileNav.contains(event.target)) {
-            header.classList.remove("nav-open");
-        }
-    });
+    
 </script>
 
 
