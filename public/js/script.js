@@ -1,4 +1,4 @@
-// console.log("Hello World!");
+console.log("Hello World!");
 const myName="Gaurav Karakoti";
 const h1=document.querySelector(".heading-primary");
 console.log(myName);
@@ -15,23 +15,30 @@ console.log(h1);
 // yearEl.textContent=currentYear;
 
 ///////////////////////////////////////////////////
-const btnNavEl=document.querySelector(".btn-mobile-nav");
-const headerEl=document.querySelector(".header");
-btnNavEl.addEventListener("click",function(){
-    headerEl.classList.toggle("nav-open");
+const btnNavEl = document.querySelector(".btn-mobile-nav");
+const headerEl = document.querySelector(".header");
+const mainNav = document.querySelector(".main-nav");
+
+btnNavEl.addEventListener("click", function (e) {
+    e.stopPropagation(); // Prevent click from bubbling to document
+    if (window.innerWidth <= 944) { // Only toggle nav in mobile view
+        headerEl.classList.toggle("nav-open");
+    }
 });
 
-
 // Add click handler to close mobile nav when clicking outside
-document.addEventListener('click', function(e) {
-    const mainNav = document.querySelector('.main-nav');
-    
+document.addEventListener("click", function (e) {
     // Close nav if clicking outside nav and nav is open
-    if (headerEl.classList.contains('nav-open') && 
+    if (headerEl.classList.contains("nav-open") && 
         !mainNav.contains(e.target) && 
         !btnNavEl.contains(e.target)) {
-        headerEl.classList.remove('nav-open');
+        headerEl.classList.remove("nav-open");
     }
+});
+
+// Prevent clicks inside the menu from closing it
+mainNav.addEventListener("click", function (e) {
+    e.stopPropagation();
 });
 
 // Add after existing navigation code
@@ -45,51 +52,23 @@ function handleResize() {
 // Add resize event listener
 window.addEventListener('resize', handleResize);
 
-
 ///////////////////////////////////////////////////
-
-const sectionHeroEl = document.querySelector(".section-hero");
-const header = document.querySelector(".header");
-
-const updateHeaderHeight = () => {
-    const headerHeight = header.getBoundingClientRect().height;
-
-    
-    sectionHeroEl.style.marginTop = "0"; 
-
-    const obs = new IntersectionObserver(
-        (entries) => {
-            const ent = entries[0];
-            if (!ent.isIntersecting) {
-                document.body.classList.add("sticky");
-                sectionHeroEl.style.marginTop = `${headerHeight}px`;
-            } else {
-                document.body.classList.remove("sticky");
-                sectionHeroEl.style.marginTop = "0";
-            }
-        },
-        {
-            root: null,
-            threshold: 0,
-            rootMargin: `-${headerHeight}px`, 
-        }
-    );
-
-    obs.observe(sectionHeroEl);
-};
-
-updateHeaderHeight();
-
-let resizeTimer;
-window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(updateHeaderHeight, 100);
-
+const sectionHeroEl=document.querySelector(".section-hero");
+const obs=new IntersectionObserver(function(entries){
+    const ent=entries[0];
+    console.log(ent);
+    if(ent.isIntersecting===false) {
+        document.querySelector("body").classList.add("sticky");
+    }
+    if(ent.isIntersecting===true) {
+        document.querySelector("body").classList.remove("sticky");
+    }
+}, {
+    root:null,
+    threshold:0,
+    rootMargin:`-${headerEl.offsetHeight}px` // Adjust dynamically
 });
-
-
-
-
+obs.observe(sectionHeroEl);
 
 ///////////////////////////////////////////////////
 const allLinks = document.querySelectorAll("a:link");
@@ -116,13 +95,12 @@ allLinks.forEach(function (link) {
             }
         }
 
-        // Close mobile navigation if it's a main nav link
-        if (link.classList.contains("main-nav-link")) {
-            headerEl.classList.toggle("nav-open");
+        // Close mobile navigation if it's a main nav link and in mobile view
+        if (link.classList.contains("main-nav-link") && window.innerWidth <= 944) {
+            headerEl.classList.remove("nav-open");
         }
     });
 });
-
 
 ///////////////////////////////////////////////////
 function checkFlexGap() {
@@ -215,75 +193,112 @@ const trackClick = async (buttonName) => {
   document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
   
 
-//CTA form validation
-
-
-document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector(".cta-form");
-    const nameInput = document.getElementById("full-name");
+    const fullNameInput = document.getElementById("full-name");
     const emailInput = document.getElementById("email");
     const selectWhere = document.getElementById("select-where");
+    const errorName = document.getElementById("error-name");
+    const errorEmail = document.getElementById("error-email");
+    const errorSelect = document.getElementById("error-select");
+    const modal = document.getElementById("confirmation-modal");
+    const closeBtn = document.querySelector(".close-btn");
+    const confirmationMessage = document.getElementById("confirmation-message");
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", function (e) {
         let isValid = true;
-        form.querySelectorAll(".error-msg").forEach(el => el.remove());
 
-
-        // Full Name Validation (only letters and spaces allowed)
-        if (!nameInput.value.trim()) {
-            showError(nameInput, "Full name is required.");
-            isValid = false;
-        } else if (!/^[A-Za-z]+ [A-Za-z]+$/.test(nameInput.value.trim())) {
-            showError(nameInput, "Please enter your full name (first and last name).");
-            isValid = false;
-        }  else {
-            nameInput.setAttribute("aria-invalid", "false");
-        }
-
-        // Email Validation (Regex-based)
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
-            showError(emailInput, "Please enter a valid email.");
+        // Full Name validation: Must contain at least two words
+        if (!/^\w+\s+\w+/.test(fullNameInput.value.trim())) {
+            fullNameInput.classList.add("error");
+            fullNameInput.setAttribute("aria-invalid", "true");
+            errorName.style.display = "block";
             isValid = false;
         } else {
-            emailInput.setAttribute("aria-invalid", "false");
-
+            fullNameInput.classList.remove("error");
+            fullNameInput.setAttribute("aria-invalid", "false");
+            errorName.style.display = "none";
         }
 
-        // Dropdown Validation
-        if (!selectWhere.value) {
-            showError(selectWhere, "Please select an option.");
+        // Email validation: Must be a valid email format
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+            emailInput.classList.add("error");
+            emailInput.setAttribute("aria-invalid", "true");
+            errorEmail.style.display = "block";
             isValid = false;
-        }
-
-       if (!isValid) {
-            e.preventDefault(); // Prevent form submission if invalid
-        }
-    });
-  
-
-    // Real-time email validation on blur
-    emailInput.addEventListener("blur", () => {
-        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+        } else {
+            emailInput.classList.remove("error");
             emailInput.setAttribute("aria-invalid", "false");
-            removeError(emailInput);
+            errorEmail.style.display = "none";
+        }
+
+        // Select validation: Must select an option
+        if (selectWhere.value === "") {
+            selectWhere.classList.add("error");
+            selectWhere.setAttribute("aria-invalid", "true");
+            errorSelect.style.display = "block";
+            isValid = false;
+        } else {
+            selectWhere.classList.remove("error");
+            selectWhere.setAttribute("aria-invalid", "false");
+            errorSelect.style.display = "none";
+        }
+
+        if (!isValid) {
+            e.preventDefault(); // Prevent form submission if there's an error
+        } else {
+            // Simulate form submission (replace this with actual form submission logic)
+            setTimeout(() => {
+                // Show success message
+                confirmationMessage.textContent = "Thank you! Your submission has been received.";
+                modal.style.display = "block";
+            }, 1000);
         }
     });
 
-    function showError(input, message) {
-        const error = document.createElement("span");
-        error.classList.add("error-msg");
-        error.textContent = message;
-        input.insertAdjacentElement("afterend", error);
-        input.setAttribute("aria-invalid", "true");
-    }
+    // Close the modal when the user clicks on <span> (x)
+    closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
 
-
-    function removeError(input) {
-        const error = input.nextElementSibling;
-        if (error && error.classList.contains("error-msg")) {
-            error.remove();
+    // Close the modal when the user clicks anywhere outside of the modal
+    window.addEventListener("click", function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
         }
-    }
+    });
+
+    // Validate full name field on blur (when the user leaves the field)
+    fullNameInput.addEventListener("blur", function () {
+        if (/^\w+\s+\w+/.test(fullNameInput.value.trim())) {
+            fullNameInput.classList.remove("error");
+            fullNameInput.setAttribute("aria-invalid", "false");
+            errorName.style.display = "none";
+        }
+    });
+
+    // Validate email field on blur (when the user leaves the field)
+    emailInput.addEventListener("blur", function () {
+        if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+            emailInput.classList.remove("error");
+            emailInput.setAttribute("aria-invalid", "false");
+            errorEmail.style.display = "none";
+        }
+    });
+
+    // Validate select field on change
+    selectWhere.addEventListener("change", function () {
+        if (selectWhere.value !== "") {
+            selectWhere.classList.remove("error");
+            selectWhere.setAttribute("aria-invalid", "false");
+            errorSelect.style.display = "none";
+        }
+    });
+});
+
+
+    document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
+    document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
 
  // Registering the service worker
 if ("serviceWorker" in navigator) {
@@ -292,6 +307,34 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
 }
-}
-)
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".cta-form");
+    const modal = document.getElementById("confirmation-modal");
+    const closeBtn = document.querySelector(".close-btn");
+    const confirmationMessage = document.getElementById("confirmation-message");
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        // Simulate form submission (replace this with actual form submission logic)
+        setTimeout(() => {
+            // Show success message
+            confirmationMessage.textContent = "Thank you! Your submission has been received.";
+            modal.style.display = "block";
+        }, 1000);
+    });
+
+    // Close the modal when the user clicks on <span> (x)
+    closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    // Close the modal when the user clicks anywhere outside of the modal
+    window.addEventListener("click", function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    });
+});
 

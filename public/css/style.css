@@ -3,8 +3,8 @@
 /*******************************************/
 
 .logo {
-    height: 5rem; /* Reduced height */
-    padding-top: 2px; /* Adjust padding */
+    height: 8rem; /* Reduced height */
+    padding-top: 4px; /* Adjust padding */
 }
 
 .header {
@@ -12,8 +12,8 @@
     justify-content: space-between;
     align-items: center;
     background-color: #fdf2e9;
-    height: 7rem; /* Reduced height */
-    padding: 0 4rem; /* Adjust padding */
+    height: 8rem; /* Reduced height */
+    padding: 0 4.8rem;
     position: relative;
 }
 
@@ -23,7 +23,7 @@
 .main-nav-list {
     list-style: none;
     display: flex;
-    gap: 4rem; /* Adjust gap */
+    gap: 4.8rem;
     align-items: center;
 }
 
@@ -141,6 +141,8 @@
     background: none;
     cursor: pointer;
     display: none;
+    z-index: 999;
+    position: relative;
 }
 .btn-mobile-nav:active{
     color: black;
@@ -177,8 +179,92 @@
     display: none;
 }
 
+/* Ensure mobile nav overlay covers full screen */
+.header.nav-open .main-nav {
+    position: fixed;
+    top: 8rem; /* Height of header */
+    left: 20%; /* Leave space on left */
+    width: 80%; /* Take up 80% of screen width */
+    height: calc(100vh - 8rem); /* Full height minus header */
+    background-color: rgba(255, 255, 255, 0.97);
+    z-index: 998;
+    border-radius: 9px 0 0 9px; /* Rounded corners on left side */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Ensure mobile nav overlay covers full screen */
+.header.nav-open .main-nav {
+    position: fixed;
+    top: 8rem; /* Height of header */
+    left: 20%; /* Leave space on left */
+    width: 80%; /* Take up 80% of screen width */
+    height: calc(100vh - 8rem); /* Full height minus header */
+    background-color: rgba(255, 255, 255, 0.97);
+    z-index: 998;
+    border-radius: 9px 0 0 9px; /* Rounded corners on left side */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Update mobile navigation styles */
+.header.nav-open .main-nav {
+    position: fixed;
+    top: 8rem;
+    left: 100%; /* Start from outside the viewport */
+    width: 80%;
+    height: calc(100vh - 8rem);
+    background-color: rgba(255, 255, 255, 0.95); /* More translucent */
+    z-index: 998;
+    border-radius: 9px 0 0 9px;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease-in-out;
+    backdrop-filter: blur(10px); /* Add blur effect */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Animation for sliding in */
+.header.nav-open .main-nav {
+    left: 20%; /* Slide in from right */
+    transform: translateX(0);
+}
+
+/* Optional: Add a semi-transparent background */
+.header.nav-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Darkens background when nav is open */
+    z-index: 997; /* Below the nav but above other content */
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Background overlay with improved animation */
+.header.nav-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0);
+    z-index: 997;
+    transition: background-color 0.4s ease-in-out;
+}
+
+/* Fade in overlay when nav is open */
+.header.nav-open::before {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
 /* STICKY NAVIGATION */
-.sticky.header {
+.sticky .header {
     position: fixed;
     top: 0;
     width: 100%;
@@ -191,7 +277,7 @@
 }
 
 /* No fixed margin, JS handles it dynamically */
-.sticky.header .section-hero {
+.sticky .section-hero {
     margin-top: 0;
 }
 
@@ -465,6 +551,57 @@
     font-size: 1.8rem;
 }
 
+.meal-img {
+    width: 100%;
+    height: 60%;
+    aspect-ratio: 4/3; /* Changed from 16/9 for taller images */
+    object-fit: cover;
+    height: 250px; /* Fixed height for consistency */
+}
+
+.meal-title {
+/* @@ -485,6 +488,7 @@ */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: auto; /* Push attributes to bottom */
+}
+
+.meal-icon { 
+/* @@ -520,7 +524,11 @@ */ 
+    gap: 0.4rem;
+}
+
+/* Ensure meal card layout remains flexible */
+.meal {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 2.4rem 4.8rem rgba(0,0,0,0.075);
+    border-radius: 11px;
+    overflow: hidden;}
+/* @@ -534,13 +542,24 @@ */
+
+.meal-content {
+    padding: 3.2rem 4.8rem 4.8rem 4.8rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.all-recipes {
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+/* Update meals grid container if needed */
+.grid--3-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4.8rem;
+    align-items: stretch; /* Stretch items to same height */
+}
+
 /*******************************************/
 /* TESTIMONIALS SECTION */
 /*******************************************/
@@ -584,39 +721,7 @@
 .pricing-plan {
     border-radius: 11px;
     width: 75%;
-    
 }
-/* Basic styles for the pricing plan */
-.pricing-plan {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Hover effect for the pricing plan */
-.pricing-plan:hover {
-    transform: translateY(-10px); /* Slight lift effect */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
-}
-
-/* Hover effect for the plan header text */
-.pricing-plan:hover .plan-header p {
-    color: #00aaff; /* Change color when hovered */
-}
-
-/* Hover effect for the plan list items */
-.pricing-plan:hover .list-item {
-    color: #333; /* Change text color on hover */
-}
-
-.pricing-plan:hover .list-icon {
-    color: #00aaff; /* Change icon color on hover */
-}
-
-/* Change background color of the button on hover */
-.pricing-plan:hover .btn--full {
-    background-color: #00aaff; /* Change button background color */
-    color: #fff; /* Change button text color */
-}
-
 
 .pricing-plan--starter {
     justify-self: end;
@@ -839,8 +944,9 @@
 .cta-form input:invalid + .error-message,
 .cta-form select:invalid + .error-message {
     display: block;
-    color: #e63946;
-    font-size: 1.4rem;
+    color: #c71224;
+    font-weight: 500;
+    font-size: 1.7rem;
     margin-top: 0.5rem;
 }
 
@@ -884,7 +990,9 @@
 
 /* Hide error messages by default */
 .error-message {
-    display: none;
+    display: none; /* Hidden by default */
+    color:#e67e22;
+    font-size: 0%;
 }
 
 /*******************************************/
@@ -1010,4 +1118,50 @@
 #scrollBtn.visible {
     opacity: 1;
     visibility: visible;
+}
+
+/* Confirmation Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#confirmation-message {
+    font-size: 2rem; /* Increased font size */
+    color: #28a745; /* Green color for valid submission */
+    font-weight: bold;
+    margin-top: 20px;
 }
