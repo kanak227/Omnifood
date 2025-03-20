@@ -107,6 +107,8 @@ signInForm.addEventListener('submit', async function (e) {
       alert(`${data.message}`);
       if (data.success) {
         window.location.replace(`${window.location.origin}/index.html`);
+        localStorage.setItem('omni:username', signUpUsername.value);
+        localStorage.setItem('omni:authenticated', 'true');
       }
 
       console.log(data)
@@ -146,6 +148,8 @@ signUpForm.addEventListener('submit', async function (e) {
       alert(`${data.message}`);
       if (data.success) {
         window.location.replace(`${window.location.origin}/index.html`);
+        localStorage.setItem('omni:username', signUpUsername.value);
+        localStorage.setItem('omni:authenticated', 'true');
       }
     } catch (error) {
       alert(`${error.message}`);
