@@ -476,4 +476,10 @@ form.sign-in-form {
   animation: bounce 0.3s ease-in-out;
 }
 
+#password-requirements {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
 
