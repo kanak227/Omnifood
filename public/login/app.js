@@ -2,6 +2,14 @@ const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
 
+const passwordConfig = {
+  minLength: 8,
+  requireUppercase: true,
+  requireNumber: true,
+  requireSpecialChar: true,
+};
+
+
 sign_up_btn.addEventListener("click", () => {
   container.classList.add("sign-up-mode");
 });
@@ -63,19 +71,30 @@ function checkEmail(input) {
   }
 }
 
-function checkPassword(input) {
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  if (input.value.trim() === '') {
-    showError(input, 'Password is required');
-  } else if (!passwordRegex.test(input.value.trim())) {
-    showError(
-      input,
-      'Password must be at least 8 characters and include an uppercase letter, a number, and a special character'
-    );
-  } else {
-    showSuccess(input);
-  }
+const passwordStrength = document.getElementById('password-strength');
+const lengthReq = document.getElementById('length');
+const uppercaseReq = document.getElementById('uppercase');
+const numberReq = document.getElementById('number');
+const specialReq = document.getElementById('special');
+
+function updatePasswordStrength(password) {
+  let strength = 0;
+  if (password.length >= passwordConfig.minLength) strength++;
+  if (/[A-Z]/.test(password)) strength++;
+  if (/\d/.test(password)) strength++;
+  if (/[@$!%*?&]/.test(password)) strength++;
+
+  console.log({ strength })
+  const levels = ['Weak', 'Moderate', 'Strong', 'Very Strong'];
+  passwordStrength.textContent = `Password Strength: ${levels[strength === 0 ? 0 : strength - 1]}`;
+  passwordStrength.style.color = ['red', 'orange', 'blue', 'green'][strength === 0 ? 0 : strength - 1];
+}
+
+function validatePassword(password) {
+  lengthReq.style.color = password.length >= passwordConfig.minLength ? 'green' : 'red';
+  uppercaseReq.style.color = /[A-Z]/.test(password) ? 'green' : 'red';
+  numberReq.style.color = /\d/.test(password) ? 'green' : 'red';
+  specialReq.style.color = /[@$!%*?&]/.test(password) ? 'green' : 'red';
 }
 
 const server_url = 'http://localhost:5000';
@@ -119,14 +138,26 @@ signInForm.addEventListener('submit', async function (e) {
   }
 });
 
+signUpPassword.addEventListener('input', function () {
+  updatePasswordStrength(signUpPassword.value);
+  validatePassword(signUpPassword.value);
+});
+
 // SIGN UP FORM HANDLING
 signUpForm.addEventListener('submit', async function (e) {
   e.preventDefault();
 
   checkUsername(signUpUsername);
   checkEmail(signUpEmail);
-  checkPassword(signUpPassword);
+  const password = signUpPassword.value.trim();
 
+  if (
+    !(password.length >= passwordConfig.minLength) &&
+    !(/[A-Z]/.test(password)) &&
+    !(/\d/.test(password)) &&
+    !(/[@$!%*?&]/.test(password))) {
+    showError(signUpPassword, 'Password must meet the requirements');
+  }
   if (
     signUpUsername.classList.contains('valid') &&
     signUpEmail.classList.contains('valid') &&
