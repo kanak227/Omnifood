@@ -55,7 +55,7 @@ const login = asyncError(async (req, res, next) => {
         return next(new ErrorHandler("Invalid credentials", 401));
     }
 
-    sendToken(user, res, `Welcome back ${user.name}`, 200);
+    sendToken(user, res, `Welcome back ${user.username}`, 200);
 })
 
 const verifyEmail = asyncError(async (req, res, next) => {

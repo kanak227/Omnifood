@@ -25,7 +25,7 @@ const sendVerificationEmail = async (user, verificationLink) => {
             </head>
             <body>
                 <div class="container">
-                    <h2>Welcome to Omnifood, ${user.name}!</h2>
+                    <h2>Welcome to Omnifood, ${user.username}!</h2>
                     <p>Thank you for signing up. Please verify your email to activate your account.</p>
                     <a href="${verificationLink}" class="btn">Verify Email</a>
                     <p>If you didn't request this, please ignore this email.</p>
