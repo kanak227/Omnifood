@@ -78,8 +78,10 @@ function checkPassword(input) {
   }
 }
 
+const server_url = 'http://localhost:5000';
+
 // SIGN IN FORM HANDLING
-signInForm.addEventListener('submit', function (e) {
+signInForm.addEventListener('submit', async function (e) {
   e.preventDefault();
 
   checkUsername(signInUsername);
@@ -89,12 +91,36 @@ signInForm.addEventListener('submit', function (e) {
     signInUsername.classList.contains('valid') &&
     signInPassword.classList.contains('valid')
   ) {
-    alert('Sign in successful');
+    try {
+      const response = await fetch(`${server_url}/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: signInUsername.value,
+          password: signInPassword.value,
+        }),
+      });
+      const data = await response.json();
+
+      alert(`${data.message}`);
+      if (data.success) {
+        window.location.replace(`${window.location.origin}/index.html`);
+        localStorage.setItem('omni:username', signUpUsername.value);
+        localStorage.setItem('omni:authenticated', 'true');
+      }
+
+      console.log(data)
+    } catch (error) {
+      console.log(error);
+      alert(`${error.message}`);
+    }
   }
 });
 
 // SIGN UP FORM HANDLING
-signUpForm.addEventListener('submit', function (e) {
+signUpForm.addEventListener('submit', async function (e) {
   e.preventDefault();
 
   checkUsername(signUpUsername);
@@ -106,6 +132,27 @@ signUpForm.addEventListener('submit', function (e) {
     signUpEmail.classList.contains('valid') &&
     signUpPassword.classList.contains('valid')
   ) {
-    alert('Sign up successful');
+    try {
+      const response = await fetch(`${server_url}/api/auth/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: signUpUsername.value,
+          email: signUpEmail.value,
+          password: signUpPassword.value,
+        }),
+      });
+      const data = await response.json();
+      alert(`${data.message}`);
+      if (data.success) {
+        window.location.replace(`${window.location.origin}/index.html`);
+        localStorage.setItem('omni:username', signUpUsername.value);
+        localStorage.setItem('omni:authenticated', 'true');
+      }
+    } catch (error) {
+      alert(`${error.message}`);
+    }
   }
 });
