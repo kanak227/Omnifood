@@ -33,6 +33,10 @@
     align-items: center;
 }
 
+.no-flexbox-gap .main-nav-list {
+    margin-inline: 4.8rem;
+}
+
 
 /* Basic styles */
 .main-nav-link:link, .main-nav-link:visited {
@@ -270,6 +274,10 @@
     /* padding: 4rem 2rem; Less padding for better spacing */
 }
 
+.no-flexbox-gap .hero {
+    margin-inline: 4rem;
+}
+
 .hero-text-box {
     text-align: left;
 }
@@ -305,6 +313,10 @@
     margin-top: 3rem; /* Reduced top margin */
     align-items: center;
     gap: 1.2rem;
+}
+
+.no-flexbox-gap .delivered-meals {
+    margin-inline: 1.2rem;
 }
 
 .delivered-imgs img {
@@ -473,11 +485,19 @@
     gap: 1.6rem;
 }
 
+.no-flexbox-gap .meal-attribute {
+    margin-inline: 1.6rem;
+}
+
 .meal-attributes {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+}
+
+.no-flexbox-gap .meal-attributes {
+    margin-inline: 2rem;
 }
 
 .meal-icon {
@@ -511,6 +531,10 @@
     margin-bottom: 1.2rem;
     display: flex;
     gap: 0.4rem;
+}
+
+.no-flexbox-gap .meal-tag {
+    margin-inline: 0.4rem;
 }
 
 .meal {
@@ -550,9 +574,17 @@
     margin-top: auto; /* Push attributes to bottom */
 }
 
+.no-flexbox-gap .meal-title {
+    margin-inline: 2rem;
+}
+
 .meal-icon { 
 /* @@ -520,7 +524,11 @@ */ 
     gap: 0.4rem;
+}
+
+.no-flexbox-gap .meal-tag {
+    margin-inline: 0.4rem;
 }
 
 /* Ensure meal card layout remains flexible */
@@ -656,6 +688,10 @@
     gap: 1.6rem;
     padding: 1.6rem;
     height: 54%;
+}
+
+.no-flexbox-gap .gallery {
+    margin-inline: 1.6rem;
 }
 
 .testimonials-container {
@@ -1059,6 +1095,10 @@
     gap: 2.4rem;
 }
 
+.no-flexbox-gap .footer-nav {
+    margin-inline: 2.4rem;
+}
+
 .footer-link:link, .footer-link:visited {
     text-decoration: none;
     color: #767676;
@@ -1081,6 +1121,10 @@
     list-style: none;
     display: flex;
     gap: 2.4rem;
+}
+
+.no-flexbox-gap .social-links {
+    margin-inline: 2.4rem;
 }
 
 .footer-logo {
