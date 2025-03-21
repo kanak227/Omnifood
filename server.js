@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 })
 
 // API to Track Clicks
-app.post("/track-click", async (req, res) => {
+app.post("/track-click", async (req, res, next) => {
   const { buttonName } = req.body;
   if (!buttonName) return res.status(400).json({ error: "Button name is required!" });
 
@@ -40,8 +40,14 @@ app.post("/track-click", async (req, res) => {
     );
     res.json({ success: true, click });
   } catch (error) {
-    res.status(500).json({ error: "Database error!" });
+    next(error); // Pass error to error handling middleware
   }
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Internal Server Error" });
 });
 
 app.get("/email-verification", (req, res) => {
@@ -89,7 +95,6 @@ app.get("/email-verification", (req, res) => {
     </html>
   `);
 });
-
 
 // Start Server
 const PORT = process.env.PORT || 5000;
