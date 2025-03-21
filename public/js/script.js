@@ -65,7 +65,6 @@ document.addEventListener("click", function (e) {
             !btnNavEl.contains(e.target)) {
             headerEl.classList.remove("nav-open");
             closeNavbar();
-        }
     }
 });
 
@@ -387,5 +386,18 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isAuthenticated) {
         authLink.textContent = `Welcome back, ${username} 👋`;
         authLink.href = "/";
+    }
+});
+
+// Function to scroll to the top
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Add event listener for the scroll-to-top button
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollToTopBtn = document.querySelector(".scroll-to-top-btn");
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener("click", scrollToTop);
     }
 });

@@ -99,55 +99,6 @@
     transition: all 0.3s ease-in-out;
 }
 
-/*.main-nav-list {
-    list-style: none;
-    display: flex;
-    gap: 4.8rem;
-    align-items: center;
-}
-
-
-.main-nav-link {
-    font-size: 1.2rem;
-    color: white;
-    transition: color 0.3s;
-}
-
-
-.main-nav-link:link, .main-nav-link:visited {
-    text-decoration: none;
-    color: #222;
-    font-weight: 500;
-    font-size: 1.8rem;
-    transition: all 0.3s;
-    display: inline-block;
-}
-.main-nav-link:focus {
-    outline: 2px solid #cf711f;
-    outline-offset: 2px;
-}
-
-.main-nav-link:hover, .main-nav-link:active {
-    color: #cf711f;
-    font-weight: 650;
-    font-size: medium;
-    text-decoration: 2px rgb(223, 124, 9) underline ;
-    transition: 1s ease-in-out 0.5s;
-
-}
-
-.main-nav-link.nav-cta:link, .main-nav-link.nav-cta:visited {
-    padding: 1.4rem 2.4rem;
-    border-radius: 9px;
-    color: #fff;
-    background-color: #e67e22;
-}
-
-.main-nav-link.nav-cta:hover, .main-nav-link.nav-cta:active {
-    background-color: #f58524;
-}*/
-
-
 /* MOBILE */
 .btn-mobile-nav {
     border: none;
@@ -285,7 +236,7 @@
     top: 0;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.97);
-    z-index: 999;
+    z-index: 999; /* Ensure no conflict with other elements */
     height: 7rem; /* Reduced height */
     padding: 4rem 2rem; /* Adjust padding */
     box-shadow: 0 1.2rem 3.2rem rgba(0, 0, 0, 0.03);
@@ -724,6 +675,13 @@
     transform: scale(1.1);
 }
 
+/* Disable hover scaling on touch devices */
+@media (hover: none) {
+    .gallery-item img:hover {
+        transform: none; /* Disable scaling */
+    }
+}
+
 .gallery {
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -1075,6 +1033,12 @@
     transition: all 0.3s ease-in-out;
 }
 
+/* Ensure sufficient contrast for .btn--form:hover */
+.btn--form:hover {
+    background-color: #333; /* Darker background */
+    color: #fff; /* White text */
+}
+
 /* Animation */
 @keyframes fadeIn {
     from {
@@ -1292,4 +1256,9 @@
     outline: 2px solid #ff8000; /* Visible outline with sufficient contrast */
     outline-offset: 4px; /* Offset to ensure the outline is visible */
     box-shadow: none; /* Remove box-shadow */
+}
+
+/* Target specific elements instead */
+button:focus, input:focus, select:focus, textarea:focus {
+    transition: box-shadow 0.2s ease;
 }
