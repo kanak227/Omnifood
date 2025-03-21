@@ -20,8 +20,18 @@
         
       <div class="forms-container">
         <a href="../index.html" class="back-btn">
-            <img src="back-icon.png" alt="Back to Home" />
-          </a>
+            <picture>
+                <source srcset="images/back-icon.avif" type="image/avif">
+                <source srcset="images/back-icon.webp" type="image/webp">
+                <img 
+                    src="images/back-icon.png" 
+                    srcset="back-icon-400.png 400w, back-icon-800.png 800w, back-icon-1200.png 1200w" 
+                    sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px" 
+                    alt="Back to Home" 
+                    loading="lazy"
+                />
+            </picture>
+        </a>
 
         <div class="signin-signup">
           <form action="#" class="sign-in-form" id="signInForm">
@@ -104,9 +114,19 @@
 
       <div class="panels-container">
         <div class="panel left-panel">
-            <a href="../index.html" class="back-btn">
-                <img src="back-icon.png" alt="Back to Home" />
-              </a>
+          <a href="../index.html" class="back-btn">
+              <picture>
+                  <source srcset="images/back-icon.avif" type="image/avif">
+                  <source srcset="images/back-icon.webp" type="image/webp">
+                  <img 
+                      src="images/back-icon.png" 
+                      srcset="back-icon-400.png 400w, back-icon-800.png 800w, back-icon-1200.png 1200w" 
+                      sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px" 
+                      alt="Back to Home" 
+                      loading="lazy"
+                  />
+              </picture>
+          </a>
           <div class="content">
             <h3>New here ?</h3>
             <p>
@@ -116,15 +136,37 @@
               Sign up
             </button>
           </div>
-          <img src="logo.png" class="image" alt="" />
+          <picture>
+              <source srcset="images/logo.avif" type="image/avif">
+              <source srcset="images/logo.webp" type="image/webp">
+              <img 
+                  src="images/logo.png" 
+                  srcset="logo-400.png 400w, logo-800.png 800w, logo-1200.png 1200w" 
+                  sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px" 
+                  alt="Company Logo" 
+                  class="image"
+                  loading="lazy"
+              />
+          </picture>
+
         </div>
         <div class="panel right-panel">
             <a href="../index.html" class="back-btn">
-                <img src="back-icon.png" alt="Back to Home" />
-              </a>
-          <div class="content">
-            <h3>One of us ?</h3>
-            <p>
+              <picture>
+                  <source srcset="images/back-icon.avif" type="image/avif">
+                  <source srcset="images/back-icon.webp" type="image/webp">
+                  <img 
+                      src="images/back-icon.png" 
+                      srcset="back-icon-400.png 400w, back-icon-800.png 800w, back-icon-1200.png 1200w" 
+                      sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px" 
+                      alt="Back to Home" 
+                      loading="lazy"
+                  />
+              </picture>
+            </a>
+            <div class="content">
+                  <h3>One of us ?</h3>
+                  <p>
               We would recognize you , just remeber your credentials. ANd you are good to go.
 
             </p>
@@ -132,7 +174,20 @@
               Sign in
             </button>
           </div>
-          <img src="register.png" class="image" id="register" alt="" />
+          <picture>
+              <source srcset="images/register.avif" type="image/avif">
+              <source srcset="images/register.webp" type="image/webp">
+              <img 
+                  src="images/register.png" 
+                  srcset="register-400.png 400w, register-800.png 800w, register-1200.png 1200w" 
+                  sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px" 
+                  alt="Register Illustration" 
+                  class="image" 
+                  id="register" 
+                  loading="lazy"
+              />
+          </picture>
+
         </div>
       </div>
     </div>
