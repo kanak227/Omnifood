@@ -22,50 +22,52 @@ const mainNav = document.querySelector(".main-nav");
 let scrollPosition = 0;
 
 function openNavbar() {
-  scrollPosition = window.scrollY; // Store the current scroll position
-  document.body.style.position = "fixed";
-  document.body.style.top = `-${scrollPosition}px`; // Prevents the page from moving
-  document.body.style.width = "100%";
+    scrollPosition = window.scrollY; // Store the current scroll position
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPosition}px`; // Prevents the page from moving
+    document.body.style.width = "100%";
 }
 
 function closeNavbar() {
-  document.body.style.position = ""; // Reset to default
-  document.body.style.top = ""; // Reset top positioning
-  window.scrollTo(0, scrollPosition); // Restore original scroll position
+    document.body.style.position = ""; // Reset to default
+    document.body.style.top = ""; // Reset top positioning
+    window.scrollTo(0, scrollPosition); // Restore original scroll position
 }
 
 btnNavEl.addEventListener("click", function (e) {
 
-function removeEventListeners() {
-    btnNavEl.removeEventListener("click", toggleNav);
-    document.removeEventListener("click", closeNavOnClickOutside);
-    mainNav.removeEventListener("click", preventNavClose);
-    window.removeEventListener('resize', handleResize);
-}
+    function removeEventListeners() {
+        btnNavEl.removeEventListener("click", toggleNav);
+        document.removeEventListener("click", closeNavOnClickOutside);
+        mainNav.removeEventListener("click", preventNavClose);
+        window.removeEventListener('resize', handleResize);
+    }
 
-function toggleNav(e) {
-    e.stopPropagation(); // Prevent click from bubbling to document
-    if (window.innerWidth <= 944) { // Only toggle nav in mobile view
-        headerEl.classList.toggle("nav-open");
-        if (headerEl.classList.contains("nav-open")) {
-            openNavbar();
-        } else {
-            closeNavbar();
+    function toggleNav(e) {
+        e.stopPropagation(); // Prevent click from bubbling to document
+        if (window.innerWidth <= 944) { // Only toggle nav in mobile view
+            headerEl.classList.toggle("nav-open");
+            if (headerEl.classList.contains("nav-open")) {
+                openNavbar();
+            } else {
+                closeNavbar();
+            }
         }
     }
-}
+});
 
 // Add click handler to close mobile nav when clicking outside
 document.addEventListener("click", function (e) {
-function closeNavOnClickOutside(e) {
-    // Close nav if clicking outside nav and nav is open
-    if (headerEl.classList.contains("nav-open") &&
-        !mainNav.contains(e.target) &&
-        !btnNavEl.contains(e.target)) {
-        headerEl.classList.remove("nav-open");
-        closeNavbar();
+    function closeNavOnClickOutside(e) {
+        // Close nav if clicking outside nav and nav is open
+        if (headerEl.classList.contains("nav-open") &&
+            !mainNav.contains(e.target) &&
+            !btnNavEl.contains(e.target)) {
+            headerEl.classList.remove("nav-open");
+            closeNavbar();
+        }
     }
-}
+});
 
 function preventNavClose(e) {
     e.stopPropagation();
