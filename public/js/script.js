@@ -35,6 +35,15 @@ function closeNavbar() {
 }
 
 btnNavEl.addEventListener("click", function (e) {
+
+function removeEventListeners() {
+    btnNavEl.removeEventListener("click", toggleNav);
+    document.removeEventListener("click", closeNavOnClickOutside);
+    mainNav.removeEventListener("click", preventNavClose);
+    window.removeEventListener('resize', handleResize);
+}
+
+function toggleNav(e) {
     e.stopPropagation(); // Prevent click from bubbling to document
     if (window.innerWidth <= 944) { // Only toggle nav in mobile view
         headerEl.classList.toggle("nav-open");
@@ -44,22 +53,23 @@ btnNavEl.addEventListener("click", function (e) {
             closeNavbar();
         }
     }
-});
+}
 
 // Add click handler to close mobile nav when clicking outside
 document.addEventListener("click", function (e) {
+function closeNavOnClickOutside(e) {
+    // Close nav if clicking outside nav and nav is open
     if (headerEl.classList.contains("nav-open") &&
         !mainNav.contains(e.target) &&
         !btnNavEl.contains(e.target)) {
         headerEl.classList.remove("nav-open");
         closeNavbar();
     }
-});
+}
 
-// Prevent clicks inside the menu from closing it
-mainNav.addEventListener("click", function (e) {
+function preventNavClose(e) {
     e.stopPropagation();
-});
+}
 
 // Handle resize to reset nav and scrolling when switching to desktop view
 function handleResize() {
@@ -71,6 +81,15 @@ function handleResize() {
 
 // Listen for window resize
 window.addEventListener("resize", handleResize);
+
+// Attach event listeners
+btnNavEl.addEventListener("click", toggleNav);
+document.addEventListener("click", closeNavOnClickOutside);
+mainNav.addEventListener("click", preventNavClose);
+window.addEventListener('resize', handleResize);
+
+// Call removeEventListeners() when needed to clean up
+// Example: removeEventListeners() when unmounting a component in a SPA
 
 ///////////////////////////////////////////////////
 const sectionHeroEl = document.querySelector(".section-hero");
