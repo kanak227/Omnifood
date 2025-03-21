@@ -1107,8 +1107,9 @@
 }
 
 .footer-link:focus {
-    outline: none;
-    color: #ff7e5f;
+    outline: 2px solid #ff8000; /* Visible outline with sufficient contrast */
+    outline-offset: 4px; /* Offset to ensure the outline is visible */
+    box-shadow: none; /* Remove box-shadow */
     background-color: rgba(255, 126, 95, 0.1); 
     border-radius: 5px;
 }
@@ -1235,4 +1236,16 @@
     color: #28a745; /* Green color for valid submission */
     font-weight: bold;
     margin-top: 20px;
+}
+
+.main-nav-link:focus {
+    outline: 2px solid #ff8000; /* Visible outline with sufficient contrast */
+    outline-offset: 4px; /* Offset to ensure the outline is visible */
+    box-shadow: none; /* Remove box-shadow */
+}
+
+.btn:focus {
+    outline: 2px solid #ff8000; /* Visible outline with sufficient contrast */
+    outline-offset: 4px; /* Offset to ensure the outline is visible */
+    box-shadow: none; /* Remove box-shadow */
 }
