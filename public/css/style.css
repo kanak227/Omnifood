@@ -20,6 +20,12 @@
 /*******************************************/
 /* NAVIGATION */
 /*******************************************/
+.no-scroll {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+  }
+  
 .main-nav-list {
     list-style: none;
     display: flex;
