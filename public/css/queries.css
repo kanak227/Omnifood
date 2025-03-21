@@ -48,8 +48,16 @@
         gap: 4.8rem;
     }
 
+    .no-flexbox-gap .hero{
+        margin-inline: 4.8rem;
+    }
+
     .main-nav-list {
         gap: 3.2rem;
+    }
+
+    .no-flexbox-gap .main-nav-list {
+        margin-inline: 3.2rem;
     }
 
     .testimonials-container {
@@ -68,6 +76,10 @@
         gap: 3rem;
         padding: 3rem 2rem;
         justify-content: center;
+    }
+
+    .no-flexbox-gap .hero {
+        margin-inline: 3rem;
     }
 
     .hero img {
@@ -102,6 +114,10 @@
         grid-template-columns: 1fr;
         padding: 0 5vw; /* Use relative units */
         gap: 6.4rem;
+    }
+
+    .no-flexbox-gap .hero {
+        margin-inline: 6.4rem;
     }
 
     .hero-img {
@@ -192,6 +208,10 @@
         gap: 4.8rem;
     }
 
+    .no-flexbox-gap .main-nav-list {
+        margin-inline: 4.8rem;
+    }
+
     .main-nav-link:link, .main-nav-link:visited {
         font-size: 3.5vw; /* Use viewport-relative units */
     }
@@ -218,6 +238,10 @@
         display: flex;
         flex-wrap: wrap;
         gap: 3%;
+    }
+
+    .no-flexbox-gap .logos {
+        margin-inline: 3%;
     }
 
     .logos img{
