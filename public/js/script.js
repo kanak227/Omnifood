@@ -1,6 +1,6 @@
 console.log("Hello World!");
-const myName="Gaurav Karakoti";
-const h1=document.querySelector(".heading-primary");
+const myName = "Gaurav Karakoti";
+const h1 = document.querySelector(".heading-primary");
 console.log(myName);
 console.log(h1);
 // h1.addEventListener("click",function(){
@@ -35,8 +35,8 @@ function toggleNav(e) {
 
 function closeNavOnClickOutside(e) {
     // Close nav if clicking outside nav and nav is open
-    if (headerEl.classList.contains("nav-open") && 
-        !mainNav.contains(e.target) && 
+    if (headerEl.classList.contains("nav-open") &&
+        !mainNav.contains(e.target) &&
         !btnNavEl.contains(e.target)) {
         headerEl.classList.remove("nav-open");
     }
@@ -63,20 +63,20 @@ window.addEventListener('resize', handleResize);
 // Example: removeEventListeners() when unmounting a component in a SPA
 
 ///////////////////////////////////////////////////
-const sectionHeroEl=document.querySelector(".section-hero");
-const obs=new IntersectionObserver(function(entries){
-    const ent=entries[0];
+const sectionHeroEl = document.querySelector(".section-hero");
+const obs = new IntersectionObserver(function (entries) {
+    const ent = entries[0];
     console.log(ent);
-    if(ent.isIntersecting===false) {
+    if (ent.isIntersecting === false) {
         document.querySelector("body").classList.add("sticky");
     }
-    if(ent.isIntersecting===true) {
+    if (ent.isIntersecting === true) {
         document.querySelector("body").classList.remove("sticky");
     }
 }, {
-    root:null,
-    threshold:0,
-    rootMargin:`-${headerEl.offsetHeight}px` // Adjust dynamically
+    root: null,
+    threshold: 0,
+    rootMargin: `-${headerEl.offsetHeight}px` // Adjust dynamically
 });
 obs.observe(sectionHeroEl);
 
@@ -135,11 +135,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const heroSection = document.querySelector(".section-hero");
 
     function updateHeroMargin() {
-        const headerHeight = header.offsetHeight; 
+        const headerHeight = header.offsetHeight;
         if (header.classList.contains("sticky")) {
-            heroSection.style.marginTop = `${headerHeight + 30}px`; 
+            heroSection.style.marginTop = `${headerHeight + 30}px`;
         } else {
-            heroSection.style.marginTop = "0"; 
+            heroSection.style.marginTop = "0";
         }
     }
 
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 header.classList.remove("sticky");
             }
-            updateHeroMargin(); 
+            updateHeroMargin();
         },
         {
             root: null,
@@ -186,24 +186,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const trackClick = async (buttonName) => {
     try {
-        await fetch("http://localhost:5000/track-click", {  
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ buttonName }),
-    });
+        await fetch("http://localhost:5000/track-click", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ buttonName }),
+        });
         console.log(`✅ Click recorded for: ${buttonName}`);
     } catch (error) {
         console.error("❌ Error tracking click:", error);
     }
 };
 
-  // Attach Event Listeners to Buttons
+// Attach Event Listeners to Buttons
 
-  document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
-  document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
-  
+document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
+document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
 
-  document.addEventListener("DOMContentLoaded", function () {
+
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector(".cta-form");
     const fullNameInput = document.getElementById("full-name");
     const emailInput = document.getElementById("email");
@@ -307,10 +307,10 @@ const trackClick = async (buttonName) => {
 });
 
 
-    document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
-    document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
+document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
+document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
 
- // Registering the service worker
+// Registering the service worker
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
         .register("/service-worker.js")
@@ -348,3 +348,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const isAuthenticated = localStorage.getItem("omni:authenticated");
+    const username = localStorage.getItem("omni:username");
+    const authLink = document.querySelector(".auth");
+
+    if (isAuthenticated) {
+        authLink.textContent = `Welcome back, ${username} 👋`;
+        authLink.href = "/";
+    }
+});
