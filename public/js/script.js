@@ -34,8 +34,6 @@ function closeNavbar() {
   window.scrollTo(0, scrollPosition); // Restore original scroll position
 }
 
-btnNavEl.addEventListener("click", function (e) {
-
 function removeEventListeners() {
     btnNavEl.removeEventListener("click", toggleNav);
     document.removeEventListener("click", closeNavOnClickOutside);
@@ -56,7 +54,6 @@ function toggleNav(e) {
 }
 
 // Add click handler to close mobile nav when clicking outside
-document.addEventListener("click", function (e) {
 function closeNavOnClickOutside(e) {
     // Close nav if clicking outside nav and nav is open
     if (headerEl.classList.contains("nav-open") &&
@@ -385,5 +382,18 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isAuthenticated) {
         authLink.textContent = `Welcome back, ${username} 👋`;
         authLink.href = "/";
+    }
+});
+
+// Function to scroll to the top
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Add event listener for the scroll-to-top button
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollToTopBtn = document.querySelector(".scroll-to-top-btn");
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener("click", scrollToTop);
     }
 });
