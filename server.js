@@ -6,7 +6,20 @@ const path = require("path");
 
 const app = express();
 app.use(express.json());
-app.use(cors()); // Allow frontend requests
+
+// Define allowed origins
+const allowedOrigins = ["http://example1.com", "http://example2.com"];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+})); // Allow frontend requests
+
 app.use(express.static(path.join(__dirname, "public")));
 
 // Connect to MongoDB
