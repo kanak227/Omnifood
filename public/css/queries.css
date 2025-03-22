@@ -484,6 +484,45 @@
     }
 }
 
+/********************************************/
+/* BELOW 400px (Small Phones) */
+/*******************************************/
+@media (max-width: 25rem) {
+    .hero-img {
+        width: 70%;
+    }
+
+    .btn {
+        font-size: 1.4rem;
+    }
+
+    .testimonials {
+        row-gap: 4rem;
+    }
+
+}
+
+/********************************************/
+/* BELOW 320px (Small Phones) */
+/*******************************************/
+
+    @media (max-width: 20rem) {
+        .hero-img {
+            width: 60%;
+        }
+    
+        .heading-primary {
+            font-size: 3rem;
+        }
+    
+        .btn {
+            font-size: 1.2rem;
+        }
+    
+        .gallery {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 
 
 @media (max-width: 944px) {
