@@ -17,6 +17,7 @@
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <script defer src="js/script.js"></script>
+        <script defer src="js/service-worker.js"></script>
         <title>OmniFood &mdash; Never cook again</title>
         
         <!-- Open Graph Meta Tags (for Facebook, LinkedIn, etc.) -->
@@ -53,7 +54,7 @@
                     <li><a href="#meals" class="main-nav-link">Meals</a></li>
                     <li><a href="#testimonials" class="main-nav-link">Testimonials</a></li>
                     <li><a href="#pricing" class="main-nav-link">Pricing</a></li>
-                    <li><a href="./login/login.html" class="main-nav-link">Login</a></li>
+                    <li><a href="./login/login.html" class="main-nav-link auth">Login</a></li>
                     <li><a href="#cta" id="try-for-free" class="main-nav-link nav-cta">Try for free</a></li>
                 </ul>
             </nav>
@@ -162,8 +163,7 @@
                         <picture>
                             <source srcset="img/hero-min.webp" type="image/webp">
                             <img 
-                                rel="preload"
-                                srcset="img/hero-min.png" 
+                                src="img/hero-min.webp" 
                                 class="hero img"
                                 alt="Woman enjoying food, a bowl of healthy meal and Fresh fruits"
                             />
@@ -279,15 +279,13 @@
 
                         <picture>
                             <source srcset="img/meals/meal-1.avif" type="image/avif">
-
-
-                        <img 
-                            srcset="img/meals/meal-1.jpg" 
-
-
-                            class="meal-img" 
-                            alt="Japanese Gyozas" 
-                            loading="lazy"
+                            <img 
+                                src="img/meals/meal-1.jpg" 
+                                srcset="img/meals/meal-1-400.jpg 400w, img/meals/meal-1-800.jpg 800w, img/meals/meal-1-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                class="meal-img" 
+                                alt="Delicious Japanese Gyozas with dipping sauce" 
+                                loading="lazy"
                             />
                         </picture>
                         <div class="meal-content">
@@ -325,13 +323,14 @@
 
                         <picture>
                             <source srcset="img/meals/meal-2.avif" type="image/avif">
-
-                        <img 
-                            srcset="img/meals/meal-2.jpg" 
-
-                            class="meal-img" 
-                            alt="Avocado Salad" 
-                            loading="lazy"
+                            <source srcset="img/meals/meal-2.webp" type="image/webp">
+                            <img 
+                                src="img/meals/meal-2.jpg" 
+                                srcset="img/meals/meal-2-400.jpg 400w, img/meals/meal-2-800.jpg 800w, img/meals/meal-2-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                class="meal-img" 
+                                alt="Fresh Avocado Salad with tomatoes and greens" 
+                                loading="lazy"
                             />
                         </picture>
                         <div class="meal-content">
@@ -479,34 +478,31 @@
 
                         <picture>
                             <source srcset="img/gallery/gallery-1.avif" type="image/avif">
-
-
-                        <img 
-                            srcset="img/gallery/gallery-1.jpg"
-
-
-                            loading="lazy"
-                            alt="A plate of farfalle pasta with green pesto sauce, cherry tomatoes, and fresh leafy greens."
+                            <img 
+                                src="img/gallery/gallery-1.jpg" 
+                                srcset="img/gallery/gallery-1-400.jpg 400w, img/gallery/gallery-1-800.jpg 800w, img/gallery/gallery-1-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A plate of farfalle pasta with green pesto sauce, cherry tomatoes, and fresh leafy greens" 
+                                loading="lazy"
                             />
                         </picture>
+
                         
                         <!-- <figcaption>Farfalle pasta with pesto, cherry tomatoes, and greens</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
-
                         <picture>
                             <source srcset="img/gallery/gallery-2.avif" type="image/avif">
-
-
-                        <img 
-                            srcset="img/gallery/gallery-2.jpg"
-
-
-                            loading="lazy"
-                            alt="A Mediterranean-style bowl with crispy chickpeas, olives, diced cucumbers and tomatoes, fresh greens, figs, flatbread, and a creamy yogurt-based sauce, served on a rustic wooden table."
+                            <img 
+                                src="img/gallery/gallery-2.jpg" 
+                                srcset="img/gallery/gallery-2-400.jpg 400w, img/gallery/gallery-2-800.jpg 800w, img/gallery/gallery-2-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A Mediterranean-style bowl with crispy chickpeas, olives, diced cucumbers and tomatoes, fresh greens, figs, flatbread, and a creamy yogurt-based sauce, served on a rustic wooden table" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <!-- <figcaption>Mediterranean bowl with chickpeas, olives, and flatbread</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
@@ -514,121 +510,105 @@
 
                         <picture>
                             <source srcset="img/gallery/gallery-3.avif" type="image/avif">
-
-                           
-
-                        <img 
-                            srcset="img/gallery/gallery-3.jpg"
-
-
-
-
-                            loading="lazy"
-                            alt="A colorful salad bar with an assortment of fresh vegetables, legumes, cheeses, and proteins, neatly arranged in bowls and sectioned trays."
+                            <img 
+                                src="img/gallery/gallery-3.jpg" 
+                                srcset="img/gallery/gallery-3-400.jpg 400w, img/gallery/gallery-3-800.jpg 800w, img/gallery/gallery-3-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A colorful salad bar with an assortment of fresh vegetables, legumes, cheeses, and proteins, neatly arranged in bowls and sectioned trays" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <!-- <figcaption>Salad bar with fresh vegetables, legumes, and proteins</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
-
                         <picture>
                             <source srcset="img/gallery/gallery-4.avif" type="image/avif">
-                           
-
-                        <img 
-                            srcset="img/gallery/gallery-4.jpg"
-
-
-                            loading="lazy"
-                            alt="A close-up of hands holding a handful of fresh, ripe strawberries with a blurred background, highlighting their vibrant red color and texture."
+                            <img 
+                                src="img/gallery/gallery-4.jpg" 
+                                srcset="img/gallery/gallery-4-400.jpg 400w, img/gallery/gallery-4-800.jpg 800w, img/gallery/gallery-4-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A close-up of hands holding a handful of fresh, ripe strawberries with a blurred background, highlighting their vibrant red color and texture" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <!-- <figcaption>Fresh, ripe strawberries in hand</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
-
                         <picture>
                             <source srcset="img/gallery/gallery-5.avif" type="image/avif">
-
-
-                        <img 
-                            srcset="img/gallery/gallery-5.jpg"
-
-
-                            loading="lazy"
-                            alt="A vibrant smoothie topped with fresh fruits, edible flowers, and chia seeds, surrounded by colorful ingredients on a hexagonal-patterned surface."
+                            <img 
+                                src="img/gallery/gallery-5.jpg" 
+                                srcset="img/gallery/gallery-5-400.jpg 400w, img/gallery/gallery-5-800.jpg 800w, img/gallery/gallery-5-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A vibrant smoothie topped with fresh fruits, edible flowers, and chia seeds, surrounded by colorful ingredients on a hexagonal-patterned surface" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <!-- <figcaption>Smoothie topped with fruits and chia seeds</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
-
                         <picture>
                             <source srcset="img/gallery/gallery-6.avif" type="image/avif">
-
-
-                        <img 
-                            srcset="img/gallery/gallery-6.jpg"
-
-
-                            loading="lazy"
-                            alt="A beautifully arranged assortment of sliced citrus fruits on a wooden board, showcasing a burst of vibrant colors and textures."
+                            <img 
+                                src="img/gallery/gallery-6.jpg" 
+                                srcset="img/gallery/gallery-6-400.jpg 400w, img/gallery/gallery-6-800.jpg 800w, img/gallery/gallery-6-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A beautifully arranged assortment of sliced citrus fruits on a wooden board, showcasing a burst of vibrant colors and textures" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <!-- <figcaption>Assorted sliced citrus fruits on a wooden board</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
-
                         <picture>
                             <source srcset="img/gallery/gallery-7.avif" type="image/avif">
-
-
-                        <img 
-                            srcset="img/gallery/gallery-7.jpg"
-
-
-                            loading="lazy"
-                            alt="A neatly organized selection of fresh ingredients, including avocado, eggs, mushrooms, tomatoes, and greens, displayed on a wooden cutting board."
+                            <img 
+                                src="img/gallery/gallery-7.jpg" 
+                                srcset="img/gallery/gallery-7-400.jpg 400w, img/gallery/gallery-7-800.jpg 800w, img/gallery/gallery-7-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A neatly organized selection of fresh ingredients, including avocado, eggs, mushrooms, tomatoes, and greens, displayed on a wooden cutting board" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <!-- <figcaption>Fresh ingredients including avocado, eggs, and greens</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
-
                         <picture>
                             <source srcset="img/gallery/gallery-8.avif" type="image/avif">
-                            
-
-                        <img 
-                            srcset="img/gallery/gallery-8.jpg"
-
-
-                            loading="lazy"
-                            alt="A delightful breakfast spread featuring waffles topped with fresh berries, avocado toast with eggs, and glasses of orange juice, and cups of coffee"
+                            <img 
+                                src="img/gallery/gallery-8.jpg" 
+                                srcset="img/gallery/gallery-8-400.jpg 400w, img/gallery/gallery-8-800.jpg 800w, img/gallery/gallery-8-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A delightful breakfast spread featuring waffles topped with fresh berries, avocado toast with eggs, glasses of orange juice, and cups of coffee" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <!-- <figcaption>Breakfast with waffles, avocado toast, and coffee</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
 
-
                         <picture>
                             <source srcset="img/gallery/gallery-9.avif" type="image/avif">
-                            
-
-                        <img 
-                            srcset="img/gallery/gallery-9.jpg"
-
-
-                            loading="lazy"
-                            alt="A vibrant charcuterie board with grapes, apple slices, sausages, crackers, and a creamy cheese dip."
+                            <img 
+                                src="img/gallery/gallery-9.jpg" 
+                                srcset="img/gallery/gallery-9-400.jpg 400w, img/gallery/gallery-9-800.jpg 800w, img/gallery/gallery-9-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A vibrant charcuterie board with grapes, apple slices, sausages, crackers, and a creamy cheese dip" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <!-- <figcaption>Charcuterie board with fruits, crackers, and cheese dip</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
@@ -636,16 +616,15 @@
 
                         <picture>
                             <source srcset="img/gallery/gallery-10.avif" type="image/avif">
-
-
-                        <img 
-                            srcset="img/gallery/gallery-10.jpg"
-
-
-                            loading="lazy"
-                            alt="A rustic open-faced sandwich with boiled eggs, avocado, and spinach on toasted bread, accompanied by cookies"
+                            <img 
+                                src="img/gallery/gallery-10.jpg" 
+                                srcset="img/gallery/gallery-10-400.jpg 400w, img/gallery/gallery-10-800.jpg 800w, img/gallery/gallery-10-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A rustic open-faced sandwich with boiled eggs, avocado, and spinach on toasted bread, accompanied by cookies" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <!-- <figcaption>Open-faced sandwich with eggs, avocado, and spinach</figcaption> -->
                     </figure>
                     <figure class="gallery-item">
@@ -653,16 +632,15 @@
 
                         <picture>
                             <source srcset="img/gallery/gallery-11.avif" type="image/avif">
-                            
-
-                        <img 
-                            srcset="img/gallery/gallery-11.jpg"
-
-
-                            loading="lazy"
-                            alt="A colorful bowl of hummus topped with pesto, cherry tomatoes, nuts, pomegranate seeds, and edible flowers, and glasses of cold drink topped with ice"
+                            <img 
+                                src="img/gallery/gallery-11.jpg" 
+                                srcset="img/gallery/gallery-11-400.jpg 400w, img/gallery/gallery-11-800.jpg 800w, img/gallery/gallery-11-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A colorful bowl of hummus topped with pesto, cherry tomatoes, nuts, pomegranate seeds, and edible flowers, with glasses of cold drink topped with ice" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <figcaption>Hummus bowl with pesto, nuts, and cherry tomatoes</figcaption>
                     </figure>
                     <figure class="gallery-item">
@@ -670,16 +648,15 @@
 
                         <picture>
                             <source srcset="img/gallery/gallery-12.avif" type="image/avif">
-
-
-                        <img 
-                            srcset="img/gallery/gallery-12.jpg"
-
-
-                            loading="lazy"
-                            alt="A rustic pear-topped cake with whipped frosting, garnished with crushed nuts and almond slices, displayed on a wooden board surrounded by natural elements and baking ingredients."
+                            <img 
+                                src="img/gallery/gallery-12.jpg" 
+                                srcset="img/gallery/gallery-12-400.jpg 400w, img/gallery/gallery-12-800.jpg 800w, img/gallery/gallery-12-1200.jpg 1200w" 
+                                sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
+                                alt="A rustic pear-topped cake with whipped frosting, garnished with crushed nuts and almond slices, displayed on a wooden board surrounded by natural elements and baking ingredients" 
+                                loading="lazy"
                             />
                         </picture>
+
                         <figcaption>Pear-topped cake with nuts and whipped frosting</figcaption>
                     </figure>
                 </div>

@@ -235,6 +235,10 @@ body {
     margin-bottom: 0;
 }
 
+.no-flexbox-gap .list{
+    margin-inline: 1.6rem;
+}
+
 .list-icon {
     width: 3rem;
     height: 3rem;
@@ -247,6 +251,10 @@ body {
     align-items: center;
     gap: 1.6rem;
     line-height: 1.2;
+}
+
+.no-flexbox-gap .list-item {
+    margin-inline: 1.6rem;
 }
 
 /* HELPER/SETTINGS CLASSES */

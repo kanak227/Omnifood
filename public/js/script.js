@@ -1,6 +1,6 @@
 console.log("Hello World!");
-const myName="Gaurav Karakoti";
-const h1=document.querySelector(".heading-primary");
+const myName = "Gaurav Karakoti";
+const h1 = document.querySelector(".heading-primary");
 console.log(myName);
 console.log(h1);
 // h1.addEventListener("click",function(){
@@ -19,54 +19,94 @@ const btnNavEl = document.querySelector(".btn-mobile-nav");
 const headerEl = document.querySelector(".header");
 const mainNav = document.querySelector(".main-nav");
 
+let scrollPosition = 0;
+
+function openNavbar() {
+    scrollPosition = window.scrollY; // Store the current scroll position
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPosition}px`; // Prevents the page from moving
+    document.body.style.width = "100%";
+}
+
+function closeNavbar() {
+    document.body.style.position = ""; // Reset to default
+    document.body.style.top = ""; // Reset top positioning
+    window.scrollTo(0, scrollPosition); // Restore original scroll position
+}
+
 btnNavEl.addEventListener("click", function (e) {
-    e.stopPropagation(); // Prevent click from bubbling to document
-    if (window.innerWidth <= 944) { // Only toggle nav in mobile view
-        headerEl.classList.toggle("nav-open");
+
+    function removeEventListeners() {
+        btnNavEl.removeEventListener("click", toggleNav);
+        document.removeEventListener("click", closeNavOnClickOutside);
+        mainNav.removeEventListener("click", preventNavClose);
+        window.removeEventListener('resize', handleResize);
+    }
+
+    function toggleNav(e) {
+        e.stopPropagation(); // Prevent click from bubbling to document
+        if (window.innerWidth <= 944) { // Only toggle nav in mobile view
+            headerEl.classList.toggle("nav-open");
+            if (headerEl.classList.contains("nav-open")) {
+                openNavbar();
+            } else {
+                closeNavbar();
+            }
+        }
     }
 });
 
 // Add click handler to close mobile nav when clicking outside
 document.addEventListener("click", function (e) {
-    // Close nav if clicking outside nav and nav is open
-    if (headerEl.classList.contains("nav-open") && 
-        !mainNav.contains(e.target) && 
-        !btnNavEl.contains(e.target)) {
-        headerEl.classList.remove("nav-open");
+    function closeNavOnClickOutside(e) {
+        // Close nav if clicking outside nav and nav is open
+        if (headerEl.classList.contains("nav-open") &&
+            !mainNav.contains(e.target) &&
+            !btnNavEl.contains(e.target)) {
+            headerEl.classList.remove("nav-open");
+            closeNavbar();
     }
 });
 
-// Prevent clicks inside the menu from closing it
-mainNav.addEventListener("click", function (e) {
+function preventNavClose(e) {
     e.stopPropagation();
-});
+}
 
-// Add after existing navigation code
+// Handle resize to reset nav and scrolling when switching to desktop view
 function handleResize() {
     if (window.innerWidth > 944) { // Breakpoint for mobile navigation
         headerEl.classList.remove('nav-open');
-        document.body.style.overflow = ''; // Reset body scroll
+        closeNavbar(); // Ensure scrolling is re-enabled
     }
 }
 
-// Add resize event listener
+// Listen for window resize
+window.addEventListener("resize", handleResize);
+
+// Attach event listeners
+btnNavEl.addEventListener("click", toggleNav);
+document.addEventListener("click", closeNavOnClickOutside);
+mainNav.addEventListener("click", preventNavClose);
 window.addEventListener('resize', handleResize);
 
+// Call removeEventListeners() when needed to clean up
+// Example: removeEventListeners() when unmounting a component in a SPA
+
 ///////////////////////////////////////////////////
-const sectionHeroEl=document.querySelector(".section-hero");
-const obs=new IntersectionObserver(function(entries){
-    const ent=entries[0];
+const sectionHeroEl = document.querySelector(".section-hero");
+const obs = new IntersectionObserver(function (entries) {
+    const ent = entries[0];
     console.log(ent);
-    if(ent.isIntersecting===false) {
+    if (ent.isIntersecting === false) {
         document.querySelector("body").classList.add("sticky");
     }
-    if(ent.isIntersecting===true) {
+    if (ent.isIntersecting === true) {
         document.querySelector("body").classList.remove("sticky");
     }
 }, {
-    root:null,
-    threshold:0,
-    rootMargin:`-${headerEl.offsetHeight}px` // Adjust dynamically
+    root: null,
+    threshold: 0,
+    rootMargin: `-${headerEl.offsetHeight}px` // Adjust dynamically
 });
 obs.observe(sectionHeroEl);
 
@@ -125,11 +165,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const heroSection = document.querySelector(".section-hero");
 
     function updateHeroMargin() {
-        const headerHeight = header.offsetHeight; 
+        const headerHeight = header.offsetHeight;
         if (header.classList.contains("sticky")) {
-            heroSection.style.marginTop = `${headerHeight + 30}px`; 
+            heroSection.style.marginTop = `${headerHeight + 30}px`;
         } else {
-            heroSection.style.marginTop = "0"; 
+            heroSection.style.marginTop = "0";
         }
     }
 
@@ -148,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 header.classList.remove("sticky");
             }
-            updateHeroMargin(); 
+            updateHeroMargin();
         },
         {
             root: null,
@@ -176,24 +216,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const trackClick = async (buttonName) => {
     try {
-        await fetch("http://localhost:5000/track-click", {  
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ buttonName }),
-    });
+        await fetch("http://localhost:5000/track-click", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ buttonName }),
+        });
         console.log(`✅ Click recorded for: ${buttonName}`);
     } catch (error) {
         console.error("❌ Error tracking click:", error);
     }
 };
 
-  // Attach Event Listeners to Buttons
+// Attach Event Listeners to Buttons
 
-  document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
-  document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
-  
+document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
+document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
 
-  document.addEventListener("DOMContentLoaded", function () {
+
+document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector(".cta-form");
     const fullNameInput = document.getElementById("full-name");
     const emailInput = document.getElementById("email");
@@ -297,10 +337,10 @@ const trackClick = async (buttonName) => {
 });
 
 
-    document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
-    document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
+document.querySelector("#try-for-free").addEventListener("click", () => trackClick("Try for free"));
+document.querySelector("#start-eating-well").addEventListener("click", () => trackClick("Start eating well"));
 
- // Registering the service worker
+// Registering the service worker
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker
         .register("/serviceworker.js")
@@ -338,3 +378,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const isAuthenticated = localStorage.getItem("omni:authenticated");
+    const username = localStorage.getItem("omni:username");
+    const authLink = document.querySelector(".auth");
+
+    if (isAuthenticated) {
+        authLink.textContent = `Welcome back, ${username} 👋`;
+        authLink.href = "/";
+    }
+});
+
+// Function to scroll to the top
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Add event listener for the scroll-to-top button
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollToTopBtn = document.querySelector(".scroll-to-top-btn");
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener("click", scrollToTop);
+    }
+});
