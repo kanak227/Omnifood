@@ -13,9 +13,21 @@
         font-size: 4.4rem;
     }
 
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
+    .section-testimonials{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
     }
+
+    .gallery-item {
+        height: 200px;
+        overflow: hidden;
+    }
+
+    /* .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    } */
 }
 
 /*******************************************/
@@ -150,8 +162,8 @@
         grid-template-columns: 1fr;
     }
 
-    .gallery {
-        grid-template-columns: repeat(6, 1fr);
+    .gallery-item{
+        height: 150px;
     }
 
     .cta-form {
@@ -325,6 +337,10 @@
         grid-template-columns: repeat(6, 1fr);
     }
 
+    .gallery-item{
+        height: 110px;
+    }
+
     .nav-col {
         grid-row: 1;
         grid-column: span 2;
@@ -426,7 +442,7 @@
     }
 
     .gallery {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 1.2rem;
     }
 
@@ -461,6 +477,10 @@
 @media (max-width: 31.25rem) {
     .heading-primary {
         font-size: 3.6rem;
+    }
+
+    .gallery-item{
+        height: 80px;
     }
 }
 
