@@ -400,6 +400,9 @@ form.sign-in-form {
     top: 5%;
     transform: translate(-50%, 0);
   }
+  .sign-in-form{
+    margin-top: 13%;
+  }
 }
 
 @media (max-width: 570px) {
