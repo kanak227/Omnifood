@@ -3,12 +3,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const cron = require("node-cron");
 
 const app = express();
 app.use(express.json());
 
 // Define allowed origins
-const allowedOrigins = ["http://example1.com", "http://example2.com"];
+const allowedOrigins = ["http://localhost:3000", "http://example2.com"];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -38,11 +39,14 @@ mongoose
 
 // Create Schema & Model
 const clickSchema = new mongoose.Schema({
-  buttonName: String,
-  clickCount: { type: Number, default: 1 },
-});
+  buttonName: { type: String, required: true, index: true },
+  timestamp: { type: Date, default: Date.now, index: true }, // Index for aggregation
+  clickCount: { type: Number, default: 1 }
+}, { timestamps: true });
 
 const Click = mongoose.model("Click", clickSchema);
+
+let bulkOps = []; // Bulk write cache
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -53,17 +57,60 @@ app.post("/track-click", async (req, res, next) => {
   const { buttonName } = req.body;
   if (!buttonName) return res.status(400).json({ error: "Button name is required!" });
 
-  try {
-    const click = await Click.findOneAndUpdate(
-      { buttonName },
-      { $inc: { clickCount: 1 } },
-      { new: true, upsert: true }
-    );
-    res.json({ success: true, click });
-  } catch (error) {
-    next(error); // Pass error to error handling middleware
+  // Add to bulk operations
+  bulkOps.push({
+    updateOne: {
+      filter: { buttonName },  // Match by button name
+      update: { $inc: { clickCount: 1 }, $setOnInsert: { timestamp: new Date() } },  // Increment and set timestamp if inserted
+      upsert: true
+    }
+  });
+
+  if (bulkOps.length >= 100) {
+    try {
+      await Click.bulkWrite(bulkOps);
+      console.log(`✅ Bulk write executed with ${bulkOps.length} operations`);
+      bulkOps = [];
+    } catch (error) {
+      console.error("❌ Bulk write error:", error);
+    }
   }
+
+  res.json({ success: true, message: "Click recorded!" });
 });
+
+// Aggregation logic
+async function aggregateClicks(interval) {
+  try {
+    const groupByFormat = interval === "hourly" ? "%Y-%m-%d %H:00" : "%Y-%m-%d";
+
+    const aggregation = await Click.aggregate([
+      {
+        $group: {
+          _id: {
+            buttonName: "$buttonName",
+            date: { $dateToString: { format: groupByFormat, date: "$timestamp" } }
+          },
+          totalClicks: { $sum: "$clickCount" }
+        }
+      },
+      {
+        $merge: {
+          into: "aggregatedclicks",
+          whenMatched: "merge",
+          whenNotMatched: "insert"
+        }
+      }
+    ]);
+
+    console.log(`✅ ${interval} aggregation completed`, aggregation);
+  } catch (error) {
+    console.error(`❌ Aggregation error (${interval}):`, error);
+  }
+}
+
+cron.schedule("0 * * * *", () => aggregateClicks("hourly"));   // Every hour
+cron.schedule("0 0 * * *", () => aggregateClicks("daily"));    // Every day at midnight
 
 // Error handling middleware
 app.use((err, req, res, next) => {
