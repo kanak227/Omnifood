@@ -140,6 +140,7 @@ signInForm.addEventListener('submit', async function (e) {
       if (data.success) {
         window.location.replace(`${window.location.origin}/index.html`);
         localStorage.setItem('omni:username', signUpUsername.value);
+        localStorage.setItem('omni:email', data.user.email);
         localStorage.setItem('omni:authenticated', 'true');
       }
 
@@ -170,6 +171,8 @@ signUpForm.addEventListener('submit', async function (e) {
     !(/\d/.test(password)) &&
     !(/[@$!%*?&]/.test(password))) {
     showError(signUpPassword, 'Password must meet the requirements');
+  } else {
+    signUpPassword.classList.add('valid');
   }
   if (
     signUpUsername.classList.contains('valid') &&
@@ -193,6 +196,7 @@ signUpForm.addEventListener('submit', async function (e) {
       if (data.success) {
         window.location.replace(`${window.location.origin}/index.html`);
         localStorage.setItem('omni:username', signUpUsername.value);
+        localStorage.setItem('omni:email', data.user.email);
         localStorage.setItem('omni:authenticated', 'true');
       }
     } catch (error) {
