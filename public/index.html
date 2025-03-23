@@ -45,10 +45,15 @@
     </head>
     <body>
         <header class="header">
-            <a href="#">
+            <a href="#" aria-label="Go to home">
                 <picture>
                     <source class="logo" srcset="img/omnifood-logo.avif" type="image/avif" />
-                    <img class="logo" alt="Omnifood Logo" src="img/omnifood-logo.png" />
+                    <img 
+                        class="logo" 
+                        src="img/omnifood-logo.png" 
+                        alt="Omnifood Logo" 
+                        loading="lazy" 
+                    />
                 </picture>
             </a>
             <nav class="main-nav">
@@ -83,77 +88,49 @@
                                 <picture>
                                     <source srcset="img/customers/customer-1.avif" type="image/avif">
                                     <img 
-
-
-                                    srcset="img/customers/customer-1.jpg"
-                                    alt="Customer with a positive expression"
-
-                                    loading="lazy"
-
-
-
-
+                                        srcset="img/customers/customer-1.jpg"
+                                        alt="Customer with a positive expression"
+                                        loading="lazy"
                                     />
                                 </picture>
                                 <picture>
                                     <source srcset="img/customers/customer-2.avif" type="image/avif">
                                     <img 
-<
-
-
                                     srcset="img/customers/customer-2.jpg"
                                     alt="Happy customer"
                                     loading="lazy"
-
-
                                     />
                                 </picture>
                                 <picture>
                                     <source srcset="img/customers/customer-3.avif" type="image/avif">
                                     <img 
-
-
-
-                                    srcset="img/customers/customer-3.jpg"
-                                    alt="Joyful customer"
-                                    loading="lazy"
-                                    
-
-
+                                        srcset="img/customers/customer-3.jpg"
+                                        alt="Joyful customer"
+                                        loading="lazy"
                                     />
                                 </picture>
                                 <picture>
                                     <source srcset="img/customers/customer-4.avif" type="image/avif">
                                     <img 
-
-
-                                    srcset="img/customers/customer-4.jpg"
-                                    alt="Cheerful customer"
-                                    loading="lazy"
-
+                                        srcset="img/customers/customer-4.jpg"
+                                        alt="Cheerful customer"
+                                        loading="lazy"
                                     />
                                 </picture>
                                 <picture>
                                     <source srcset="img/customers/customer-5.avif" type="image/avif">
                                     <img 
-
-
-                                    srcset="img/customers/customer-5.jpg"
-                                    alt="Happy customer looking content"
-                                    loading="lazy"
-
-
+                                        srcset="img/customers/customer-5.jpg"
+                                        alt="Happy customer looking content"
+                                        loading="lazy"
                                     />
                                 </picture>
                                 <picture>
                                     <source srcset="img/customers/customer-6.avif" type="image/avif">
                                     <img 
-
-                                    srcset="img/customers/customer-6.jpg"
-                                    alt="Customer with a neutral expression and relaxed posture"
-                                    loading="lazy"
-
-
+                                        srcset="img/customers/customer-6.jpg"
+                                        alt="Customer with a neutral expression and relaxed posture"
+                                        loading="lazy"
                                     />
                                 </picture>
                             </div>
@@ -166,9 +143,10 @@
                         <picture>
                             <source srcset="img/hero-min.webp" type="image/webp">
                             <img 
-                                src="img/hero-min.webp" 
-                                class="hero img"
-                                alt="Woman enjoying food, a bowl of healthy meal and Fresh fruits"
+                                src="img/hero-min.jpg" 
+                                class="hero img" 
+                                alt="Woman enjoying food, a bowl of healthy meal and fresh fruits" 
+                                loading="lazy" 
                             />
                         </picture>
                     </div>
@@ -178,26 +156,51 @@
                 <div class="container">
                     <h2 class="heading-featured-in">As featured in</h2>
                     <div class="logos">
-                        <img 
-                            srcset="img/logos/techcrunch.png" 
-                            alt="TechCrunch Logo" 
-                        />
-                        <img 
-                            src="img/logos/business-insider.svg" 
-                            alt="Business Insider Logo" 
-                        />
-                        <img 
-                            srcset="img/logos/the-new-york-times.png" 
-                            alt="The New York Times Logo" 
-                        />
-                        <img 
-                            srcset="img/logos/forbes.png" 
-                            alt="Forbes Logo" 
-                        />
-                        <img 
-                            src="img/logos/usa-today.svg" 
-                            alt="USA Today Logo" 
-                        />
+                        <picture>
+                            <source srcset="img/logos/techcrunch.webp" type="image/webp">
+                            <img 
+                                src="img/logos/techcrunch.png" 
+                                alt="TechCrunch Logo" 
+                                loading="lazy" 
+                            />
+                        </picture>
+
+                        <picture>
+                            <img 
+                                src="img/logos/business-insider.svg" 
+                                srcset="img/logos/business-insider.svg" 
+                                alt="Business Insider Logo" 
+                                loading="lazy" 
+                            />
+                        </picture>
+
+                        <picture>
+                            <source srcset="img/logos/the-new-york-times.webp" type="image/webp">
+                            <img 
+                                src="img/logos/the-new-york-times.png" 
+                                alt="The New York Times Logo" 
+                                loading="lazy" 
+                            />
+                        </picture>
+
+                        <picture>
+                            <source srcset="img/logos/forbes.webp" type="image/webp">
+                            <img 
+                                src="img/logos/forbes.png" 
+                                alt="Forbes Logo" 
+                                loading="lazy" 
+                            />
+                        </picture>
+
+                        <picture>
+                            <img 
+                                src="img/logos/usa-today.svg" 
+                                srcset="img/logos/usa-today.svg"
+                                alt="USA Today Logo" 
+                                loading="lazy" 
+                            />
+                        </picture>
+
                     </div>
                 </div>
             </section>
@@ -221,20 +224,18 @@
                     </div>
                     <div class="step-img-box">
                         <img 
+                            src="img/app/app-screen-1.png" 
                             srcset="img/app/app-screen-1.png" 
                             class="step-img" 
-
-
                             alt="iPhone App Preferences Selection Screen" 
-
-
-                            loading="lazy"
+                            loading="lazy" 
                         />
                     </div>
                     <!-- STEP 02 -->
                     <div class="step-img-box">
                         <img 
-                            srcset="img/app/app-screen-2.png" 
+                            srcset="img/app/app-screen-2.webp" 
+                            src="img/app/app-screen-2.png" 
                             class="step-img" 
                             alt="iPhone App Meal Approving Plan Screen" 
                             loading="lazy"
@@ -261,7 +262,8 @@
                     </div>
                     <div class="step-img-box">
                         <img 
-                            srcset="img/app/app-screen-3.png" 
+                            src="img/app/app-screen-3.png" 
+                            srcset="img/app/app-screen-3.webp" 
                             class="step-img" 
                             alt="iPhone App Delivery Screen"
                             loading="lazy"
@@ -428,7 +430,8 @@
                         <figure class="testimonial">
                             <img 
                                 class="testimonial-img" 
-                                srcset="img/customers/dave.jpg" 
+                                src="img/customers/jane.jpg"
+                                srcset="img/customers/dave.webp" 
                                 alt="Photo of customer Dave Bryson"
                                 loading="lazy"
                             />
@@ -440,7 +443,8 @@
                         <figure class="testimonial">
                             <img 
                                 class="testimonial-img" 
-                                srcset="img/customers/ben.jpg" 
+                                src="img/customers/ben.jpg" 
+                                srcset="img/customers/ben.webp" 
                                 alt="Photo of customer Ben Hadley"
                                 loading="lazy"
                             />
@@ -452,7 +456,8 @@
                         <figure class="testimonial">
                             <img 
                                 class="testimonial-img" 
-                                srcset="img/customers/steve.jpg" 
+                                src="img/customers/steve.jpg" 
+                                srcset="img/customers/steve.webp" 
                                 loading="lazy"
                                 alt="Photo of customer Steve Miller"
                             />
@@ -464,7 +469,8 @@
                         <figure class="testimonial">
                             <img 
                                 class="testimonial-img" 
-                                srcset="img/customers/hannah.jpg" 
+                                src="img/customers/hannah.jpg" 
+                                srcset="img/customers/hannah.webp" 
                                 loading="lazy"
                                 alt="Photo of customer Hannah Smith"
                             />
