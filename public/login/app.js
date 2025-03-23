@@ -97,7 +97,7 @@ function validatePassword(password) {
   specialReq.style.color = /[@$!%*?&]/.test(password) ? 'green' : 'red';
 }
 
-const server_url = 'http://localhost:5000';
+const server_url = 'https://omnifood-login/onrender.com';
 
 // SIGN IN FORM HANDLING
 signInForm.addEventListener('submit', async function (e) {

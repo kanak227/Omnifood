@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const trackClick = async (buttonName) => {
     try {
-        await fetch("http://localhost:5000/track-click", {
+        await fetch("https://omnifood-clicks.onrender.com/track-click", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ buttonName }),
