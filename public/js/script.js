@@ -65,6 +65,7 @@ document.addEventListener("click", function (e) {
             !btnNavEl.contains(e.target)) {
             headerEl.classList.remove("nav-open");
             closeNavbar();
+        }
     }
 });
 
