@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 // Define allowed origins
-const allowedOrigins = ["http://localhost:3000", "http://example2.com"];
+const allowedOrigins = ["http://localhost:3000", "https://omnifood-meal-available.netlify.app"];
 
 app.use(cors({
   origin: function (origin, callback) {
