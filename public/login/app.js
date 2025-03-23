@@ -84,7 +84,6 @@ function updatePasswordStrength(password) {
   if (/\d/.test(password)) strength++;
   if (/[@$!%*?&]/.test(password)) strength++;
 
-  console.log({ strength })
   const levels = ['Weak', 'Moderate', 'Strong', 'Very Strong'];
   passwordStrength.textContent = `Password Strength: ${levels[strength === 0 ? 0 : strength - 1]}`;
   passwordStrength.style.color = ['red', 'orange', 'blue', 'green'][strength === 0 ? 0 : strength - 1];
@@ -95,6 +94,20 @@ function validatePassword(password) {
   uppercaseReq.style.color = /[A-Z]/.test(password) ? 'green' : 'red';
   numberReq.style.color = /\d/.test(password) ? 'green' : 'red';
   specialReq.style.color = /[@$!%*?&]/.test(password) ? 'green' : 'red';
+}
+
+
+function checkPassword(input) {
+  if (input.value.trim() === '') {
+    showError(input, 'Password is required');
+  } else if (input.value.length < 8) {
+    showError(
+      input,
+      'Password must contain at least 8 characters'
+    );
+  } else {
+    showSuccess(input);
+  }
 }
 
 const server_url = 'https://omnifood-login/onrender.com';
