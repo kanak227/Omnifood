@@ -85,8 +85,8 @@ function handleResize() {
 window.addEventListener("resize", handleResize);
 
 // Attach event listeners
-btnNavEl.addEventListener("click", toggleNav);
-document.addEventListener("click", closeNavOnClickOutside);
+// btnNavEl.addEventListener("click", toggleNav);
+// document.addEventListener("click", closeNavOnClickOutside);
 mainNav.addEventListener("click", preventNavClose);
 window.addEventListener('resize', handleResize);
 
