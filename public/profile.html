@@ -17,8 +17,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <script defer src="js/script.js"></script>
-        <script defer src="js/service-worker.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
         <title>OmniFood | Profile</title>
         
         <!-- Open Graph Meta Tags (for Facebook, LinkedIn, etc.) -->
@@ -63,7 +62,7 @@
         <main>
             <div class="profile-header">
                 <div class="profile-info">
-                    <img src="img/customers/ben.jpg" alt="User Avatar" class="avatar">
+                    <img src="" alt="User Avatar" class="avatar">
                     <h2 class="username">Aditya Swayamsiddha</h2>
                     <p class="email">aditya@example.com</p>
                     <button class="btn">Edit Profile</button>
@@ -192,6 +191,10 @@
 <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    function md5(email) {
+        return CryptoJS.MD5(email.trim().toLowerCase()).toString();
+    }
+
     let username = document.querySelector(".username");
     let email = document.querySelector(".email");
 
@@ -206,14 +209,28 @@
         window.location.href = "/public/login/login.html";
     }
     document.addEventListener("DOMContentLoaded", function () {
-    const isAuthenticated = localStorage.getItem("omni:authenticated");
-    const username = localStorage.getItem("omni:username");
-    const authLink = document.querySelector(".auth");
+        const isAuthenticated = localStorage.getItem("omni:authenticated");
+        const username = localStorage.getItem("omni:username");
+        const email = localStorage.getItem("omni:email");
+        const authLink = document.querySelector(".auth");
 
-    if (isAuthenticated) {
-        authLink.textContent = `Welcome back, ${username} 👋`;
-        authLink.href = "/profile.html";
-    }
+        if (isAuthenticated) {
+            authLink.textContent = `Welcome back, ${username} 👋`;
+            authLink.href = "/profile.html";
+        }
+        if (email) {
+            const hashedEmail = md5(email);
+            console.log(hashedEmail)
+            const avatarUrl = `https://www.gravatar.com/avatar/${hashedEmail}?d=identicon&s=200`;
+
+            const avatarImg = document.querySelector(".avatar");
+            if(avatarUrl){
+                avatarImg.src = avatarUrl;
+            }else{
+                avatarImg.src = "./img/customers/dave.jpg";
+            }
+            avatarImg.alt = `${username}'s Avatar`;
+        }
     });
 
 </script>
