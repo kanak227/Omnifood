@@ -3,6 +3,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose')
 const dotenv = require('dotenv');
+const rateLimit = require('express-rate-limit');
 
 const { errorMiddleware } = require('./middlewares/error.js');
 const authRouter = require('./routes/user.js');
@@ -17,6 +18,14 @@ mongoose
     .then(() => console.log("✅ MongoDB Connected"))
     .catch((err) => console.error("❌ MongoDB Connection Error:", err));
 
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,  // 15 minutes
+    max: 100,                   // Limit each IP to 100 requests per windowMs
+    message: "⚠️ Too many requests, please try again later.",
+    standardHeaders: true,      // Return rate limit info in `RateLimit-*` headers
+    legacyHeaders: false        // Disable the `X-RateLimit-*` headers
+});
+
 // handle cors policy
 app.use(cors({
     origin: process.env.CLIENT_URL,
@@ -28,6 +37,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use('/api', limiter);
 
 // auth routes
 app.use('/api/auth', authRouter);
