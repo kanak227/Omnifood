@@ -1,4 +1,4 @@
-const CACHE_NAME = "app-cache-v1";
+const CACHE_NAME = "app-cache-v2"; // Versioning to prevent stale cache
 const urlsToCache = [
   "/",
   "/index.html",
@@ -30,35 +30,35 @@ const urlsToCache = [
   '/img/gallery/gallery-10.avif',
   '/img/gallery/gallery-11.avif',
   '/img/gallery/gallery-12.avif',
-  '/img/meals/meal-3.avif', 
-  '/img/meals/meal-4.avif', 
-  '/img/meals/meal-5.avif', 
-  '/img/meals/meal-6.avif'  
+  '/img/meals/meal-3.avif',
+  '/img/meals/meal-4.avif',
+  '/img/meals/meal-5.avif',
+  '/img/meals/meal-6.avif'
 ];
 
 //Install Service Worker and Cache Static Files
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log("Caching assets");
+      console.log("✅ Caching assets");
       return cache.addAll(urlsToCache);
-    })
+    }).then(() => self.skipWaiting()) // Ensure immediate activation
   );
 });
 
-//Fetch and Serve Cached Files
+//Fetch with Network-First Strategy + Fallback to Cache
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(event.request)
       .then((networkResponse) => {
-        if (networkResponse || networkResponse.status === 200) {
+        if (networkResponse && networkResponse.status === 200) {
           caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, networkResponse.clone());
+            cache.put(event.request, networkResponse.clone());  // Cache the fresh response
           });
         }
         return networkResponse;
       })
-      .catch(() => caches.match(event.request))
+      .catch(() => caches.match(event.request)) // Fallback to cache
   );
 });
 
@@ -68,9 +68,10 @@ self.addEventListener("activate", (event) => {
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames
-          .filter((cache) => cache !== CACHE_NAME)
+          .filter((cache) => cache !== CACHE_NAME) // Keep only the current version
           .map((cache) => caches.delete(cache))
       );
     })
   );
+  self.clients.claim();  // Take control of uncontrolled clients
 });
