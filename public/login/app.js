@@ -97,7 +97,7 @@ function validatePassword(password) {
   specialReq.style.color = /[@$!%*?&]/.test(password) ? 'green' : 'red';
 }
 
-const server_url = 'https://omnifood-login/onrender.com';
+const server_url = 'https://omnifood-login.onrender.com';
 
 // SIGN IN FORM HANDLING
 signInForm.addEventListener('submit', async function (e) {
@@ -111,11 +111,21 @@ signInForm.addEventListener('submit', async function (e) {
     signInPassword.classList.contains('valid')
   ) {
     try {
+      //Fetching CSRF token 
+      const csrfResponse = await fetch(`${server_url}/api/csrf-token`, {
+        method: 'GET',
+        credentials: 'include',
+      })
+
+      const csrfData = await csrfResponse.json();
+
       const response = await fetch(`${server_url}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': csrfData.csrfToken,
         },
+        credentials: 'include',
         body: JSON.stringify({
           username: signInUsername.value,
           password: signInPassword.value,
@@ -164,11 +174,22 @@ signUpForm.addEventListener('submit', async function (e) {
     signUpPassword.classList.contains('valid')
   ) {
     try {
+      
+      //Fetching CSRF token
+      const csrfResponse = await fetch(`${server_url}/api/csrf-token`,{
+        method: 'GET',
+        credentials: 'include', //cookies also included 
+      })
+
+      const csrfData = await csrfResponse.json();
+
       const response = await fetch(`${server_url}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': csrfData.csrfToken,
         },
+        credentials: 'include',
         body: JSON.stringify({
           username: signUpUsername.value,
           email: signUpEmail.value,

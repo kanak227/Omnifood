@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 
 const { errorMiddleware } = require('./middlewares/error.js');
 const authRouter = require('./routes/user.js');
+const csurf = require('csurf');
 
 dotenv.config();
 
@@ -28,6 +29,21 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+const csrfProtection = csurf({
+    cookie: {
+        httpOnly: true,
+        secure:false,
+        sameSite: "Strict"
+    }
+})
+app.use(csrfProtection);
+
+// CSRF Route 
+app.get('/api/csrf-token' , (req, res)=>{
+    if(!req.csrfToken) return res.status(500).json({message: 'CSRF Token not generated'});
+    res.status(200).json({csrfToken: req.csrfToken() });
+});
 
 // auth routes
 app.use('/api/auth', authRouter);
