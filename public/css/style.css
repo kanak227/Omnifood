@@ -1205,7 +1205,6 @@
 }
 
 .container {
-    display: flex;
     align-items: center;
     gap: 15px; /* Space between search bar and location */
 }
@@ -1392,4 +1391,5 @@ button:focus, input:focus, select:focus, textarea:focus {
         color: #fff;
     }
 
+}
 }
