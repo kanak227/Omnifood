@@ -84,7 +84,6 @@ function updatePasswordStrength(password) {
   if (/\d/.test(password)) strength++;
   if (/[@$!%*?&]/.test(password)) strength++;
 
-  console.log({ strength })
   const levels = ['Weak', 'Moderate', 'Strong', 'Very Strong'];
   passwordStrength.textContent = `Password Strength: ${levels[strength === 0 ? 0 : strength - 1]}`;
   passwordStrength.style.color = ['red', 'orange', 'blue', 'green'][strength === 0 ? 0 : strength - 1];
@@ -98,6 +97,19 @@ function validatePassword(password) {
 }
 
 const server_url = 'https://omnifood-login.onrender.com';
+
+function checkPassword(input) {
+  if (input.value.trim() === '') {
+    showError(input, 'Password is required');
+  } else if (input.value.length < 8) {
+    showError(
+      input,
+      'Password must contain at least 8 characters'
+    );
+  } else {
+    showSuccess(input);
+  }
+}
 
 // SIGN IN FORM HANDLING
 signInForm.addEventListener('submit', async function (e) {
@@ -137,6 +149,7 @@ signInForm.addEventListener('submit', async function (e) {
       if (data.success) {
         window.location.replace(`${window.location.origin}/index.html`);
         localStorage.setItem('omni:username', signUpUsername.value);
+        localStorage.setItem('omni:email', data.user.email);
         localStorage.setItem('omni:authenticated', 'true');
       }
 
@@ -167,6 +180,8 @@ signUpForm.addEventListener('submit', async function (e) {
     !(/\d/.test(password)) &&
     !(/[@$!%*?&]/.test(password))) {
     showError(signUpPassword, 'Password must meet the requirements');
+  } else {
+    signUpPassword.classList.add('valid');
   }
   if (
     signUpUsername.classList.contains('valid') &&
@@ -201,6 +216,7 @@ signUpForm.addEventListener('submit', async function (e) {
       if (data.success) {
         window.location.replace(`${window.location.origin}/index.html`);
         localStorage.setItem('omni:username', signUpUsername.value);
+        localStorage.setItem('omni:email', data.user.email);
         localStorage.setItem('omni:authenticated', 'true');
       }
     } catch (error) {
