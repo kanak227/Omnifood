@@ -400,12 +400,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const isAuthenticated = localStorage.getItem("omni:authenticated");
-    const username = localStorage.getItem("omni:username");
     const authLink = document.querySelector(".auth");
 
     if (isAuthenticated) {
-        authLink.textContent = `Welcome back, ${username} 👋`;
-        authLink.href = "/";
+        authLink.textContent = 'Profile';
+        authLink.href = "/profile.html";
     }
 });
 
