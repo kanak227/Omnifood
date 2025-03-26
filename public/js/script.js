@@ -243,14 +243,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeBtn = document.querySelector(".close-btn");
     const confirmationMessage = document.getElementById("confirmation-message");
 
+    // Add ARIA live region for error messages
+    const errorLiveRegion = document.createElement("div");
+    errorLiveRegion.setAttribute("aria-live", "polite");
+    errorLiveRegion.setAttribute("role", "alert");
+    errorLiveRegion.style.position = "absolute";
+    errorLiveRegion.style.left = "-9999px"; // Visually hidden
+    document.body.appendChild(errorLiveRegion);
+
     form.addEventListener("submit", function (e) {
         let isValid = true;
+        let errorMessage = "";
 
         // Full Name validation: Must contain at least two words
         if (!/^\w+\s+\w+/.test(fullNameInput.value.trim())) {
             fullNameInput.classList.add("error");
             fullNameInput.setAttribute("aria-invalid", "true");
             errorName.style.display = "block";
+            errorMessage += "Please enter your full name. ";
             isValid = false;
         } else {
             fullNameInput.classList.remove("error");
@@ -263,6 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
             emailInput.classList.add("error");
             emailInput.setAttribute("aria-invalid", "true");
             errorEmail.style.display = "block";
+            errorMessage += "Please enter a valid email address. ";
             isValid = false;
         } else {
             emailInput.classList.remove("error");
@@ -275,6 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
             selectWhere.classList.add("error");
             selectWhere.setAttribute("aria-invalid", "true");
             errorSelect.style.display = "block";
+            errorMessage += "Please select an option. ";
             isValid = false;
         } else {
             selectWhere.classList.remove("error");
@@ -284,6 +296,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!isValid) {
             e.preventDefault(); // Prevent form submission if there's an error
+            errorLiveRegion.textContent = errorMessage; // Update ARIA live region
         } else {
             // Simulate form submission (replace this with actual form submission logic)
             setTimeout(() => {
