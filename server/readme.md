@@ -1,15 +1,3 @@
-### Sample ENV
-```bash
-MONGO_URI=mongodb://localhost:27017/omni-food
-JWT_SECRET=secret
-EMAIL=
-PASSWORD=
-SERVER_URL=http://localhost:5000
-CLIENT_URL=http://localhost:3000
-NODE_ENV=Development
-PORT=5000
-```
-
 ## Setting Up Email and Password
 
 ### Step 1: Choose an Email Service Provider
