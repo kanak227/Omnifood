@@ -21,13 +21,6 @@ const mainNav = document.querySelector(".main-nav");
 
 let scrollPosition = 0;
 
-function openNavbar() {
-    scrollPosition = window.scrollY; // Store the current scroll position
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollPosition}px`; // Prevents the page from moving
-    document.body.style.width = "100%";
-}
-
 function closeNavbar() {
     document.body.style.position = ""; // Reset to default
     document.body.style.top = ""; // Reset top positioning
@@ -46,7 +39,6 @@ function toggleNav(e) {
     if (window.innerWidth <= 944) { // Only toggle nav in mobile view
         headerEl.classList.toggle("nav-open");
         if (headerEl.classList.contains("nav-open")) {
-            openNavbar();
         } else {
             closeNavbar();
         }
@@ -214,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const trackClick = async (buttonName) => {
     try {
-        await fetch("http://localhost:5000/track-click", {
+        await fetch("https://omnifood-clicks.onrender.com/track-click", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ buttonName }),
@@ -345,7 +337,29 @@ if ("serviceWorker" in navigator) {
         .then(() => console.log("✅ Service Worker Registered"))
         .catch((err) => console.log("❌ Service Worker Registration Failed:", err));
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const locationText = document.querySelector(".location-text");
+    const locationInput = document.querySelector(".location-input");
 
+    locationInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Prevent form submission
+            if (locationInput.value.trim() !== "") {
+                locationText.textContent = locationInput.value; // Update location text
+            }
+            locationInput.style.display = "none"; // Hide input box
+        }
+    });
+
+    document.querySelector(".location-container").addEventListener("mouseleave", function () {
+        locationInput.style.display = "none"; // Hide input on mouse leave
+    });
+
+    document.querySelector(".location-icon").addEventListener("click", function () {
+        locationInput.style.display = "block"; // Show input on click
+        locationInput.focus();
+    });
+});
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector(".cta-form");
     const modal = document.getElementById("confirmation-modal");
@@ -378,12 +392,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
     const isAuthenticated = localStorage.getItem("omni:authenticated");
-    const username = localStorage.getItem("omni:username");
     const authLink = document.querySelector(".auth");
 
     if (isAuthenticated) {
-        authLink.textContent = `Welcome back, ${username} 👋`;
-        authLink.href = "/";
+        authLink.textContent = 'Profile';
+        authLink.href = "/profile.html";
     }
 });
 
