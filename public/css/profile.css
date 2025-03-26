@@ -32,7 +32,7 @@
     gap: 10px;
 }
 
-.profile-info .avatar {
+.avatar {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -47,7 +47,7 @@
     margin: 0.5rem 0;
 }
 
-.profile-info .email {
+.email {
     color: #f0f0f0;
     font-size: 2rem;
 }
