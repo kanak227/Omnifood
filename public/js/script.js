@@ -21,13 +21,6 @@ const mainNav = document.querySelector(".main-nav");
 
 let scrollPosition = 0;
 
-function openNavbar() {
-    scrollPosition = window.scrollY; // Store the current scroll position
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollPosition}px`; // Prevents the page from moving
-    document.body.style.width = "100%";
-}
-
 function closeNavbar() {
     document.body.style.position = ""; // Reset to default
     document.body.style.top = ""; // Reset top positioning
@@ -46,7 +39,6 @@ function toggleNav(e) {
     if (window.innerWidth <= 944) { // Only toggle nav in mobile view
         headerEl.classList.toggle("nav-open");
         if (headerEl.classList.contains("nav-open")) {
-            openNavbar();
         } else {
             closeNavbar();
         }
