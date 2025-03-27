@@ -1,6 +1,6 @@
 const User = require("../models/user.js");
 const bcrypt = require("bcryptjs");
-const { sendToken } = require("../utils/features.js");
+const { sendToken, cookieOptions } = require("../utils/features.js");
 const { asyncError } = require("../middlewares/error.js");
 const ErrorHandler = require("../utils/error.js");
 const { sendVerificationEmail } = require("../utils/sendMail.js");
@@ -89,9 +89,22 @@ const getProfile = asyncError(async (req, res, next) => {
     })
 })
 
+const logout = asyncError(async (req, res, next) => {
+    res.cookie("token", null, {
+        expires: new Date(Date.now()),
+        ...cookieOptions
+    })
+
+    res.status(200).json({
+        success: true,
+        message: "Logged out successfully"
+    })
+})
+
 module.exports = {
     signup,
     login,
     getProfile,
-    verifyEmail
+    verifyEmail,
+    logout
 }

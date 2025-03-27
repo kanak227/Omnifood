@@ -262,7 +262,7 @@ form.sign-in-form {
 
 /* ANIMATION */
 
-.container.sign-up-mode:before {
+.sign-up-mode:before {
   transform: translate(100%, -50%);
   right: 52%;
 }
