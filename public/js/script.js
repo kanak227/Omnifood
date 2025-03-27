@@ -420,6 +420,32 @@ function setCSPHeaders() {
     document.head.appendChild(meta);
 }
 
+function removeHoverOnTouch() {
+    if ('ontouchstart' in document.documentElement) {
+        try {
+            for (let si in document.styleSheets) {
+                let styleSheet = document.styleSheets[si];
+                if (!styleSheet.rules) continue;
+
+                for (let ri = styleSheet.rules.length - 1; ri >= 0; ri--) {
+                    if (!styleSheet.rules[ri].selectorText) continue;
+
+                    if (styleSheet.rules[ri].selectorText.match(':hover')) {
+                        styleSheet.deleteRule(ri);
+                    }
+                }
+            }
+        } catch (ex) {
+            console.error("Error removing hover states:", ex);
+        }
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+    removeHoverOnTouch();
+    const scrollToTopBtn = document.querySelector(".scroll-to-top-btn");
+    if (scrollToTopBtn) {
+        scrollToTopBtn.addEventListener("click", scrollToTop);
+    }
     setCSPHeaders();
 });
